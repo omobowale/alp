@@ -36,7 +36,7 @@ const HomePage = () => {
             <ul className="list-parent">
               <li>Click the 'Fill template' button</li>
               <li>Follow prompts to complete the document</li>
-              <li>Review and pay. Document will be sent to your email</li>
+              <li>Review and pay. Document will be sent to your email.</li>
             </ul>
           </div>
 
