@@ -46,7 +46,7 @@ const HomePage = () => {
         </div>
         <div className="col-1"></div>
         <div className="col4">
-          <img src="assets/vector1.png" alt="document" />
+          <img src="assets/homedoc.png" alt="document" />
         </div>
       </div>
     </div>
