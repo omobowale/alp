@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { dispatch } from "../../app/store";
 import { GetInputType } from "../../Utils/GetInputType";
@@ -10,10 +9,11 @@ export const FormContext = React.createContext({
   handleFormChange: () => {},
 });
 
-const Form = ({ formData }) => {
+const Form = ({ formData, progress }) => {
   const nav = useNavigate()
   const [count, setCount] = useState(0);
   const [prevDisabled, setPrevDisabled] = useState(true);
+  const [nextDisabled, setNextDisabled] = useState(true);
   const [form, setForm] = useState(formData);
 
   const handleFormChange = (event) => {
@@ -23,6 +23,7 @@ const Form = ({ formData }) => {
       if (ele.name === name) {
        ele.value = value
       }
+      return ele
     });
 
     //check form progress
@@ -39,7 +40,12 @@ const Form = ({ formData }) => {
       setPrevDisabled(false);
     }
 
-  }, [count]);
+    if(count + 1 >= formData.length && progress !== 100){
+      setNextDisabled(true)
+    }else{setNextDisabled(false)}
+
+  }, [count, progress]);
+
   const content = GetInputType(formData[count]);
   const question = formData[count].question;
 
@@ -80,7 +86,8 @@ const Form = ({ formData }) => {
         <button
           className="btn"
           id="btn"
-          onClick={() => count + 1 >= formData.length ? HandlerSubmit()  :
+          disabled={nextDisabled}
+          onClick={() => progress === 100 && count +1 >= formData.length ? HandlerSubmit()  :
             setCount((prev) => {
               return prev + 1;
             })

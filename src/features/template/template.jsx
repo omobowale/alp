@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { useLoaderData } from "react-router-dom";
-import { dispatch } from "../../app/store";
 import Form from "./form";
 import "./template.css";
-import { setFormData } from "./templateSlice";
 
 const TemplatePage = () => {
   const FormData = useLoaderData();
@@ -13,12 +11,11 @@ const TemplatePage = () => {
 
   return (
     <div className="d-flex" id="container">
-      <div className="col-3" id="form">
-     <Form formData={FormData} />
+      <div  id="form">
+     <Form formData={FormData} progress={progress}/>
       </div>
-      <div className="col-2"></div>
+      <div id="space-between"></div>
       <div
-        className="col-7"
         id="rightSection"
         style={{ backgroundColor: "#f8fbfd", height: "70vh" }}
       >
@@ -57,7 +54,9 @@ const TemplatePage = () => {
             consequat. Duis aute irure dolor in reprehenderit in voluptate velit
             esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
             cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum. Lorem ipsum dolor sit amet, consectetur
+            anim id est laborum.<br/><br/>
+            
+             Lorem ipsum dolor sit amet, consectetur
             _________ eiusmod tempor incididunt ut labore et dolore magna
             aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
             laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
@@ -70,7 +69,8 @@ const TemplatePage = () => {
             ut aliquip ex ea commodo consequat. Duis aute irure dolor in
             reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum
+            culpa qui officia deserunt mollit anim id est laborum. 
+            <br/><br/>Lorem ipsum
             dolor sit amet, consectet _________ trud exercitation ullamco
             laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
             dolor in reprehenderit in voluptate velit esse cillum dolore eu

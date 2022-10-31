@@ -31,7 +31,7 @@ const SuccessPage = () => {
           <div className="mt-5 info">
             {" "}
             Didn't get an email?{" "}
-            <NavLink to="/" className="text-primary">
+            <NavLink to="/checkout" className="text-primary">
               Resend Now
             </NavLink>
           </div>

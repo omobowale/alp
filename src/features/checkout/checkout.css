@@ -97,7 +97,7 @@ p {
   cursor: pointer;
 }
 
-#btn-light {
+.btn-light {
   border-radius: 20px;
   height: 30px;
   border: none;
@@ -107,6 +107,7 @@ p {
   text-align: center;
   color: #828282;
   cursor: pointer;
+  background-color: rgb(248, 251, 253);
 }
 
 #success-con {
@@ -136,3 +137,5 @@ p {
     text-decoration: none;
     color: #828282;
   }
+
+  

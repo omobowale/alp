@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 #container {
   margin: auto;
   padding: 0px;
@@ -8,7 +10,7 @@
   background: #f8fbfd;
   border-radius: 10px;
   padding: 30px 45px;
-  width: 90%;
+  width: 30%;
   height: fit-content;
 }
 
@@ -27,7 +29,7 @@
   outline: 0;
   border-width: 0 0 2px;
   border-color: #0b2594;
-  width: 85%;
+  width: 100%;
 }
 
 #btn {
@@ -48,15 +50,37 @@
   transition: none;
 }
 
-.btn:hover {
-  color: #fff !important;
+#btn:disabled {
+  background: #f8fbfd;
+  border-radius: 20px;
+  height: 30px;
+  width: 90px;
+  margin-top: 45px;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  text-align: center;
+  color: #828282;
+  cursor: pointer;
+
+  transition: none;
+}
+
+#btn:hover:disabled{
   text-decoration: none;
+}
+
+#space-between{
+  width: 15%;
 }
 
 #rightSection {
   background-color: #f8fbfd;
   height: 100vh;
   padding: 30px 40px;
+  width: 60%;
 }
 
 .textHead {
