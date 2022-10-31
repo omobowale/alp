@@ -11,7 +11,7 @@ const HomePage = () => {
           <div className="d-flex justify-content-between">
             <div className="d-flex">
               <div className="mr-2">
-                <img src="/assets/vector1.png" alt="logo" />
+                <img src="assets/vector1.png" alt="logo" />
               </div>
               <p className="textHead">Power of Attorney</p>
             </div>
@@ -46,7 +46,7 @@ const HomePage = () => {
         </div>
         <div className="col-1"></div>
         <div className="col4">
-          <img src="/assets/homedoc.png" alt="document" />
+          <img src="assets/homedoc.png" alt="document" />
         </div>
       </div>
     </div>
