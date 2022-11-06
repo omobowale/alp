@@ -1,15 +1,12 @@
 import React from "react";
 import "./App.css";
-import { Outlet } from "react-router-dom";
-import NavComponent from "./components/shared/NavComponent";
+import Home from "./pages/Home";
 
 function App() {
   return (
     <div>
-      <NavComponent />
-      <div className="mt-5">
-          <Outlet />
-      </div>
+      
+      <Home/>
     </div>
   );
 }
