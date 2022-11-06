@@ -6,7 +6,7 @@ import Template4 from "../Templates/template_4";
 export const templates = [
     {
         title: "AGENCY AGREEMENT CORPORATE TO CORPORATE",
-        imagePath: "assets/homedoc.png",
+        imagePath: "../assets/homedoc.png",
         price: "1500",
         component: <Template1 name="AGENCY AGREEMENT CORPORATE TO CORPORATE" />
     },
