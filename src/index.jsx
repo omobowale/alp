@@ -8,12 +8,13 @@ import Home from "./pages/Home";
 import Template1 from "./Templates/template_1";
 import { templates } from "./template_registration";
 import { replaceSpaceWithSlash } from "./helperfunctions/strings";
+import Start from "./pages/Start";
 
 const router = createBrowserRouter(
   [
     {
       path: "",
-      element: <Home />,
+      element: <Start />,
     },
     ...templates.map((template) => {
       return {
