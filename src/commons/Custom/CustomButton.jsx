@@ -5,7 +5,7 @@ function CustomButton(props) {
     
     return (
         <div className='mt-3'>
-            <button onClick={props.onClick} className='btn rounded-full px-8 border' style={{ color: props.textColor, backgroundColor: props.bgColor, fontSize: font10, width: "100%" }}>{props.label}</button>
+            <button type={props.type ? props.type : 'button'} disabled={props.disabled ? props.disabled : false} onClick={props.onClick} className='btn rounded-full px-8 border' style={{ color: props.textColor, backgroundColor: props.bgColor, fontSize: font10, width: "100%" }}>{props.label}</button>
         </div>
     )
 }

@@ -1,3 +1,4 @@
+import { Elements } from "@stripe/react-stripe-js";
 import React, { useState } from "react";
 import CustomButton from "../commons/Custom/CustomButton";
 import CustomQuestionResponse from "../commons/Custom/CustomQuestionResponse";
@@ -10,11 +11,15 @@ import {
   getMonthAndYear,
 } from "../helperfunctions/date";
 import Layout from "../Layout";
+import Checkout from "../pages/Checkout";
+import CheckoutPage from "../pages/CheckoutPage";
 
 function Template1(props) {
-  console.log(props)
+  console.log(props);
   //question index
   const [index, setIndex] = useState(0);
+
+  const [showCheckout, setShowCheckout] = useState(false);
 
   //fields to be filled
   const [date, setDate] = useState(placeholderMarker);
@@ -51,12 +56,13 @@ function Template1(props) {
 
   //functions
   const incrementIndex = () => {
-    if (index < questions.length - 1) {
+    // if (index < questions.length) {
       setIndex(index + 1);
-    }
+    // }
   };
 
   const decrementIndex = () => {
+    console.log("decrement")
     if (index > 0) {
       setIndex(index - 1);
     }
@@ -137,31 +143,37 @@ function Template1(props) {
     <Layout>
       <div className="flex justify-between gap-20">
         <div className="w-2/5">
-          {questions.map((question, ind) => (
-            <div style={{ display: `${ind == index ? 'block' : 'none'}` }}>
+          {index < questions.length && questions.map((question, ind) => (
+            <div style={{ display: `${ind == index ? "block" : "none"}` }}>
               <CustomQuestionResponse key={ind} questionResponse={question} />{" "}
             </div>
           ))}
+
           {/* <CustomQuestionResponse questionResponse={questions[index]}/> */}
-          <div className="flex justify-between gap-20">
-            <div className="w-1/2">
-              <CustomButton
-                bgColor={index === 0 ? "transparent" : blueColor}
-                textColor={index === 0 ? "black" : "white"}
-                label="Previous"
-                onClick={decrementIndex}
-              />
+          {index < questions.length && (
+            <div className="flex justify-between gap-20">
+              <div className="w-1/2">
+                <CustomButton
+                  bgColor={index === 0 ? "transparent" : blueColor}
+                  textColor={index === 0 ? "black" : "white"}
+                  label="Previous"
+                  onClick={decrementIndex}
+                />
+              </div>
+              <div className="w-1/2">
+                <CustomButton
+                  bgColor={
+                    index === questions.length - 1 ? "transparent" : blueColor
+                  }
+                  textColor={index === questions.length - 1 ? "black" : "white"}
+                  label="Next"
+                  onClick={incrementIndex}
+                />
+              </div>
             </div>
-            <div className="w-1/2">
-              <CustomButton
-                bgColor={
-                  index === questions.length - 1 ? "transparent" : blueColor
-                }
-                textColor={index === questions.length - 1 ? "black" : "white"}
-                label="Next"
-                onClick={incrementIndex}
-              />
-            </div>
+          )}
+          <div style={{ display: `${index === questions.length ? "block" : "none"}` }}>
+            <CheckoutPage name={props.name} onBackButtonClicked={decrementIndex} />
           </div>
         </div>
 
