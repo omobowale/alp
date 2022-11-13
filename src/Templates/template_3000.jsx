@@ -14,7 +14,7 @@ import Layout from "../Layout";
 import Checkout from "../pages/Checkout";
 import CheckoutPage from "../pages/CheckoutPage";
 
-function Template3(props) {
+function Template3000(props) {
   console.log(props);
   //question index
   const [index, setIndex] = useState(0);
@@ -434,4 +434,4 @@ function Template3(props) {
   );
 }
 
-export default Template3;
+export default Template3000;

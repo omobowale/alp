@@ -10,7 +10,7 @@ function Layout(props) {
         <div className='mt-8'>
 
         </div>
-        <div className='w-3/4 m-auto'>
+        <div className='w-4/5 m-auto'>
             {props.children}
         </div>
     </div>
