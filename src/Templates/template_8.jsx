@@ -238,7 +238,7 @@ function Template8(props) {
               </span>
             </div>
           </div>
-          <div className="" style={{ height: "70vh", overflow: "scroll" }}>
+          <div className="template-container" style={{ height: "70vh", overflow: "scroll" }}>
             <div>
               <meta
                 httpEquiv="content-type"
@@ -258,7 +258,7 @@ function Template8(props) {
                     "\n\t\t@page { size: 8.5in 11in; margin: 1in }\n\t\tp { line-height: 115%; text-align: left; orphans: 2; widows: 2; margin-bottom: 0.1in; direction: ltr; background: transparent }\n\t",
                 }}
               />
-              <p
+               <p
                 align="justify"
                 style={{ lineHeight: "108%", marginBottom: "0.11in" }}
               >
@@ -292,29 +292,34 @@ function Template8(props) {
                     , I,
                   </font>
                 </font>
+
+                <font face="Garamond, serif">
+                  <font size={3} style={{ fontSize: "12pt" }}>
+                    {nameOfDonor !== "" && nameOfDonor !== placeholderMarker ? (
+                      <u>{"    " + nameOfDonor + "    "}</u>
+                    ) : (
+                      <>{"    " + nameOfDonor + "    "}</>
+                    )}
+                  </font>
+                </font>
                 <font color="">
                   <font face="Garamond, serif">
                     <font size={3} style={{ fontSize: "12pt" }}>
-                      {nameOfDonor !== "" &&
-                      nameOfDonor !== placeholderMarker ? (
-                        <u>{"    " + nameOfDonor + "    "}</u>
-                      ) : (
-                        <>{"    " + nameOfDonor + "    "}</>
-                      )}
+                      a company duly incorporated under the Companies {"&"} Allied
+                      Matters Act 2020 , having its registered office at
                     </font>
                   </font>
                 </font>
                 <font face="Garamond, serif">
                   <font size={3} style={{ fontSize: "12pt" }}>
-                    {" "}
-                    of
+
                   </font>
                 </font>
                 <font color="">
                   <font face="Garamond, serif">
                     <font size={3} style={{ fontSize: "12pt" }}>
                       {addressOfDonor !== "" &&
-                      addressOfDonor !== placeholderMarker ? (
+                        addressOfDonor !== placeholderMarker ? (
                         <u>{"    " + addressOfDonor + "    "}</u>
                       ) : (
                         <>{"    " + addressOfDonor + "    "}</>
@@ -322,6 +327,9 @@ function Template8(props) {
                     </font>
                   </font>
                 </font>
+
+
+
                 <font face="Garamond, serif">
                   <font size={3} style={{ fontSize: "12pt" }}>
                     (
@@ -342,31 +350,31 @@ function Template8(props) {
                     <b>APPOINT</b>
                   </font>
                 </font>
-                <font face="Garamond, serif">
-                  <font size={3} style={{ fontSize: "12pt" }}>
-                    {nameOfDonee !== "" && nameOfDonee !== placeholderMarker ? (
-                      <u>{"    " + nameOfDonee + "    "}</u>
-                    ) : (
-                      <>{"    " + nameOfDonee + "    "}</>
-                    )}
-                  </font>
-                </font>
+
+
                 <font color="">
                   <font face="Garamond, serif">
                     <font size={3} style={{ fontSize: "12pt" }}>
-                      a company duly incorporated under the Companies {"&"}{" "}
-                      Allied Matters Act 2020 , having its registered office at
+                      {nameOfDonee !== "" &&
+                        nameOfDonee !== placeholderMarker ? (
+                        <u>{"    " + nameOfDonee + "    "}</u>
+                      ) : (
+                        <>{"    " + nameOfDonee + "    "}</>
+                      )}
                     </font>
                   </font>
                 </font>
                 <font face="Garamond, serif">
-                  <font size={3} style={{ fontSize: "12pt" }}></font>
+                  <font size={3} style={{ fontSize: "12pt" }}>
+                    {" "}
+                    of
+                  </font>
                 </font>
                 <font color="">
                   <font face="Garamond, serif">
                     <font size={3} style={{ fontSize: "12pt" }}>
                       {addressOfDonee !== "" &&
-                      addressOfDonee !== placeholderMarker ? (
+                        addressOfDonee !== placeholderMarker ? (
                         <u>{"    " + addressOfDonee + "    "}</u>
                       ) : (
                         <>{"    " + addressOfDonee + "    "}</>
@@ -374,6 +382,9 @@ function Template8(props) {
                     </font>
                   </font>
                 </font>
+
+
+
                 <font face="Garamond, serif">
                   <font size={3} style={{ fontSize: "12pt" }}>
                     (

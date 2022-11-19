@@ -1,0 +1,1841 @@
+import React, { useState } from "react";
+import CustomButton from "../commons/Custom/CustomButton";
+import CustomQuestionResponse from "../commons/Custom/CustomQuestionResponse";
+import { blueColor } from "../constants/colors";
+import { placeholderMarker } from "../constants/strings";
+import { getActualDate, getDayOfMonth, getMonthAndYear } from "../helperfunctions/date";
+import { insertInput } from "../helperfunctions/jsx";
+import Layout from "../Layout";
+import CheckoutPage from "../pages/CheckoutPage";
+
+function Template12CAITI(props) {
+  console.log(props);
+  //question index
+  const [index, setIndex] = useState(0);
+
+  //fields to be filled
+  const [date, setDate] = useState(placeholderMarker)
+  const [nameOfFirstCompany, setNameOfFirstCompany] = useState(placeholderMarker)
+  const [addressOfFirstCompany, setAddressOfFirstCompany] = useState(placeholderMarker)
+  const [addressOfConsultant, setAddressOfConsultant] = useState(placeholderMarker)
+  const [addressOfClient, setAddressOfClient] = useState(placeholderMarker)
+  const [clientNeeds, setClientNeeds] = useState(placeholderMarker)
+  const [consultantService, setConsultantService] = useState(placeholderMarker)
+  const [areaOfService, setAreaOfService] = useState(placeholderMarker)
+  const [consultantRatePerHour, setConsultantRatePerHour] = useState(placeholderMarker)
+  const [dateOfTerminationOfAgreement, setDateOfTerminationOfAgreement] = useState(placeholderMarker)
+  const [descriptionOfInformationToBeShared, setDescriptionOfInformationToBeShared] = useState(placeholderMarker)
+  const [consultantAddressOfCommunication, setConsultantAddressOfCommunication] = useState(placeholderMarker)
+  const [clientAddressOfCommunication, setClientAddressOfCommunication] = useState(placeholderMarker)
+
+  const [nameOfConsultant, setNameOfConsultant] = useState(placeholderMarker);
+  const [nameOfConsultantWitness, setNameOfConsultantWitness] = useState(placeholderMarker);
+  const [addressOfConsultantWitness, setAddressOfConsultantWitness] = useState(placeholderMarker);
+  const [occupationOfConsultantWitness, setOccupationOfConsultantWitness] = useState(placeholderMarker);
+  const [dateOfConsultantWitness, setDateOfConsultantWitness] = useState(placeholderMarker)
+
+  const [nameOfClient, setNameOfClient] = useState(placeholderMarker);
+  const [nameOfClientWitness, setNameOfClientWitness] = useState(placeholderMarker);
+  const [addressOfClientWitness, setAddressOfClientWitness] = useState(placeholderMarker);
+  const [occupationOfClientWitness, setOccupationOfClientWitness] = useState(placeholderMarker);
+  const [dateOfClientWitness, setDateOfClientWitness] = useState(placeholderMarker)
+
+
+  //functions
+  const incrementIndex = () => {
+    setIndex(index + 1);
+  };
+
+  const decrementIndex = () => {
+    console.log("decrement");
+    if (index > 0) {
+      setIndex(index - 1);
+    }
+  };
+
+  const questions = [
+    {
+      type: "date",
+      question: "Enter the date of this agreement",
+      action: setDate,
+    },
+    {
+      type: "input",
+      question: "Enter the full name of the consultant",
+      action: setNameOfConsultant,
+    },
+    {
+      type: "input",
+      question: "Enter the address of the consultant",
+      action: setAddressOfConsultant,
+
+    },
+    {
+      type: "input",
+      question: "Enter the full name of the client",
+      action: setNameOfClient,
+    },
+    {
+      type: "input",
+      question: "Enter the address of the client",
+      action: setAddressOfClient,
+    },
+    {
+      type: "input",
+      question: "Enter what the Client needs assistance with",
+      action: setClientNeeds,
+    },
+    {
+      type: "input",
+      question: "Enter Consultant's major service",
+      action: setConsultantService,
+    },
+    {
+      type: "input",
+      question: "Enter Consultant's area of service",
+      action: setAreaOfService,
+    },
+    {
+      type: "number",
+      question: "Enter Consultant's rate per hour in Naira.",
+      action: setConsultantRatePerHour,
+    },
+    {
+      type: "date",
+      question: "Enter date of termination of agreement.",
+      action: setDateOfTerminationOfAgreement,
+    },
+    {
+      type: "input",
+      question: "Enter description of information to be shared",
+      action: setDescriptionOfInformationToBeShared,
+    },
+    {
+      type: "input",
+      question: "If to Consultant, enter the mail/physical address of communication",
+      action: setConsultantAddressOfCommunication,
+    },
+    {
+      type: "input",
+      question: "If to Client, enter the mail/physical address of communication",
+      action: setClientAddressOfCommunication,
+    },
+    {
+      type: "input",
+      question: "Enter full name of Consultant's witness",
+      action: setNameOfConsultantWitness,
+    },
+    {
+      type: "input",
+      question: "Enter address of Consultant's witness",
+      action: setAddressOfConsultantWitness,
+    },
+    {
+      type: "input",
+      question: "Enter Consultant's witness date",
+      action: setDateOfConsultantWitness,
+    },
+
+    {
+      type: "input",
+      question: "Enter full name of Client's witness",
+      action: setNameOfClientWitness,
+    },
+    {
+      type: "input",
+      question: "Enter address of Client's witness",
+      action: setAddressOfClientWitness,
+    },
+    {
+      type: "input",
+      question: "Enter Client's witness date",
+      action: setDateOfClientWitness,
+    }
+  ];
+
+  return (
+    <Layout>
+      <div className="flex justify-between gap-20">
+        <div className="w-2/5">
+          {index < questions.length &&
+            questions.map((question, ind) => (
+              <div style={{ display: `${ind === index ? "block" : "none"}` }}>
+                <CustomQuestionResponse key={ind} questionResponse={question} />{" "}
+              </div>
+            ))}
+          {index < questions.length && (
+            <div className="flex justify-between gap-20">
+              <div className="w-1/2">
+                <CustomButton
+                  bgColor={index === 0 ? "transparent" : blueColor}
+                  textColor={index === 0 ? "black" : "white"}
+                  label="Previous"
+                  onClick={decrementIndex}
+                />
+              </div>
+              <div className="w-1/2">
+                <CustomButton
+                  bgColor={
+                    index === questions.length - 1 ? "transparent" : blueColor
+                  }
+                  textColor={index === questions.length - 1 ? "black" : "white"}
+                  label="Next"
+                  onClick={incrementIndex}
+                />
+              </div>
+            </div>
+          )}
+          <div
+            style={{
+              display: `${index === questions.length ? "block" : "none"}`,
+            }}
+          >
+            <CheckoutPage
+              name={props.name}
+              onBackButtonClicked={decrementIndex}
+            />
+          </div>
+        </div>
+
+        <div className="w-3/5">
+          <div className="flex justify-between mb-3">
+            <div className="flex gap-2 items-center">
+              <span>
+                <img src="assets/frame_1.png" alt="frame" />
+              </span>
+              <span
+                style={{
+                  fontWeight: "600",
+                  fontSize: "13px",
+                  color: blueColor,
+                }}
+              >
+                {props.name}
+              </span>
+            </div>
+          </div>
+          <div className="template-container py-2 px-4" style={{ height: "70vh", overflow: "scroll" }}>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <b>THIS </b>
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                />
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <b>CONSULTING AGREEMENT </b>
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  ("
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <b>the Agreement</b>
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  ") is made this {insertInput(getDayOfMonth(getActualDate(date)))} Day of {insertInput(getMonthAndYear(getActualDate(date)))},
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <b> BETWEEN </b>
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                />
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+
+                </font>
+              </font>
+              <font >
+                <font face='Garamond, serif'>
+                  <font
+                    size='3'
+                    style={{
+                      fontSize: '12pt',
+                    }}
+                  >
+                    {insertInput(nameOfConsultant)}
+                  </font>
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  {" "} of
+                </font>
+              </font>
+              <font >
+                <font face='Garamond, serif'>
+                  <font
+                    size='3'
+                    style={{
+                      fontSize: '12pt',
+                    }}
+                  >
+                    {insertInput(addressOfConsultant)}
+                  </font>
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  ("
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <b>the Consultant</b>
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  ") of the first part,
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <b>AND</b>
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+
+                </font>
+              </font>
+              <font >
+                <font face='Garamond, serif'>
+                  <font
+                    size='3'
+                    style={{
+                      fontSize: '12pt',
+                    }}
+                  >
+                    {insertInput(nameOfClient)}
+                  </font>
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  of
+                </font>
+              </font>
+              <font >
+                <font face='Garamond, serif'>
+                  <font
+                    size='3'
+                    style={{
+                      fontSize: '12pt',
+                    }}
+                  >
+                    {insertInput(addressOfFirstCompany)}
+                  </font>
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  ("
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <b>the Client</b>
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  ") of the other part,
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                    lineHeight: '108%',
+                    marginBottom: '0.11in',
+                  }}
+                >
+                  <b>WHEREAS </b>
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  the Client needs assistance in {insertInput(clientNeeds)};
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <b>AND WHEREAS</b>
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  , the Consultant has agreed to perform consulting work for the
+                  Client in providing {insertInput(consultantService)} and consulting services and other
+                  related activities as directed by the Client;
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <b>NOW, THEREFORE, THE PARTIES AGREE AS FOLLOWS:</b>
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <b>1. Consultant's Services.</b>
+                </font>
+              </font>
+            </p>
+            <p
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+
+                A. The Consultant shall be available and shall provide to the Client
+                professional consulting services in the area of {insertInput(areaOfService)}
+                ("
+                <b>Consulting Services</b>
+                ") as requested.
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <b>2. Consideration.</b>
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  A. In consideration for the Consulting Services to be performed by
+                  the Consultant under this Agreement, the Client will pay the
+                  Consultant at the rate of
+                </font>
+              </font>
+              <font face='Times New Roman, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  {" "} ₦{insertInput(consultantRatePerHour)}
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  per hour for time spent on Consulting Services. Consultant
+                  shall submit written, signed reports of the time spent performing
+                  Consulting Services, itemizing in reasonable detail the dates on
+                  which services were performed, the number of hours spent on such
+                  dates and a brief description of the services rendered. The Client
+                  shall pay the Consultant the amounts due pursuant to submitted
+                  reports within 14 days after such reports are received by the
+                  Client.
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  B. Additionally, the Client will pay the Consultant for the
+                  following expenses incurred while the Agreement between Consultant
+                  and the Client subsists:
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  (i) All travel expenses to and from all work sites;
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  (ii) Meal expenses;
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  (iii) Administrative expenses;
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  (iv) Lodging Expenses if work demands overnight stays; and
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  (v) Miscellaneous travel-related expenses (parking and tolls.)
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  The Consultant shall submit written documentation and receipts
+                  where available itemizing the dates on which expenses were
+                  incurred. The Client shall pay the Consultant the amounts due
+                  pursuant to submitted reports within 14 days after a report is
+                  received by the Client.
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <b>3. Independent Contractor.</b>
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  A. Nothing herein shall be construed to create an
+                  employer-employee relationship between the Client and the
+                  Consultant. The Consultant is an independent contractor and not an
+                  employee of the Client or any of its subsidiaries or affiliates.
+                  The consideration set forth in Clause 2 shall be the sole
+                  consideration due the Consultant for the services rendered
+                  hereunder. It is understood that the Client will not withhold any
+                  amounts for payment of taxes from the compensation of the
+                  Consultant hereunder. The Consultant will not represent to be or
+                  hold himself/herself out as an employee of the Client.
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <b>4. Confidentiality.</b>
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  A. In the course of performing Consulting Services, the parties
+                  recognize that the Consultant may come in contact with or become
+                  familiar with information which the Client or its subsidiaries or
+                  affiliates may consider confidential. This information may
+                  include, but is not limited to, information pertaining to
+                </font>
+              </font>
+              <font >
+                <font face='Garamond, serif'>
+                  <font
+                    size='3'
+                    style={{
+                      fontSize: '12pt',
+                    }}
+                  >
+                    {" "} {insertInput(descriptionOfInformationToBeShared)}
+                  </font>
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  , which information may be of value to a competitor. The
+                  Consultant agrees to keep all such information confidential and
+                  not to discuss or divulge it to any third party.
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <b>5. Term.</b>
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  A. This Agreement shall commence from the date of execution of
+                  this Agreement by the Parties and shall terminate on {insertInput(dateOfTerminationOfAgreement)},
+                  unless earlier terminated by either party hereto. Either party may
+                  terminate this Agreement upon Thirty (30) days prior written
+                  notice.
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <b>6. Notice.</b>
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  A. All notices and other communications required or permitted
+                  hereunder or necessary or convenient in connection herewith shall
+                  be in writing and shall be deemed to have been given when mailed
+                  by certified or registered mail, postage prepaid, or by commercial
+                  overnight delivery service addressed as follows.
+                </font>
+              </font>
+            </p>
+            <p
+              align='left'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size=''
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  If to the Consultant to:
+                </font>
+              </font>
+            </p>
+            <p
+              align='left'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              {insertInput(consultantAddressOfCommunication)}
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  If to the Client to:
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              {insertInput(clientAddressOfCommunication)}
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  Or to such other address as identified by a party to the other in
+                  writing.
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <b>7. Miscellaneous.</b>
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  A. This Agreement constitutes the entire agreement of the parties
+                  with regard to the subject matter hereof, and replaces and
+                  supersedes all other agreements or understandings, whether written
+                  or oral. No amendment or extension of the Agreement shall be
+                  binding unless in writing and signed by both parties.
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  B. This Agreement shall be binding upon and shall inure to the
+                  benefit of the Consultant and the Client and to the Client's
+                  successors and assigns. Nothing in this Agreement shall be
+                  construed to permit the assignment by the Consultant of any of its
+                  rights or obligations hereunder, and such assignment is expressly
+                  prohibited without the prior written consent of the Client.
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <b>8. Severability.</b>
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  A. If any term of this Agreement is held by a court of competent
+                  jurisdiction to be invalid or unenforceable, then this Agreement,
+                  including all of the remaining terms, will remain in full force
+                  and effect as if such invalid or unenforceable term had never been
+                  included.
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <b>9. Governing Law.</b>
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  A. The terms of this Agreement shall be construed and enforced
+                  under the laws of the Federal Republic of Nigeria.
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <br />
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <span lang='en-GB'>
+                    <b>IN WITNESS WHEREOF </b>
+                  </span>
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <span lang='en-GB'>
+                    the parties have executed this agreement on the day and year
+                    first above written.
+                  </span>
+                </font>
+              </font>
+            </p>
+            <p
+              lang='en-GB'
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <br />
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <a name='_Hlk88140083' />
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <span lang='en-GB'>
+                    <b>SIGNED </b>
+                  </span>
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <span lang='en-GB' />
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <span lang='en-GB'>
+
+                  </span>
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <span lang='en-GB'>by the within named </span>
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <span lang='en-GB'>
+                    <b>CONSULTANT</b>
+                  </span>
+                </font>
+              </font>
+            </p>
+
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <span lang='en-GB'>
+                    <b />
+                  </span>
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+
+                </font>
+              </font>
+              <font >
+                <font face='Garamond, serif'>
+                  <font
+                    size='3'
+                    style={{
+                      fontSize: '12pt',
+                    }}
+                  >
+                    {insertInput(nameOfConsultant, "underline")}
+                  </font>
+                </font>
+              </font>
+              <br ></br>
+              <br ></br>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <span lang='en-GB'>
+                    <b>In the presence of;</b>
+                  </span>
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  Name:
+                  {insertInput(nameOfConsultantWitness)}
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  Address:
+                  {insertInput(addressOfConsultantWitness)}
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  Occupation:
+                  {insertInput(occupationOfConsultantWitness)}
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  Signature:
+                  ............................................................
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  Date: {insertInput(dateOfConsultantWitness)}
+                </font>
+              </font>
+            </p>
+
+
+            <p
+              lang='en-GB'
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <br />
+              <br />
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <span lang='en-GB'>
+                    <b>SIGNED  </b>
+                  </span>
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <span lang='en-GB' />
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <span lang='en-GB'>
+
+                  </span>
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <span lang='en-GB'> by the within named </span>
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <span lang='en-GB'>
+                    <b>CLIENT</b>
+                  </span>
+                </font>
+              </font>
+            </p>
+
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <span lang='en-GB'>
+                    <b />
+                  </span>
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+
+                </font>
+              </font>
+              <font >
+                <font face='Garamond, serif'>
+                  <font
+                    size='3'
+                    style={{
+                      fontSize: '12pt',
+                    }}
+                  >
+                    {insertInput(nameOfClient, "underline")}
+                  </font>
+                </font>
+              </font>
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  <span lang='en-GB'>
+                    <b>In the presence of;</b>
+                  </span>
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  Name:
+                  {insertInput(nameOfClientWitness)}
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  Address:
+                  {insertInput(addressOfClientWitness)}
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  Occupation:
+                  {insertInput(occupationOfClientWitness)}
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  Signature:
+                  ............................................................
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <font face='Garamond, serif'>
+                <font
+                  size='3'
+                  style={{
+                    fontSize: '12pt',
+                  }}
+                >
+                  Date: {insertInput(dateOfClientWitness)}
+                </font>
+              </font>
+            </p>
+            <p
+              align='justify'
+              style={{
+                lineHeight: '108%',
+                marginBottom: '0.11in',
+              }}
+            >
+              <br />
+              <br />
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </Layout>
+  );
+}
+
+export default Template12CAITI;

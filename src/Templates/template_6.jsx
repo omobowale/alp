@@ -240,7 +240,7 @@ function Template6(props) {
               </span>
             </div>
           </div>
-          <div className="" style={{ height: "70vh", overflow: "scroll" }}>
+          <div className="template-container" style={{ height: "70vh", overflow: "scroll" }}>
             <div>
               <meta
                 httpEquiv="content-type"
@@ -353,13 +353,7 @@ function Template6(props) {
                     )}
                   </font>
                 </font>
-                {/* <font color="">
-                  <font face="Garamond, serif">
-                    <font size={3} style={{ fontSize: "12pt" }}>
-                      {nameOfDonee}
-                    </font>
-                  </font>
-                </font> */}
+               
                 <font face="Garamond, serif">
                   <font size={3} style={{ fontSize: "12pt" }}>
                     , of

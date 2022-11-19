@@ -238,7 +238,7 @@ function Template7(props) {
               </span>
             </div>
           </div>
-          <div className="" style={{ height: "70vh", overflow: "scroll" }}>
+          <div className="template-container" style={{ height: "70vh", overflow: "scroll" }}>
             <div>
               <meta
                 httpEquiv="content-type"

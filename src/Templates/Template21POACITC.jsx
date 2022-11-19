@@ -14,7 +14,7 @@ import Layout from "../Layout";
 import Checkout from "../pages/Checkout";
 import CheckoutPage from "../pages/CheckoutPage";
 
-function Template12(props) {
+function Template21POACITC(props) {
   console.log(props);
   //question index
   const [index, setIndex] = useState(0);
@@ -29,6 +29,7 @@ function Template12(props) {
   const [nameOfDonee, setNameOfDonee] = useState(placeholderMarker);
   const [addressOfDonor, setAddressOfDonor] = useState(placeholderMarker);
   const [addressOfDonee, setAddressOfDonee] = useState(placeholderMarker);
+  const [amountOfConsideration, setAmountOfConsideration] = useState(placeholderMarker);
   const [item1, setItem1] = useState(placeholderMarker);
   const [item2, setItem2] = useState(placeholderMarker);
   const [item3, setItem3] = useState(placeholderMarker);
@@ -137,9 +138,47 @@ function Template12(props) {
     },
     {
       type: "number",
+      question: "Enter the amount of consideration ",
+      action: setAmountOfConsideration,
+    },
+    {
+      type: "input",
       question: "Enter the period of power ",
       action: setPeriodOfPower,
     },
+    {
+      type: "input",
+      question: "Enter the name of witness",
+      action: setInThePresenceOfName,
+    },
+    {
+      type: "input",
+      question: "Enter the address of witness",
+      action: setInThePresenceOfAddress,
+    },
+    {
+      type: "input",
+      question: "Enter the occupation of witness",
+      action: setInThePresenceOfOccupation,
+    },
+
+    // {
+    //     type: "radio",
+    //     question: "Select your gender",
+    //     options: ["male", "female"]
+    // },
+
+    // {
+    //     type: "checkbox",
+    //     question: "Select all that applies",
+    //     options: ["good", "better", "best"]
+    // },
+    // {
+    //     type: "date-range",
+    //     question: "Select dates",
+    //     labelOne: "Start Date",
+    //     labelTwo: "End Date",
+    // }
   ];
 
   return (
@@ -153,6 +192,7 @@ function Template12(props) {
               </div>
             ))}
 
+          {/* <CustomQuestionResponse questionResponse={questions[index]}/> */}
           {index < questions.length && (
             <div className="flex justify-between gap-20">
               <div className="w-1/2">
@@ -273,8 +313,7 @@ function Template12(props) {
                 <font face="Garamond, serif">
                   <font size={3} style={{ fontSize: "12pt" }}>
                     {" "}
-                    a company duly incorporated under the Companies & Allied
-                    Matters Act 2020 , having its registered office at
+                    of
                   </font>
                 </font>
                 <font color="">
@@ -318,17 +357,17 @@ function Template12(props) {
                     )}
                   </font>
                 </font>
-                {/* <font color="">
+                <font color="">
                   <font face="Garamond, serif">
                     <font size={3} style={{ fontSize: "12pt" }}>
-                      {nameOfDonee}
+                      a company duly incorporated under the Companies {"&"} Allied
+                      Matters Act 2020 , having its registered office at
                     </font>
                   </font>
-                </font> */}
+                </font>
                 <font face="Garamond, serif">
                   <font size={3} style={{ fontSize: "12pt" }}>
-                    , a company duly incorporated under the Companies & Allied
-                    Matters Act 2020 , having its registered office at
+                    
                   </font>
                 </font>
                 <font color="">
@@ -462,7 +501,36 @@ function Template12(props) {
               >
                 <font face="Garamond, serif">
                   <font size={3} style={{ fontSize: "12pt" }}>
-                    <b>AND I HEREBY DECLARE THAT </b>
+                    <b>IN CONSIDERATION </b>
+                  </font>
+                </font>
+                <font face="Garamond, serif">
+                  <font size={3} style={{ fontSize: "12pt" }}>
+                    of the sum of
+                  </font>
+                </font>
+                <font face="Garamond, serif">
+                  <font size={3} style={{ fontSize: "12pt" }}>
+
+                    {amountOfConsideration !== "" && amountOfConsideration !== placeholderMarker ? (
+                      <u>{"    " + amountOfConsideration + "    "}</u>
+                    ) : (
+                      <>{"    " + amountOfConsideration + "    "}</>
+                    )}
+
+
+                  </font>
+                </font>
+
+                <font face="Garamond, serif">
+                  <font size={3} style={{ fontSize: "12pt" }}>
+                    paid by the Donee to the
+                    Donor (the receipt of which the Donor acknowledges),
+                  </font>
+                </font>
+                <font face="Garamond, serif">
+                  <font size={3} style={{ fontSize: "12pt" }}>
+                    <b> IT IS DECLARED THAT </b>
                   </font>
                 </font>
                 <font face="Garamond, serif">
@@ -472,29 +540,10 @@ function Template12(props) {
                 </font>
                 <font face="Garamond, serif">
                   <font size={3} style={{ fontSize: "12pt" }}>
-                    <b> IRREVOCABLE </b>
+                    <b> IRREVOCABLE.</b>
                   </font>
                 </font>
-                <font face="Garamond, serif">
-                  <font size={3} style={{ fontSize: "12pt" }}>
-                    for a period of
-                  </font>
-                </font>
-                <font face="Garamond, serif">
-                  <font size={3} style={{ fontSize: "12pt" }}>
-                    {periodOfPower !== "" &&
-                    periodOfPower !== placeholderMarker ? (
-                      <u>{"    " + periodOfPower + "    "}</u>
-                    ) : (
-                      <>{"    " + periodOfPower + "    "}</>
-                    )}
-                  </font>
-                </font>
-                <font face="Garamond, serif">
-                  <font size={3} style={{ fontSize: "12pt" }}>
-                    years
-                  </font>
-                </font>
+
               </p>
               <p
                 align="justify"
@@ -525,7 +574,7 @@ function Template12(props) {
                   <font face="Garamond, serif">
                     <font size={3} style={{ fontSize: "12pt" }}>
                       {nameOfDonor !== "" &&
-                      nameOfDonor !== placeholderMarker ? (
+                        nameOfDonor !== placeholderMarker ? (
                         <u>{"    " + nameOfDonor + "    "}</u>
                       ) : (
                         <>{"    " + nameOfDonor + "    "}</>
@@ -601,4 +650,4 @@ function Template12(props) {
   );
 }
 
-export default Template12;
+export default Template21POACITC;

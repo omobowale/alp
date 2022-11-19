@@ -14,7 +14,7 @@ import Layout from "../Layout";
 import Checkout from "../pages/Checkout";
 import CheckoutPage from "../pages/CheckoutPage";
 
-function Template12(props) {
+function Template26POASPCTI(props) {
   console.log(props);
   //question index
   const [index, setIndex] = useState(0);
@@ -136,10 +136,43 @@ function Template12(props) {
       action: setItem5,
     },
     {
-      type: "number",
+      type: "input",
       question: "Enter the period of power ",
       action: setPeriodOfPower,
     },
+    {
+      type: "input",
+      question: "Enter the name of witness",
+      action: setInThePresenceOfName,
+    },
+    {
+      type: "input",
+      question: "Enter the address of witness",
+      action: setInThePresenceOfAddress,
+    },
+    {
+      type: "input",
+      question: "Enter the occupation of witness",
+      action: setInThePresenceOfOccupation,
+    },
+
+    // {
+    //     type: "radio",
+    //     question: "Select your gender",
+    //     options: ["male", "female"]
+    // },
+
+    // {
+    //     type: "checkbox",
+    //     question: "Select all that applies",
+    //     options: ["good", "better", "best"]
+    // },
+    // {
+    //     type: "date-range",
+    //     question: "Select dates",
+    //     labelOne: "Start Date",
+    //     labelTwo: "End Date",
+    // }
   ];
 
   return (
@@ -153,6 +186,7 @@ function Template12(props) {
               </div>
             ))}
 
+          {/* <CustomQuestionResponse questionResponse={questions[index]}/> */}
           {index < questions.length && (
             <div className="flex justify-between gap-20">
               <div className="w-1/2">
@@ -258,30 +292,34 @@ function Template12(props) {
                     , I,
                   </font>
                 </font>
+
+                <font face="Garamond, serif">
+                  <font size={3} style={{ fontSize: "12pt" }}>
+                    {nameOfDonor !== "" && nameOfDonor !== placeholderMarker ? (
+                      <u>{"    " + nameOfDonor + "    "}</u>
+                    ) : (
+                      <>{"    " + nameOfDonor + "    "}</>
+                    )}
+                  </font>
+                </font>
                 <font color="">
                   <font face="Garamond, serif">
                     <font size={3} style={{ fontSize: "12pt" }}>
-                      {nameOfDonor !== "" &&
-                      nameOfDonor !== placeholderMarker ? (
-                        <u>{"    " + nameOfDonor + "    "}</u>
-                      ) : (
-                        <>{"    " + nameOfDonor + "    "}</>
-                      )}
+                      a company duly incorporated under the Companies {"&"} Allied
+                      Matters Act 2020 , having its registered office at
                     </font>
                   </font>
                 </font>
                 <font face="Garamond, serif">
                   <font size={3} style={{ fontSize: "12pt" }}>
-                    {" "}
-                    a company duly incorporated under the Companies & Allied
-                    Matters Act 2020 , having its registered office at
+
                   </font>
                 </font>
                 <font color="">
                   <font face="Garamond, serif">
                     <font size={3} style={{ fontSize: "12pt" }}>
                       {addressOfDonor !== "" &&
-                      addressOfDonor !== placeholderMarker ? (
+                        addressOfDonor !== placeholderMarker ? (
                         <u>{"    " + addressOfDonor + "    "}</u>
                       ) : (
                         <>{"    " + addressOfDonor + "    "}</>
@@ -289,6 +327,9 @@ function Template12(props) {
                     </font>
                   </font>
                 </font>
+
+
+
                 <font face="Garamond, serif">
                   <font size={3} style={{ fontSize: "12pt" }}>
                     (
@@ -309,33 +350,31 @@ function Template12(props) {
                     <b>APPOINT</b>
                   </font>
                 </font>
-                <font face="Garamond, serif">
-                  <font size={3} style={{ fontSize: "12pt" }}>
-                    {nameOfDonee !== "" && nameOfDonee !== placeholderMarker ? (
-                      <u>{"    " + nameOfDonee + "    "}</u>
-                    ) : (
-                      <>{"    " + nameOfDonee + "    "}</>
-                    )}
-                  </font>
-                </font>
-                {/* <font color="">
+
+
+                <font color="">
                   <font face="Garamond, serif">
                     <font size={3} style={{ fontSize: "12pt" }}>
-                      {nameOfDonee}
+                      {nameOfDonee !== "" &&
+                        nameOfDonee !== placeholderMarker ? (
+                        <u>{"    " + nameOfDonee + "    "}</u>
+                      ) : (
+                        <>{"    " + nameOfDonee + "    "}</>
+                      )}
                     </font>
                   </font>
-                </font> */}
+                </font>
                 <font face="Garamond, serif">
                   <font size={3} style={{ fontSize: "12pt" }}>
-                    , a company duly incorporated under the Companies & Allied
-                    Matters Act 2020 , having its registered office at
+                    {" "}
+                    of
                   </font>
                 </font>
                 <font color="">
                   <font face="Garamond, serif">
                     <font size={3} style={{ fontSize: "12pt" }}>
                       {addressOfDonee !== "" &&
-                      addressOfDonee !== placeholderMarker ? (
+                        addressOfDonee !== placeholderMarker ? (
                         <u>{"    " + addressOfDonee + "    "}</u>
                       ) : (
                         <>{"    " + addressOfDonee + "    "}</>
@@ -343,6 +382,9 @@ function Template12(props) {
                     </font>
                   </font>
                 </font>
+
+
+
                 <font face="Garamond, serif">
                   <font size={3} style={{ fontSize: "12pt" }}>
                     (
@@ -483,7 +525,7 @@ function Template12(props) {
                 <font face="Garamond, serif">
                   <font size={3} style={{ fontSize: "12pt" }}>
                     {periodOfPower !== "" &&
-                    periodOfPower !== placeholderMarker ? (
+                      periodOfPower !== placeholderMarker ? (
                       <u>{"    " + periodOfPower + "    "}</u>
                     ) : (
                       <>{"    " + periodOfPower + "    "}</>
@@ -525,7 +567,7 @@ function Template12(props) {
                   <font face="Garamond, serif">
                     <font size={3} style={{ fontSize: "12pt" }}>
                       {nameOfDonor !== "" &&
-                      nameOfDonor !== placeholderMarker ? (
+                        nameOfDonor !== placeholderMarker ? (
                         <u>{"    " + nameOfDonor + "    "}</u>
                       ) : (
                         <>{"    " + nameOfDonor + "    "}</>
@@ -593,6 +635,13 @@ function Template12(props) {
                   </font>
                 </p>
               </div>
+              <p
+                align="justify"
+                style={{ lineHeight: "108%", marginBottom: "0.11in" }}
+              >
+                <br />
+                <br />
+              </p>
             </div>
           </div>
         </div>
@@ -601,4 +650,4 @@ function Template12(props) {
   );
 }
 
-export default Template12;
+export default Template26POASPCTI;

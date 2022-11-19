@@ -6,6 +6,7 @@ import CustomRadioButton from "./CustomRadioButton";
 import CustomDropDown from "./CustomDropDown";
 import CustomDate from "./CustomDate";
 import CustomNumber from "./CustomNumber";
+import CustomTime from "./CustomTime";
 
 function CustomQuestionResponse(props) {
   const getResponseInput = (type) => {
@@ -17,6 +18,9 @@ function CustomQuestionResponse(props) {
     }
     if (type.toLowerCase() === "date") {
       return <CustomDate onChange={props.questionResponse.action} />;
+    }
+    if (type.toLowerCase() === "time") {
+      return <CustomTime onChange={props.questionResponse.action} />;
     }
     if (type.toLowerCase() === "radio") {
       return props.questionResponse.options.map((option) => (
