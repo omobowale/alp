@@ -89,8 +89,8 @@ function Template9CACTC(props) {
   const [consultantService, setConsultantService] = useState(
     getCurrentValue("consultantService")
   );
-  const [areaOfService, setAreaOfService] = useState(
-    getCurrentValue("areaOfService")
+  const [areaOfExpertise, setAreaOfExpertise] = useState(
+    getCurrentValue("areaOfExpertise")
   );
   const [consultantRatePerHour, setConsultantRatePerHour] = useState(
     getCurrentValue("consultantRatePerHour")
@@ -206,10 +206,10 @@ function Template9CACTC(props) {
     },
     {
       type: "input",
-      question: "Enter Consultant's area of service",
-      action: setAreaOfService,
-      key: "areaOfService",
-      response: areaOfService,
+      question: "Enter Consultant's area of expertise",
+      action: setAreaOfExpertise,
+      key: "areaOfExpertise",
+      response: areaOfExpertise,
     },
     {
       type: "number",
@@ -386,7 +386,7 @@ function Template9CACTC(props) {
           </div>
         </div> */}
 
-              <div className="w-3/5 p-3 shadow-lg">
+              <div className="w-3/5 p-3 shadow-md border">
                 <div className="flex justify-between mb-3">
                   <div className="flex gap-2 items-center">
                     <span>
@@ -810,7 +810,7 @@ function Template9CACTC(props) {
                     <font face="Garamond, serif">
                       A. The Consultant shall be available and shall provide to
                       the Client professional consulting services in the area of{" "}
-                      {insertInput(areaOfService)} ("
+                      {insertInput(areaOfExpertise)} ("
                       <b>Consulting Services</b>
                       ") as requested.
                     </font>

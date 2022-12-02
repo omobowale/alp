@@ -68,7 +68,7 @@ export const templates = [
     {
         title: "CONSULTANCY AGREEMENT CORPORATE TO CORPORATE",
         imagePath: TemplateFourImage,
-        price: "3500",
+        price: "1500",
         component: <Template9CACTC id="CACTC" name="CONSULTANCY AGREEMENT CORPORATE TO CORPORATE" />
     },
     {

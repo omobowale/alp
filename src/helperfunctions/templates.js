@@ -1,8 +1,13 @@
 import { placeholderMarker } from "../constants/strings";
+import { getActualDate, getDayOfMonth, getMonthAndYear } from "./date";
 
 export const extractResponses = (questions) => {
     console.log("questions", questions);
     let responses = {};
+    responses["dayOfAgreement"] = getDayOfMonth(getActualDate(questions.find(question => question.key == "date").response));
+    responses["monthOfAgreement"] = getMonthAndYear(getActualDate(questions.find(question => question.key == "date").response));
+    responses["companyName"] = "TEST 1"
+    responses["companyAddress"] = "TEST 2"
     questions.forEach((question, index) => {
         console.log("responnse" + index, question.response);
 

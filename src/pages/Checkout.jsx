@@ -21,22 +21,45 @@ function Checkout(props) {
   const downloadTemplate = async () => {
     const templateData = {
       responses: props.responseList,
-      docId: props.id,
-      docName: props.name,
+      docId: "AACTC",
+      docName: "AGENCY AGREEMENT CORPORATE TO CORPORATE",
     };
+    // const templateData = {
+    //   responses: {
+    //     companyName: "TESTER",
+    //     companyAddress: "TESTER",
+    //   },
+    //   docId: ,
+    //   docName: "AACTC",
+    // };
 
     console.log(templateData, "template data");
     const data = axiosTemplate(
       `/api/Template/Download`,
       "POST",
       templateData,
-      null
+      null,
+      "blob"
     );
     const response = await data
       .then((res) => {
         if (res.status === 200) {
           console.log("download data", res.data);
+          const href = URL.createObjectURL(res.data);
+
+          // create "a" HTML element with href to file & click
+          const link = document.createElement("a");
+          link.href = href;
+          link.setAttribute("download", props.name + ".docx"); //or any other extension
+          document.body.appendChild(link);
+          link.click();
+
+          // clean up "a" element & remove ObjectURL
+          document.body.removeChild(link);
+          URL.revokeObjectURL(href);
         }
+
+        return res.data;
       })
       .catch((err) => {
         console.log("download error", err);
@@ -156,7 +179,7 @@ function Checkout(props) {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          {showPayStackButton && (
+          {!showPayStackButton && (
             <PaystackButton
               className="w-full block bg-blue-900 text-sm mt-5 py-2 rounded-full text-white"
               {...componentProps}
