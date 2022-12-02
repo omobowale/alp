@@ -386,7 +386,7 @@ function Template9CACTC(props) {
           </div>
         </div> */}
 
-              <div className="w-3/5">
+              <div className="w-3/5 p-3 shadow-lg">
                 <div className="flex justify-between mb-3">
                   <div className="flex gap-2 items-center">
                     <span>

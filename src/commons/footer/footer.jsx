@@ -4,7 +4,10 @@ import CompanyLogo from "../../assets/alphalex-logo.png";
 
 function Footer() {
   return (
-    <div className="text-white py-4 mt-10" style={{ backgroundColor: blueColor, fontSize: "12px" }}>
+    <div
+      className="text-white py-4 mt-10"
+      style={{ backgroundColor: blueColor, fontSize: "12px" }}
+    >
       <div className="py-6 flex gap-4 justify-around items-center">
         <div>
           <img src={CompanyLogo} alt="Alphalex logo" />
@@ -14,19 +17,25 @@ function Footer() {
             style={{ borderTop: "1px solid grey" }}
             className="py-1 text-center"
           >
-            The Hub
+            <a href="https://nuvomedia.online/alphalex/index.php/elementor-141/">
+              The Hub
+            </a>
           </div>
           <div
             style={{ borderTop: "1px solid grey" }}
             className="py-1 text-center"
           >
-            About Us
+            <a href="https://nuvomedia.online/alphalex/index.php/about-us/">
+              About Us
+            </a>
           </div>
           <div
             style={{ borderTop: "1px solid grey" }}
             className="py-1 text-center"
           >
-            Contact Us
+            <a href="https://nuvomedia.online/alphalex/index.php/contact-us/">
+              Contact Us
+            </a>
           </div>
         </div>
         <div className="flex flex-col gap-3">
