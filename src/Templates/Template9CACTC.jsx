@@ -30,7 +30,7 @@ function Template9CACTC(props) {
     console.log("template id", templateId);
     setTemplateLoading(true);
     const data = axiosTemplate(
-      `/api/Template/getByDocId/` + templateId,
+      `/api/Template/getByDocId/` + templateId + "/",
       "GET",
       null,
       null

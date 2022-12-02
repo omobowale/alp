@@ -17,7 +17,10 @@ function Footer() {
             style={{ borderTop: "1px solid grey" }}
             className="py-1 text-center"
           >
-            <a href="https://nuvomedia.online/alphalex/index.php/elementor-141/">
+            <a
+              style={{ color: "white" }}
+              href="https://nuvomedia.online/alphalex/index.php/elementor-141/"
+            >
               The Hub
             </a>
           </div>
@@ -25,7 +28,10 @@ function Footer() {
             style={{ borderTop: "1px solid grey" }}
             className="py-1 text-center"
           >
-            <a href="https://nuvomedia.online/alphalex/index.php/about-us/">
+            <a
+              style={{ color: "white" }}
+              href="https://nuvomedia.online/alphalex/index.php/about-us/"
+            >
               About Us
             </a>
           </div>
@@ -33,7 +39,10 @@ function Footer() {
             style={{ borderTop: "1px solid grey" }}
             className="py-1 text-center"
           >
-            <a href="https://nuvomedia.online/alphalex/index.php/contact-us/">
+            <a
+              style={{ color: "white" }}
+              href="https://nuvomedia.online/alphalex/index.php/contact-us/"
+            >
               Contact Us
             </a>
           </div>
