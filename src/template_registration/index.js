@@ -2,10 +2,10 @@ import Template1 from "../Templates/template_1";
 import Template2 from "../Templates/template_2";
 import Template3 from "../Templates/template_3000";
 import Template4 from "../Templates/template_4";
-import TemplateOneImage from "../assets/homedoc.png"
-import TemplateTwoImage from "../assets/homedoc.png"
-import TemplateThreeImage from "../assets/homedoc.png"
-import TemplateFourImage from "../assets/homedoc.png"
+import TemplateOneImage from "../assets/document-icon.png"
+import TemplateTwoImage from "../assets/document-icon.png"
+import TemplateThreeImage from "../assets/document-icon.png"
+import TemplateFourImage from "../assets/document-icon.png"
 import Template5 from "../Templates/template_5";
 import Template6 from "../Templates/template_6";
 import Template7 from "../Templates/template_7";
@@ -33,127 +33,127 @@ export const templates = [
         title: "AGENCY AGREEMENT CORPORATE TO CORPORATE",
         imagePath: TemplateOneImage,
         price: "1500",
-        component: <Template1 name="AGENCY AGREEMENT CORPORATE TO CORPORATE" />
+        component: <Template1 id="AACTC" name="AGENCY AGREEMENT CORPORATE TO CORPORATE" />
     },
     {
         title: "AGENCY AGREEMENT CORPORATE TO INDIVIDUAL",
         imagePath: TemplateTwoImage,
         price: "2500",
-        component: <TemplateTwo name="AGENCY AGREEMENT CORPORATE TO INDIVIDUAL" />
+        component: <TemplateTwo id="AACTI" name="AGENCY AGREEMENT CORPORATE TO INDIVIDUAL" />
     },
     {
         title: "AGENCY AGREEMENT INDIVIDUAL TO CORPORATE",
         imagePath: TemplateThreeImage,
         price: "3000",
-        component: <TemplateThree name="AGENCY AGREEMENT INDIVIDUAL TO CORPORATE" />
+        component: <TemplateThree id="AAITC" name="AGENCY AGREEMENT INDIVIDUAL TO CORPORATE" />
     },
     {
         title: "AGENCY AGREEMENT INDIVIDUAL TO INDIVIDUAL",
         imagePath: TemplateFourImage,
         price: "2100",
-        component: <TemplateFour name="AGENCY AGREEMENT INDIVIDUAL TO INDIVIDUAL" />
+        component: <TemplateFour id="AAITI" name="AGENCY AGREEMENT INDIVIDUAL TO INDIVIDUAL" />
     },
     {
         title: "POWER OF ATTORNEY INDIVIDUAL TO INDIVIDUAL",
         imagePath: TemplateFourImage,
         price: "3500",
-        component: <Template5 name="POWER OF ATTORNEY INDIVIDUAL TO INDIVIDUAL" />
+        component: <Template5 id="POAITI" name="POWER OF ATTORNEY INDIVIDUAL TO INDIVIDUAL" />
     },
     {
         title: "POWER OF ATTORNEY CORPORATE TO INDIVIDUAL",
         imagePath: TemplateFourImage,
         price: "3500",
-        component: <Template8 name="POWER OF ATTORNEY CORPORATE TO INDIVIDUAL" />
+        component: <Template8 id="POACTI" name="POWER OF ATTORNEY CORPORATE TO INDIVIDUAL" />
     },
     {
         title: "CONSULTANCY AGREEMENT CORPORATE TO CORPORATE",
         imagePath: TemplateFourImage,
         price: "3500",
-        component: <Template9CACTC name="CONSULTANCY AGREEMENT CORPORATE TO CORPORATE" />
+        component: <Template9CACTC id="CACTC" name="CONSULTANCY AGREEMENT CORPORATE TO CORPORATE" />
     },
     {
         title: "CONSULTANCY AGREEMENT CORPORATE TO INDIVIDUAL",
         imagePath: TemplateFourImage,
         price: "3500",
-        component: <Template10CACTI name="CONSULTANCY AGREEMENT CORPORATE TO INDIVIDUAL" />
+        component: <Template10CACTI id="CACTI" name="CONSULTANCY AGREEMENT CORPORATE TO INDIVIDUAL" />
     },
     {
         title: "CONSULTANCY AGREEMENT INDIVIDUAL TO CORPORATE",
         imagePath: TemplateFourImage,
         price: "3500",
-        component: <Template11CAITC name="CONSULTANCY AGREEMENT INDIVIDUAL TO CORPORATE" />
+        component: <Template11CAITC id="CAITC" name="CONSULTANCY AGREEMENT INDIVIDUAL TO CORPORATE" />
     },
     {
         title: "CONSULTANCY AGREEMENT INDIVIDUAL TO INDIVIDUAL",
         imagePath: TemplateFourImage,
         price: "3500",
-        component: <Template12CAITI name="CONSULTANCY AGREEMENT INDIVIDUAL TO INDIVIDUAL" />
+        component: <Template12CAITI id="CAITI" name="CONSULTANCY AGREEMENT INDIVIDUAL TO INDIVIDUAL" />
     },
     {
         title: "FRANCHISE AGREEMENT",
         imagePath: TemplateFourImage,
         price: "3500",
-        component: <Template13FA name="FRANCHISE AGREEMENT" />
+        component: <Template13FA id="FA" name="FRANCHISE AGREEMENT" />
     },
     {
         title: "POWER OF ATTORNEY CONSIDERATION CORPORATE TO CORPORATE",
         imagePath: TemplateFourImage,
         price: "3500",
-        component: <Template19POACCTC name="POWER OF ATTORNEY CONSIDERATION CORPORATE TO CORPORATE" />
+        component: <Template19POACCTC id="POACCTC" name="POWER OF ATTORNEY CONSIDERATION CORPORATE TO CORPORATE" />
     },
     {
         title: "POWER OF ATTORNEY CONSIDERATION CORPORATE TO INDIVIDUAL",
         imagePath: TemplateFourImage,
         price: "3500",
-        component: <Template20POACCTI name="POWER OF ATTORNEY CONSIDERATION CORPORATE TO INDIVIDUAL" />
+        component: <Template20POACCTI id="POACCTI" name="POWER OF ATTORNEY CONSIDERATION CORPORATE TO INDIVIDUAL" />
     },
     {
         title: "POWER OF ATTORNEY CONSIDERATION INDIVIDUAL TO CORPORATE",
         imagePath: TemplateFourImage,
         price: "3500",
-        component: <Template21POACITC name="POWER OF ATTORNEY CONSIDERATION INDIVIDUAL TO CORPORATE" />
+        component: <Template21POACITC id="POACITC" name="POWER OF ATTORNEY CONSIDERATION INDIVIDUAL TO CORPORATE" />
     },
     {
         title: "POWER OF ATTORNEY CONSIDERATION INDIVIDUAL TO INDIVIDUAL",
         imagePath: TemplateFourImage,
         price: "3500",
-        component: <Template22POACITI name="POWER OF ATTORNEY CONSIDERATION INDIVIDUAL TO INDIVIDUAL" />
+        component: <Template22POACITI id="POACITI" name="POWER OF ATTORNEY CONSIDERATION INDIVIDUAL TO INDIVIDUAL" />
     },
     {
         title: "POWER OF ATTORNEY SPECIFIED PERIOD INDIVIDUAL TO INDIVIDUAL",
         imagePath: TemplateFourImage,
         price: "3500",
-        component: <Template6 name="POWER OF ATTORNEY SPECIFIED PERIOD INDIVIDUAL TO INDIVIDUAL" />
+        component: <Template6 id="POASPITI" name="POWER OF ATTORNEY SPECIFIED PERIOD INDIVIDUAL TO INDIVIDUAL" />
     },
     {
         title: "POWER OF ATTORNEY SPECIFIED PERIOD INDIVIDUAL TO CORPORATE",
         imagePath: TemplateFourImage,
         price: "3500",
-        component: <Template7 name="POWER OF ATTORNEY SPECIFIED PERIOD INDIVIDUAL TO CORPORATE" />
+        component: <Template7 id="POASPITC" name="POWER OF ATTORNEY SPECIFIED PERIOD INDIVIDUAL TO CORPORATE" />
     },
     {
         title: "POWER OF ATTORNEY SPECIFIED PERIOD CORPORATE TO INDIVIDUAL",
         imagePath: TemplateFourImage,
         price: "3500",
-        component: <Template26POASPCTI name="POWER OF ATTORNEY SPECIFIED PERIOD CORPORATE TO INDIVIDUAL" />
+        component: <Template26POASPCTI id="POASPCTI" name="POWER OF ATTORNEY SPECIFIED PERIOD CORPORATE TO INDIVIDUAL" />
     },
     {
         title: "POWER OF ATTORNEY SPECIFIED PERIOD CORPORATE TO CORPORATE",
         imagePath: TemplateFourImage,
         price: "3500",
-        component: <Template12 name="POWER OF ATTORNEY SPECIFIED PERIOD CORPORATE TO CORPORATE" />
+        component: <Template12 id="POASPCTC" name="POWER OF ATTORNEY SPECIFIED PERIOD CORPORATE TO CORPORATE" />
     },
     {
         title: "WEBSITE PRIVACY POLICY",
         imagePath: TemplateFourImage,
         price: "3500",
-        component: <Template29WPP name="WEBSITE PRIVACY POLICY" />
+        component: <Template29WPP id="WPP" name="WEBSITE PRIVACY POLICY" />
     },
     {
         title: "WEBSITE TERMS OF SERVICE",
         imagePath: TemplateFourImage,
         price: "3500",
-        component: <Template30WTOS name="WEBSITE TERMS OF SERVICE" />
+        component: <Template30WTOS id="WTOS" name="WEBSITE TERMS OF SERVICE" />
     },
 
 ]

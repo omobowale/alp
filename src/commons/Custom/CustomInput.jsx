@@ -5,14 +5,17 @@ import {
   insertPlaceHolderMarker,
   placeholderMarker,
 } from "../../constants/strings";
+import { insertValue } from "../../helperfunctions/templates";
 
 function CustomInput(props) {
   const onChange = (event) => {
     props.onChange(insertPlaceHolderMarker(event.target.value));
   };
+
   return (
     <>
       <input
+        value={insertValue(props.value)}
         placeholder="Enter input"
         onChange={(event) => onChange(event)}
         type={props.inputType}

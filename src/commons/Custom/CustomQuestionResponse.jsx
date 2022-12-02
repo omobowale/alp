@@ -11,35 +11,69 @@ import CustomTime from "./CustomTime";
 function CustomQuestionResponse(props) {
   const getResponseInput = (type) => {
     if (type.toLowerCase() === "input") {
-      return <CustomInput onChange={props.questionResponse.action} />;
+      return (
+        <CustomInput
+          onChange={props.questionResponse.action}
+          value={props.questionResponse.response}
+        />
+      );
     }
     if (type.toLowerCase() === "number") {
-      return <CustomNumber onChange={props.questionResponse.action} />;
+      return (
+        <CustomNumber
+          onChange={props.questionResponse.action}
+          value={props.questionResponse.response}
+        />
+      );
     }
     if (type.toLowerCase() === "date") {
-      return <CustomDate onChange={props.questionResponse.action} />;
+      return (
+        <CustomDate
+          onChange={props.questionResponse.action}
+          value={props.questionResponse.response}
+        />
+      );
     }
     if (type.toLowerCase() === "time") {
-      return <CustomTime onChange={props.questionResponse.action} />;
+      return (
+        <CustomTime
+          onChange={props.questionResponse.action}
+          value={props.questionResponse.response}
+        />
+      );
     }
     if (type.toLowerCase() === "radio") {
       return props.questionResponse.options.map((option) => (
-        <CustomRadioButton name={Date.now()} label={option} />
+        <CustomRadioButton
+          name={Date.now()}
+          label={option}
+          value={props.questionResponse.response}
+        />
       ));
     }
     if (type.toLowerCase() === "checkbox") {
       return props.questionResponse.options.map((option) => (
-        <CustomCheckBox name={Date.now()} label={option} />
+        <CustomCheckBox
+          name={Date.now()}
+          label={option}
+          value={props.questionResponse.response}
+        />
       ));
     }
     if (type.toLowerCase() === "dropdown") {
-      return <CustomDropDown options={props.questionResponse.options} />;
+      return (
+        <CustomDropDown
+          options={props.questionResponse.options}
+          value={props.questionResponse.response}
+        />
+      );
     }
     if (type.toLowerCase() === "date-range") {
       return (
         <CustomDateRangeInput
           firstLabel={props.questionResponse.labelOne}
           secondLabel={props.questionResponse.labelTwo}
+          value={props.questionResponse.response}
         />
       );
     }

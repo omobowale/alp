@@ -1,20 +1,23 @@
-import React from 'react'
-import NavBar from './commons/NavBar/NavBar'
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import Footer from "./commons/footer/footer";
+import NavBar from "./commons/NavBar/NavBar";
 
 function Layout(props) {
   return (
-    <div>
+    <>
+      <div style={{ minHeight: "100vh" }}>
         <div>
-            <NavBar />
+          <NavBar />
         </div>
-        <div className='mt-8'>
-
-        </div>
-        <div className='w-4/5 m-auto'>
-            {props.children}
-        </div>
-    </div>
-  )
+        <div className="mt-8"></div>
+        <div className="w-4/5 m-auto">{props.children}</div>
+      </div>
+      <div>
+        <Footer />
+      </div>
+    </>
+  );
 }
 
-export default Layout
+export default Layout;

@@ -1,9 +1,7 @@
-import { Elements } from "@stripe/react-stripe-js";
 import React, { useState } from "react";
 import CustomButton from "../commons/Custom/CustomButton";
 import CustomQuestionResponse from "../commons/Custom/CustomQuestionResponse";
-import { blueColor, greyWhiteColor } from "../constants/colors";
-import { font12 } from "../constants/fonts";
+import { blueColor } from "../constants/colors";
 import { placeholderMarker } from "../constants/strings";
 import {
   getActualDate,
@@ -11,7 +9,6 @@ import {
   getMonthAndYear,
 } from "../helperfunctions/date";
 import Layout from "../Layout";
-import Checkout from "../pages/Checkout";
 import CheckoutPage from "../pages/CheckoutPage";
 
 function Template12(props) {
@@ -83,26 +80,31 @@ function Template12(props) {
       type: "date",
       question: "Select the date in which this agreement is made",
       action: setDate,
+      response: date
     },
     {
       type: "input",
       question: "Enter the full name of donor",
       action: setNameOfDonor,
+      response: nameOfDonor,
     },
     {
       type: "input",
       question: "Enter the full address of donor",
       action: setAddressOfDonor,
+      response: addressOfDonor
     },
     {
       type: "input",
       question: "Enter the full name of company",
       action: setNameOfDonee,
+      response: nameOfDonee
     },
     {
       type: "input",
       question: "Enter the full address of company",
       action: setAddressOfDonee,
+      response: addressOfDonee
     },
 
     {
@@ -110,35 +112,41 @@ function Template12(props) {
       question:
         "Enter the things that you want your donee to be able to do <br /> 1. ",
       action: setItem1,
+      response: item1
     },
     {
       type: "input",
       question:
         "Enter the things that you want your donee to be able to do <br /> 2. ",
       action: setItem2,
+      response: item2
     },
     {
       type: "input",
       question:
         "Enter the things that you want your donee to be able to do <br /> 3. ",
       action: setItem3,
+      response: item3
     },
     {
       type: "input",
       question:
         "Enter the things that you want your donee to be able to do <br /> 4. ",
       action: setItem4,
+      response: item4
     },
     {
       type: "input",
       question:
         "Enter the things that you want your donee to be able to do <br /> 5. ",
       action: setItem5,
+      response: item5
     },
     {
       type: "number",
       question: "Enter the period of power ",
       action: setPeriodOfPower,
+      response: periodOfPower
     },
   ];
 
@@ -182,6 +190,7 @@ function Template12(props) {
           >
             <CheckoutPage
               name={props.name}
+              id={props.id}
               onBackButtonClicked={decrementIndex}
             />
           </div>
