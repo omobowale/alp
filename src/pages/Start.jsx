@@ -6,7 +6,7 @@ import TemplateIcon from "../assets/frame_1.png";
 import TemplatePreviewImage from "../assets/homedoc.png";
 
 function Start(props) {
-  console.log(props);
+  console.log(props)
   return (
     <div className="flex justify-around gap-20">
       <div className="w-3/4">
@@ -85,8 +85,8 @@ function Start(props) {
           </button>
         </div>
       </div>
-      <div className="w-1/2 bg-red-100">
-        <img className="w-full" src={TemplatePreviewImage} alt={props.details.name} />
+      <div className="w-1/2">
+        <img className="w-full" src={props.imagePath} alt={props.details.name} />
       </div>
     </div>
   );

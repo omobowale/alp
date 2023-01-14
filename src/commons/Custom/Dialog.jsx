@@ -16,6 +16,7 @@ function Dialog(props) {
     responseList,
     saveCurrentDetails,
     saveToDb,
+    setRef
   } = props;
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
@@ -36,7 +37,7 @@ function Dialog(props) {
         {index < questions.length &&
           questions.map((question, ind) => (
             <div style={{ display: `${ind == index ? "block" : "none"}` }}>
-              <CustomQuestionResponse key={ind} questionResponse={question} />{" "}
+              <CustomQuestionResponse setRef={setRef} key={ind} questionResponse={question} />{" "}
             </div>
           ))}
 
@@ -77,7 +78,7 @@ function Dialog(props) {
             vat={props.templateDetails.vat}
             onBackButtonClicked={decrementIndex}
             responseList={responseList}
-            saveAndContinue={() => saveAndContinue()}
+            saveAndContinue={saveAndContinue}
           />
         </div>
       </div>

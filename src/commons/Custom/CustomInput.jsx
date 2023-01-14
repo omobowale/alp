@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { blueColor } from "../../constants/colors";
 import { font12 } from "../../constants/fonts";
 import {
@@ -9,6 +9,8 @@ import { insertValue } from "../../helperfunctions/templates";
 
 function CustomInput(props) {
   const onChange = (event) => {
+    props.setRef(props.targetRef);
+    // console.log(props.targetRef);
     props.onChange(insertPlaceHolderMarker(event.target.value));
   };
 
@@ -19,6 +21,8 @@ function CustomInput(props) {
         placeholder="Enter input"
         onChange={(event) => onChange(event)}
         type={props.inputType}
+        onFocus={() => props.setRef(props.targetRef)}
+        onBlur={() => props.setRef(props.targetRef)}
         className="form-control focus:outline-none focus:border-none focus:ring-0 p-0 m-0"
         style={{
           outline: "none",

@@ -10,7 +10,7 @@ function CheckoutPage(props) {
       vat={props.vat}
       onBackButtonClicked={props.onBackButtonClicked}
       responseList={props.responseList}
-      saveAndContine={props.saveAndContine}
+      saveAndContinue={props.saveAndContinue}
     />
   );
 }

@@ -5,14 +5,16 @@ import { PaystackButton } from "react-paystack";
 import "./checkout.css";
 import SaveAndContinueLater from "../commons/fragments/SaveAndContinueLater";
 import axiosTemplate from "../utils/axiosTemplate";
+import { removeCurrentDetailsFromLocalStorage } from "../helperfunctions/templates";
+import { useNavigate } from "react-router-dom";
 
 function Checkout(props) {
   const user = JSON.parse(localStorage.getItem("user"));
+  const navigate = useNavigate();
   const [email, setEmail] = useState(user ? user.email : "");
   const [showPayStackButton, setShowPayStackButton] = useState(true);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  console.log(props, "checkout props");
 
   const calculateAmount = (cost, vat) => {
     return cost + vat;
@@ -21,19 +23,10 @@ function Checkout(props) {
   const downloadTemplate = async () => {
     const templateData = {
       responses: props.responseList,
-      docId: "AACTC",
-      docName: "AGENCY AGREEMENT CORPORATE TO CORPORATE",
+      docId: props.id,
+      docName: props.name,
     };
-    // const templateData = {
-    //   responses: {
-    //     companyName: "TESTER",
-    //     companyAddress: "TESTER",
-    //   },
-    //   docId: ,
-    //   docName: "AACTC",
-    // };
 
-    console.log(templateData, "template data");
     const data = axiosTemplate(
       `/api/Template/Download`,
       "POST",
@@ -44,7 +37,6 @@ function Checkout(props) {
     const response = await data
       .then((res) => {
         if (res.status === 200) {
-          console.log("download data", res.data);
           const href = URL.createObjectURL(res.data);
 
           // create "a" HTML element with href to file & click
@@ -91,22 +83,44 @@ function Checkout(props) {
     downloadTemplate()
       .then((response) => {
         if (response) {
-          setSuccessMessage("Downloading completed!");
-          setErrorMessage("");
+          handleDownloadSuccess("Download completed! Redirecting...");
+          redirect();
         } else {
-          setErrorMessage("Something went wrong! Please contact support");
-          setSuccessMessage("");
+          handleDownloadError(
+            "Something went wrong when downloading! Please contact support"
+          );
         }
       })
       .catch((err) => {
-        setErrorMessage("Something went wrong! Please contact support");
-        setSuccessMessage("");
+        handleDownloadError("Something went wrong! Please contact support");
       });
+  };
+
+  const redirect = () => {
+    setTimeout(() => {
+      if (user) {
+        navigate("/dashboard");
+      } else {
+        navigate("/templates");
+      }
+    }, 5000);
+  };
+
+  const handleDownloadSuccess = (message) => {
+    setSuccessMessage(message);
+    setErrorMessage("");
+    removeCurrentDetailsFromLocalStorage();
+  };
+
+  const handleDownloadError = (errorMessage) => {
+    setErrorMessage(errorMessage);
+    setSuccessMessage("");
   };
 
   const handlePaymentModalClosed = () => {
     setErrorMessage("You have declined the transaction. You may try again!");
     setSuccessMessage("");
+    setShowPayStackButton(true);
   };
 
   return (
@@ -179,7 +193,7 @@ function Checkout(props) {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          {!showPayStackButton && (
+          {showPayStackButton && (
             <PaystackButton
               className="w-full block bg-blue-900 text-sm mt-5 py-2 rounded-full text-white"
               {...componentProps}

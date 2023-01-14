@@ -41,7 +41,6 @@ export const getDathValue = (dayOfMonth) => {
 };
 
 export const getActualDate = (selectedDate) => {
-    console.log("i got here", selectedDate);
     if (selectedDate === "") {
         return "";
     }

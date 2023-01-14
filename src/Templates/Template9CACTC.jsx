@@ -11,6 +11,7 @@ import { insertInput } from "../helperfunctions/jsx";
 import {
   extractResponses,
   getCurrentDetails,
+  loadTemplate,
   saveCurrentDetails,
 } from "../helperfunctions/templates";
 import Layout from "../Layout";
@@ -23,36 +24,71 @@ function Template9CACTC(props) {
   const [templateDetails, setTemplateDetails] = useState(null);
   const [showStart, setShowStart] = useState(true);
   const currentDetails = getCurrentDetails();
-  const [targetRef, setTargetRef] = useState(null);
-  const ref = useRef(targetRef);
+  const [targetRef, setRef] = useState();
+  const dateRef = useRef();
+  const nameOfFirstCompanyRef = useRef();
+  const addressOfFirstCompanyRef = useRef();
+  const nameOfSecondCompanyRef = useRef();
+  const addressOfSecondCompanyRef = useRef();
+  const clientNeedsRef = useRef();
+  const consultantServiceRef = useRef();
+  const areaOfExpertiseRef = useRef();
+  const consultantRatePerHourRef = useRef();
+  const descriptionOfInformationToBeSharedRef = useRef();
+  const dateOfTerminationOfAgreementRef = useRef();
+  const consultantAddressOfCommunicationRef = useRef();
+  const clientAddressOfCommunicationRef = useRef();
+  const nameOfConsultantRef = useRef();
+  const nameOfConsultantWitnessRef = useRef();
+  const addressOfConsultantWitnessRef = useRef();
+  const occupationOfConsultantWitnessRef = useRef();
+  const dateOfConsultantWitnessRef = useRef();
+  const nameOfClientRef = useRef();
+  const nameOfClientWitnessRef = useRef();
+  const addressOfClientWitnessRef = useRef();
+  const occupationOfClientWitnessRef = useRef();
+  const dateOfClientWitnessRef = useRef();
 
-  const loadTemplate = async (templateId) => {
-    console.log("template id", templateId);
-    setTemplateLoading(true);
-    const data = axiosTemplate(
-      `/api/Template/getByDocId/` + templateId + "/",
-      "GET",
-      null,
-      null
-    );
-    const response = await data
-      .then((res) => {
-        setTemplateLoading(false);
-        if (res.status === 200) {
-          setTemplateDetails(res.data.data);
-          // return res.data;
-        }
-      })
-      .catch((err) => {
-        setTemplateLoading(false);
-        setTemplateDetails(null);
+  const setTargetRef = (ref) => {
+    setRef(ref);
+    if (ref) {
+      ref.current.style.backgroundColor = "green";
+      ref.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "start",
       });
-
-    return response;
+    } else {
+      ref.current.style.backgroundColor = "transparent";
+    }
   };
 
+  // const loadTemplate = async (templateId) => {
+  //   setTemplateLoading(true);
+  //   const data = axiosTemplate(
+  //     `/api/Template/getByDocId/` + templateId + "/",
+  //     "GET",
+  //     null,
+  //     null
+  //   );
+  //   const response = await data
+  //     .then((res) => {
+  //       setTemplateLoading(false);
+  //       if (res.status === 200) {
+  //         setTemplateDetails(res.data.data);
+  //         // return res.data;
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       setTemplateLoading(false);
+  //       setTemplateDetails(null);
+  //     });
+
+  //   return response;
+  // };
+
   useEffect(() => {
-    loadTemplate(props?.id);
+    loadTemplate(props?.id, setTemplateLoading, setTemplateDetails);
   }, [props?.id]);
 
   const getCurrentValue = (key) => {
@@ -64,8 +100,6 @@ function Template9CACTC(props) {
     return result;
   };
 
-  console.log(templateDetails, "template details");
-  console.log(props, "props");
   //question index
   const [index, setIndex] = useState(0);
 
@@ -141,11 +175,17 @@ function Template9CACTC(props) {
 
   //functions
   const incrementIndex = () => {
+    if (targetRef) {
+      targetRef.current.style.backgroundColor = "transparent";
+    }
     setIndex(index + 1);
     saveCurrentDetails(questions);
   };
 
   const decrementIndex = () => {
+    if (targetRef) {
+      targetRef.current.style.backgroundColor = "transparent";
+    }
     if (index == 0) {
       setShowStart(true);
     }
@@ -157,10 +197,11 @@ function Template9CACTC(props) {
   const questions = [
     {
       type: "date",
-      question: "Enter the date of this agreement",
+      question: "Enter the date of this agreementsss",
       action: setDate,
       key: "date",
       response: date,
+      ref: dateRef,
     },
     {
       type: "input",
@@ -168,6 +209,7 @@ function Template9CACTC(props) {
       action: setNameOfFirstCompany,
       key: "nameOfFirstCompany",
       response: nameOfFirstCompany,
+      ref: nameOfFirstCompanyRef,
     },
     {
       type: "input",
@@ -175,6 +217,7 @@ function Template9CACTC(props) {
       action: setAddressOfFirstCompany,
       key: "addressOfFirstCompany",
       response: addressOfFirstCompany,
+      ref: addressOfFirstCompanyRef,
     },
     {
       type: "input",
@@ -182,6 +225,7 @@ function Template9CACTC(props) {
       action: setNameOfSecondCompany,
       key: "nameOfSecondCompany",
       response: nameOfSecondCompany,
+      ref: nameOfSecondCompanyRef,
     },
     {
       type: "input",
@@ -189,6 +233,7 @@ function Template9CACTC(props) {
       action: setAddressOfSecondCompany,
       key: "addressOfSecondCompany",
       response: addressOfSecondCompany,
+      ref: addressOfSecondCompanyRef,
     },
     {
       type: "input",
@@ -196,6 +241,7 @@ function Template9CACTC(props) {
       action: setClientNeeds,
       key: "clientNeeds",
       response: clientNeeds,
+      ref: clientNeedsRef,
     },
     {
       type: "input",
@@ -203,6 +249,7 @@ function Template9CACTC(props) {
       action: setConsultantService,
       key: "consultantService",
       response: consultantService,
+      ref: consultantServiceRef,
     },
     {
       type: "input",
@@ -210,6 +257,7 @@ function Template9CACTC(props) {
       action: setAreaOfExpertise,
       key: "areaOfExpertise",
       response: areaOfExpertise,
+      ref: areaOfExpertiseRef,
     },
     {
       type: "number",
@@ -217,6 +265,7 @@ function Template9CACTC(props) {
       action: setConsultantRatePerHour,
       key: "consultantRatePerHour",
       response: consultantRatePerHour,
+      ref: consultantRatePerHourRef,
     },
     {
       type: "input",
@@ -224,6 +273,7 @@ function Template9CACTC(props) {
       action: setDescriptionOfInformationToBeShared,
       key: "descriptionOfInformationToBeShared",
       response: descriptionOfInformationToBeShared,
+      ref: descriptionOfInformationToBeSharedRef,
     },
     {
       type: "date",
@@ -231,6 +281,7 @@ function Template9CACTC(props) {
       action: setDateOfTerminationOfAgreement,
       key: "dateOfTerminationOfAgreement",
       response: dateOfTerminationOfAgreement,
+      ref: dateOfTerminationOfAgreementRef,
     },
     {
       type: "input",
@@ -239,6 +290,7 @@ function Template9CACTC(props) {
       action: setConsultantAddressOfCommunication,
       key: "consultantAddressOfCommunication",
       response: consultantAddressOfCommunication,
+      ref: consultantAddressOfCommunicationRef,
     },
     {
       type: "input",
@@ -247,6 +299,7 @@ function Template9CACTC(props) {
       action: setClientAddressOfCommunication,
       key: "clientAddressOfCommunication",
       response: clientAddressOfCommunication,
+      ref: clientAddressOfCommunicationRef,
     },
     {
       type: "input",
@@ -254,6 +307,7 @@ function Template9CACTC(props) {
       action: setNameOfConsultant,
       key: "nameOfConsultant",
       response: nameOfConsultant,
+      ref: nameOfConsultantRef,
     },
     {
       type: "input",
@@ -261,6 +315,7 @@ function Template9CACTC(props) {
       action: setNameOfConsultantWitness,
       key: "nameOfConsultantWitness",
       response: nameOfConsultantWitness,
+      ref: nameOfConsultantWitnessRef,
     },
     {
       type: "input",
@@ -268,6 +323,7 @@ function Template9CACTC(props) {
       action: setAddressOfConsultantWitness,
       key: "addressOfConsultantWitness",
       response: addressOfConsultantWitness,
+      ref: addressOfConsultantWitnessRef,
     },
     {
       type: "input",
@@ -275,6 +331,7 @@ function Template9CACTC(props) {
       action: setOccupationOfConsultantWitness,
       key: "occupationOfConsultantWitness",
       response: occupationOfConsultantWitness,
+      ref: occupationOfConsultantWitnessRef,
     },
     {
       type: "date",
@@ -282,6 +339,7 @@ function Template9CACTC(props) {
       action: setDateOfConsultantWitness,
       key: "dateOfConsultantWitness",
       response: dateOfConsultantWitness,
+      ref: dateOfConsultantWitnessRef,
     },
     {
       type: "input",
@@ -289,6 +347,7 @@ function Template9CACTC(props) {
       action: setNameOfClient,
       key: "nameOfClient",
       response: nameOfClient,
+      ref: nameOfClientRef,
     },
     {
       type: "input",
@@ -296,6 +355,7 @@ function Template9CACTC(props) {
       action: setNameOfClientWitness,
       key: "nameOfClientWitness",
       response: nameOfClientWitness,
+      ref: nameOfClientWitnessRef,
     },
     {
       type: "input",
@@ -303,6 +363,7 @@ function Template9CACTC(props) {
       action: setAddressOfClientWitness,
       key: "addressOfClientWitness",
       response: addressOfClientWitness,
+      ref: addressOfClientWitnessRef,
     },
     {
       type: "input",
@@ -310,6 +371,7 @@ function Template9CACTC(props) {
       action: setOccupationOfClientWitness,
       key: "occupationOfClientWitness",
       response: occupationOfClientWitness,
+      ref: occupationOfClientWitnessRef,
     },
     {
       type: "date",
@@ -317,6 +379,7 @@ function Template9CACTC(props) {
       action: setDateOfClientWitness,
       key: "dateOfClientWitness",
       response: dateOfClientWitness,
+      ref: dateOfClientWitnessRef,
     },
   ];
 
@@ -331,6 +394,7 @@ function Template9CACTC(props) {
                 name: templateDetails?.name,
               }}
               setShowStart={setShowStart}
+              imagePath={props.imagePath}
             />
           )}
           {!showStart && (
@@ -343,7 +407,7 @@ function Template9CACTC(props) {
                 templateDetails={templateDetails}
                 responseList={extractResponses(questions)}
                 saveCurrentDetails={() => saveCurrentDetails(questions)}
-                setTargetRef={setTargetRef}
+                setRef={setTargetRef}
               />
               {/* <div className="w-2/5">
           {index < questions.length &&
@@ -386,8 +450,8 @@ function Template9CACTC(props) {
           </div>
         </div> */}
 
-              <div className="w-3/5 p-3 shadow-md border">
-                <div className="flex justify-between mb-3">
+              <div className="w-3/5 py-3 shadow-md border">
+                <div className="flex justify-between mb-3 pl-4">
                   <div className="flex gap-2 items-center">
                     <span>
                       <img src={TemplateIcon} alt="frame" />
@@ -470,8 +534,11 @@ function Template9CACTC(props) {
                         }}
                       >
                         ") is made this{" "}
-                        {insertInput(getDayOfMonth(getActualDate(date)))} Day of{" "}
-                        {insertInput(getMonthAndYear(getActualDate(date)))},
+                        <font ref={dateRef}>
+                          {insertInput(getDayOfMonth(getActualDate(date)))} Day
+                          of {insertInput(getMonthAndYear(getActualDate(date)))}
+                          ,
+                        </font>
                       </font>
                     </font>
                     <font face="Garamond, serif">
@@ -507,6 +574,7 @@ function Template9CACTC(props) {
                           style={{
                             fontSize: "12pt",
                           }}
+                          ref={nameOfFirstCompanyRef}
                         >
                           {insertInput(nameOfFirstCompany)}
                         </font>
@@ -531,7 +599,10 @@ function Template9CACTC(props) {
                             fontSize: "12pt",
                           }}
                         >
-                          {""} {insertInput(addressOfFirstCompany)} {""}
+                          {""}
+                          <font ref={addressOfFirstCompanyRef}>
+                            {insertInput(addressOfFirstCompany)} {""}
+                          </font>
                         </font>
                       </font>
                     </font>
@@ -625,6 +696,7 @@ function Template9CACTC(props) {
                           style={{
                             fontSize: "12pt",
                           }}
+                          ref={nameOfSecondCompanyRef}
                         >
                           {insertInput(nameOfSecondCompany)}
                         </font>
@@ -648,6 +720,7 @@ function Template9CACTC(props) {
                           style={{
                             fontSize: "12pt",
                           }}
+                          ref={addressOfSecondCompanyRef}
                         >
                           {insertInput(addressOfSecondCompany)}
                         </font>
@@ -730,7 +803,9 @@ function Template9CACTC(props) {
                         }}
                       >
                         the Client needs assistance in{" "}
-                        {insertInput(clientNeeds)};
+                        <font ref={clientNeedsRef}>
+                          {insertInput(clientNeeds)};
+                        </font>
                       </font>
                     </font>
                   </p>
@@ -760,8 +835,11 @@ function Template9CACTC(props) {
                       >
                         , the Consultant has agreed to perform consulting work
                         for the Client in providing{" "}
-                        {insertInput(consultantService)} and consulting services
-                        and other related activities as directed by the Client;
+                        <font ref={consultantServiceRef}>
+                          {insertInput(consultantService)}
+                        </font>{" "}
+                        and consulting services and other related activities as
+                        directed by the Client;
                       </font>
                     </font>
                   </p>
@@ -810,7 +888,10 @@ function Template9CACTC(props) {
                     <font face="Garamond, serif">
                       A. The Consultant shall be available and shall provide to
                       the Client professional consulting services in the area of{" "}
-                      {insertInput(areaOfExpertise)} ("
+                      <font ref={areaOfExpertiseRef}>
+                        {insertInput(areaOfExpertise)}{" "}
+                      </font>
+                      ("
                       <b>Consulting Services</b>
                       ") as requested.
                     </font>
@@ -860,7 +941,9 @@ function Template9CACTC(props) {
                         }}
                       >
                         {" "}
-                        ₦{insertInput(consultantRatePerHour)}
+                        <font ref={consultantRatePerHourRef}>
+                          ₦{insertInput(consultantRatePerHour)}
+                        </font>
                       </font>
                     </font>
                     <font face="Garamond, serif">
@@ -1119,7 +1202,9 @@ function Template9CACTC(props) {
                           }}
                         >
                           {" "}
-                          {insertInput(descriptionOfInformationToBeShared)}
+                          <font ref={descriptionOfInformationToBeSharedRef}>
+                            {insertInput(descriptionOfInformationToBeShared)}
+                          </font>
                         </font>
                       </font>
                     </font>
@@ -1171,7 +1256,10 @@ function Template9CACTC(props) {
                       >
                         A. This Agreement shall commence from the date of
                         execution of this Agreement by the Parties and shall
-                        terminate on {insertInput(dateOfTerminationOfAgreement)}
+                        terminate on {""}
+                        <font ref={dateOfTerminationOfAgreementRef}>
+                          {insertInput(dateOfTerminationOfAgreement)}
+                        </font>
                         , unless earlier terminated by either party hereto.
                         Either party may terminate this Agreement upon Thirty
                         (30) days prior written notice.
@@ -1251,6 +1339,7 @@ function Template9CACTC(props) {
                           fontSize: "",
                           fontWeight: "bold",
                         }}
+                        ref={consultantAddressOfCommunicationRef}
                       >
                         {insertInput(
                           consultantAddressOfCommunication,
@@ -1315,6 +1404,7 @@ function Template9CACTC(props) {
                           fontSize: "",
                           fontWeight: "bold",
                         }}
+                        ref={clientAddressOfCommunicationRef}
                       >
                         {insertInput(clientAddressOfCommunication, "underline")}
                       </font>
@@ -1658,6 +1748,7 @@ function Template9CACTC(props) {
                             fontSize: "12pt",
                             fontWeight: "bold",
                           }}
+                          ref={nameOfConsultantRef}
                         >
                           {insertInput(nameOfConsultant, "underline")}
                         </font>
@@ -1708,7 +1799,9 @@ function Template9CACTC(props) {
                         }}
                       >
                         Name: {""}
-                        {insertInput(nameOfConsultantWitness)}
+                        <font ref={nameOfConsultantWitnessRef}>
+                          {insertInput(nameOfConsultantWitness)}
+                        </font>
                       </font>
                     </font>
                   </p>
@@ -1727,7 +1820,10 @@ function Template9CACTC(props) {
                         }}
                       >
                         Address:
-                        {""} {insertInput(addressOfConsultantWitness)}
+                        {""}
+                        <font ref={addressOfConsultantWitnessRef}>
+                          {insertInput(addressOfConsultantWitness)}
+                        </font>
                       </font>
                     </font>
                   </p>
@@ -1745,8 +1841,10 @@ function Template9CACTC(props) {
                           fontSize: "12pt",
                         }}
                       >
-                        Occupation:
-                        {""} {insertInput(occupationOfConsultantWitness)}
+                        Occupation:{" "}
+                        <font ref={occupationOfConsultantWitnessRef}>
+                          {insertInput(occupationOfConsultantWitness)}
+                        </font>
                       </font>
                     </font>
                   </p>
@@ -1783,7 +1881,10 @@ function Template9CACTC(props) {
                           fontSize: "12pt",
                         }}
                       >
-                        Date: {insertInput(dateOfConsultantWitness)}
+                        Date:{" "}
+                        <font ref={dateOfConsultantWitnessRef}>
+                          {insertInput(dateOfConsultantWitness)}
+                        </font>
                       </font>
                     </font>
                   </p>
@@ -1899,6 +2000,7 @@ function Template9CACTC(props) {
                             fontSize: "12pt",
                             fontWeight: "bold",
                           }}
+                          ref={nameOfClientRef}
                         >
                           {insertInput(nameOfClient, "underline")}
                         </font>
@@ -1948,8 +2050,10 @@ function Template9CACTC(props) {
                           fontSize: "12pt",
                         }}
                       >
-                        Name:
-                        {""} {insertInput(nameOfClientWitness)}
+                        Name:{" "}
+                        <font ref={nameOfClientWitnessRef}>
+                          {insertInput(nameOfClientWitness)}
+                        </font>
                       </font>
                     </font>
                   </p>
@@ -1967,8 +2071,10 @@ function Template9CACTC(props) {
                           fontSize: "12pt",
                         }}
                       >
-                        Address:
-                        {""} {insertInput(addressOfClientWitness)}
+                        Address:{" "}
+                        <font ref={addressOfClientWitnessRef}>
+                          {insertInput(addressOfClientWitness)}
+                        </font>
                       </font>
                     </font>
                   </p>
@@ -1986,8 +2092,10 @@ function Template9CACTC(props) {
                           fontSize: "12pt",
                         }}
                       >
-                        Occupation:
-                        {""} {insertInput(occupationOfClientWitness)}
+                        Occupation:{" "}
+                        <font ref={occupationOfClientWitnessRef}>
+                          {insertInput(occupationOfClientWitness)}
+                        </font>
                       </font>
                     </font>
                   </p>
@@ -2024,7 +2132,10 @@ function Template9CACTC(props) {
                           fontSize: "12pt",
                         }}
                       >
-                        Date: {insertInput(dateOfClientWitness)}
+                        Date:{" "}
+                        <font ref={dateOfClientWitnessRef}>
+                          {insertInput(dateOfClientWitness)}
+                        </font>
                       </font>
                     </font>
                   </p>

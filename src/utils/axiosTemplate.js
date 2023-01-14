@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const backendURL = 'http://dennis1254-001-site1.gtempurl.com';
+const backendURL = 'https://dtemplate-api.azurewebsites.net';
 
 
 export default function axiosTemplate(url, method, data, token, responseType) {

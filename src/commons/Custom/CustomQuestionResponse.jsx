@@ -15,6 +15,8 @@ function CustomQuestionResponse(props) {
         <CustomInput
           onChange={props.questionResponse.action}
           value={props.questionResponse.response}
+          targetRef={props.questionResponse.ref}
+          setRef={props.setRef}
         />
       );
     }
@@ -23,6 +25,8 @@ function CustomQuestionResponse(props) {
         <CustomNumber
           onChange={props.questionResponse.action}
           value={props.questionResponse.response}
+          targetRef={props.questionResponse.ref}
+          setRef={props.setRef}
         />
       );
     }
@@ -31,6 +35,8 @@ function CustomQuestionResponse(props) {
         <CustomDate
           onChange={props.questionResponse.action}
           value={props.questionResponse.response}
+          targetRef={props.questionResponse.ref}
+          setRef={props.setRef}
         />
       );
     }
@@ -39,6 +45,8 @@ function CustomQuestionResponse(props) {
         <CustomTime
           onChange={props.questionResponse.action}
           value={props.questionResponse.response}
+          targetRef={props.questionResponse.ref}
+          setRef={props.setRef}
         />
       );
     }
@@ -48,6 +56,8 @@ function CustomQuestionResponse(props) {
           name={Date.now()}
           label={option}
           value={props.questionResponse.response}
+          targetRef={props.questionResponse.ref}
+          setRef={props.setRef}
         />
       ));
     }

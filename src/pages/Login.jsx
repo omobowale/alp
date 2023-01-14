@@ -66,7 +66,7 @@ function Login() {
           setIsLoggingIn(false);
           if (response?.data) {
             setLoginErrorMessage("");
-            navigate("/home");
+            navigate("/dashboard");
             window.location.reload();
           } else {
             console.log("here", response?.data);

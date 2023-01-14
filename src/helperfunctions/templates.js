@@ -1,21 +1,16 @@
 import { placeholderMarker } from "../constants/strings";
+import axiosTemplate from "../utils/axiosTemplate";
 import { getActualDate, getDayOfMonth, getMonthAndYear } from "./date";
 
 export const extractResponses = (questions) => {
-    console.log("questions", questions);
     let responses = {};
     responses["dayOfAgreement"] = getDayOfMonth(getActualDate(questions.find(question => question.key == "date").response));
     responses["monthOfAgreement"] = getMonthAndYear(getActualDate(questions.find(question => question.key == "date").response));
-    responses["companyName"] = "TEST 1"
-    responses["companyAddress"] = "TEST 2"
     questions.forEach((question, index) => {
-        console.log("responnse" + index, question.response);
 
         responses[question.key] = question.response;
 
     });
-
-    console.log("responses", responses);
 
     return responses;
 };
@@ -34,3 +29,33 @@ export const insertValue = (value) => {
     }
     return value;
 }
+
+export const removeCurrentDetailsFromLocalStorage = () => {
+    localStorage.removeItem("currentDetails");
+}
+
+
+export const loadTemplate = async (templateId, setTemplateLoading, setTemplateDetails) => {
+    setTemplateLoading(true);
+    const data = axiosTemplate(
+        `/api/Template/getByDocId/` + templateId + "/",
+        "GET",
+        null,
+        null
+    );
+    const response = await data
+        .then((res) => {
+            setTemplateLoading(false);
+            if (res.status === 200) {
+                setTemplateDetails(res.data.data);
+                // return res.data;
+            }
+        })
+        .catch((err) => {
+            setTemplateLoading(false);
+            setTemplateDetails(null);
+        });
+
+    return response;
+};
+

@@ -6,6 +6,7 @@ import { insertValue } from "../../helperfunctions/templates";
 
 function CustomNumber(props) {
   const onChange = (event) => {
+    props.setRef(props.targetRef);
     props.onChange(insertPlaceHolderMarker(event.target.value));
   };
   return (
@@ -15,6 +16,8 @@ function CustomNumber(props) {
         placeholder="Enter value"
         onChange={(event) => onChange(event)}
         type="number"
+        onFocus={() => props.setRef(props.targetRef)}
+        onBlur={() => props.setRef(props.targetRef)}
         className="form-control focus:outline-none focus:border-none focus:ring-0 p-0 m-0"
         style={{
           outline: "none",

@@ -15,14 +15,14 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Poppins", sans-serif;
+  font-family: "Roboto", 'Poppins', sans-serif;
   font-size: "12px"
 }
 
 a:-webkit-any-link {
   text-decoration: none;
   color: black;
-  font-family: "Poppins", sans-serif;
+  font-family: "Roboto", 'Poppins', sans-serif;
 }
 
 input:focus,
