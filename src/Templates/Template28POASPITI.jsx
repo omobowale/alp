@@ -18,8 +18,7 @@ import {
 import Layout from "../Layout";
 import Start from "../pages/Start";
 
-function Template20POACCTI(props) {
-  console.log(props);
+function Template28POASPITI(props) {
   //question index
   const [index, setIndex] = useState(0);
 
@@ -39,7 +38,11 @@ function Template20POACCTI(props) {
   const item3Ref = useRef();
   const item4Ref = useRef();
   const item5Ref = useRef();
-  const amountOfConsiderationRef = useRef();
+  const periodOfPowerRef = useRef();
+  const nameOfDonorWitnessRef = useRef();
+  const addressOfDonorWitnessRef = useRef();
+  const occupationOfDonorWitnessRef = useRef();
+  const dateOfDonorWitnessRef = useRef();
 
   const getCurrentValue = (key) => {
     let result = placeholderMarker;
@@ -68,14 +71,28 @@ function Template20POACCTI(props) {
   const [addressOfDonee, setAddressOfDonee] = useState(
     getCurrentValue("addressOfDonee")
   );
-  const [amountOfConsideration, setAmountOfConsideration] = useState(
-    getCurrentValue("amountOfConsideration")
-  );
   const [item1, setItem1] = useState(getCurrentValue("item1"));
   const [item2, setItem2] = useState(getCurrentValue("item2"));
   const [item3, setItem3] = useState(getCurrentValue("item3"));
   const [item4, setItem4] = useState(getCurrentValue("item4"));
   const [item5, setItem5] = useState(getCurrentValue("item5"));
+
+  const [nameOfDonorWitness, setNameOfDonorWitness] = useState(
+    getCurrentValue("nameOfDonorWitness")
+  );
+
+  const [periodOfPower, setPeriodOfPower] = useState(
+    getCurrentValue("periodOfPower")
+  );
+  const [addressOfDonorWitness, setAddressOfDonorWitness] = useState(
+    getCurrentValue("addressOfDonorWitness")
+  );
+  const [occupationOfDonorWitness, setOccupationOfDonorWitness] = useState(
+    getCurrentValue("occupationOfDonorWitness")
+  );
+  const [dateOfDonorWitness, setDateOfDonorWitness] = useState(
+    getCurrentValue("dateOfDonorWitness")
+  );
 
   //other functions
   useEffect(() => {
@@ -127,7 +144,7 @@ function Template20POACCTI(props) {
     },
     {
       type: "input",
-      question: "Enter the full name of company (donor)",
+      question: "Enter the full name of donor",
       action: setNameOfDonor,
       key: "nameOfDonor",
       response: nameOfDonor,
@@ -135,7 +152,7 @@ function Template20POACCTI(props) {
     },
     {
       type: "input",
-      question: "Enter the full address of company (donor)",
+      question: "Enter the full address of donor",
       action: setAddressOfDonor,
       key: "addressOfDonor",
       response: addressOfDonor,
@@ -143,7 +160,7 @@ function Template20POACCTI(props) {
     },
     {
       type: "input",
-      question: "Enter the full name of the individual (donee)",
+      question: "Enter the full name of donee",
       action: setNameOfDonee,
       key: "nameOfDonee",
       response: nameOfDonee,
@@ -151,7 +168,7 @@ function Template20POACCTI(props) {
     },
     {
       type: "input",
-      question: "Enter the full address of the individual (donee)",
+      question: "Enter the full address of donee",
       action: setAddressOfDonee,
       key: "addressOfDonee",
       response: addressOfDonee,
@@ -205,11 +222,43 @@ function Template20POACCTI(props) {
     },
     {
       type: "number",
-      question: "Enter amount of consideration.",
-      action: setAmountOfConsideration,
-      key: "amountOfConsideration",
-      response: amountOfConsideration,
-      ref: amountOfConsiderationRef,
+      question: "Enter the period of power",
+      action: setPeriodOfPower,
+      key: "periodOfPower",
+      response: periodOfPower,
+      ref: periodOfPowerRef,
+    },
+    {
+      type: "input",
+      question: "Enter the name of witness",
+      action: setNameOfDonorWitness,
+      key: "nameOfDonorWitness",
+      response: nameOfDonorWitness,
+      ref: nameOfDonorWitnessRef,
+    },
+    {
+      type: "input",
+      question: "Enter the address of witness",
+      action: setAddressOfDonorWitness,
+      key: "addressOfDonorWitness",
+      response: addressOfDonorWitness,
+      ref: addressOfDonorWitnessRef,
+    },
+    {
+      type: "input",
+      question: "Enter the occupation of witness",
+      action: setOccupationOfDonorWitness,
+      key: "occupationOfDonorWitness",
+      response: occupationOfDonorWitness,
+      ref: occupationOfDonorWitnessRef,
+    },
+    {
+      type: "date",
+      question: "Enter the date of witness",
+      action: setDateOfDonorWitness,
+      key: "dateOfDonorWitness",
+      response: dateOfDonorWitness,
+      ref: dateOfDonorWitnessRef,
     },
   ];
   return (
@@ -238,6 +287,7 @@ function Template20POACCTI(props) {
                 saveCurrentDetails={() => saveCurrentDetails(questions)}
                 setRef={setTargetRef}
               />
+
               <div className="w-3/5">
                 <div className="flex justify-between mb-3">
                   <div className="flex gap-2 items-center">
@@ -301,30 +351,23 @@ function Template20POACCTI(props) {
                           , I,
                         </font>
                       </font>
-
-                      <font face="Garamond, serif">
-                        <font size={3} style={{ fontSize: "12pt" }}>
-                          {" "}
+                      <font color="">
+                        <font face="Garamond, serif">
                           <font
                             size={3}
                             style={{ fontSize: "12pt" }}
                             ref={nameOfDonorRef}
                           >
-                            {insertInput(nameOfDonor)}
-                          </font>{" "}
-                        </font>
-                      </font>
-                      <font color="">
-                        <font face="Garamond, serif">
-                          <font size={3} style={{ fontSize: "12pt" }}>
-                            a company duly incorporated under the Companies{" "}
-                            {"&"} Allied Matters Act 2020 , having its
-                            registered office at
+                            {" "}
+                            {insertInput(nameOfDonor)}{" "}
                           </font>
                         </font>
                       </font>
                       <font face="Garamond, serif">
-                        <font size={3} style={{ fontSize: "12pt" }}></font>
+                        <font size={3} style={{ fontSize: "12pt" }}>
+                          {" "}
+                          of{" "}
+                        </font>
                       </font>
                       <font color="">
                         <font face="Garamond, serif">
@@ -337,9 +380,9 @@ function Template20POACCTI(props) {
                           </font>
                         </font>
                       </font>
-
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
+                          {" "}
                           (
                         </font>
                       </font>
@@ -355,25 +398,22 @@ function Template20POACCTI(props) {
                       </font>
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                          <b>APPOINT</b>
-                        </font>
-                      </font>
-
-                      <font color="">
-                        <font face="Garamond, serif">
-                          <font
-                            size={3}
-                            style={{ fontSize: "12pt" }}
-                            ref={nameOfDoneeRef}
-                          >
-                            {insertInput(nameOfDonee)}
-                          </font>
+                          <b>APPOINT </b>
                         </font>
                       </font>
                       <font face="Garamond, serif">
+                        <font
+                          size={3}
+                          style={{ fontSize: "12pt" }}
+                          ref={nameOfDoneeRef}
+                        >
+                          {insertInput(nameOfDonee)}
+                        </font>
+                      </font>
+
+                      <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                          {" "}
-                          of
+                          , of{" "}
                         </font>
                       </font>
                       <font color="">
@@ -517,33 +557,7 @@ function Template20POACCTI(props) {
                     >
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                          <b>IN CONSIDERATION </b>
-                        </font>
-                      </font>
-                      <font face="Garamond, serif">
-                        <font size={3} style={{ fontSize: "12pt" }}>
-                          of the sum of
-                        </font>
-                      </font>
-                      <font face="Garamond, serif">
-                      <font
-                          size={3}
-                          style={{ fontSize: "12pt" }}
-                          ref={amountOfConsiderationRef}
-                        >
-                          {insertInput(amountOfConsideration)}
-                        </font>
-                      </font>
-
-                      <font face="Garamond, serif">
-                        <font size={3} style={{ fontSize: "12pt" }}>
-                          paid by the Donee to the Donor (the receipt of which
-                          the Donor acknowledges),
-                        </font>
-                      </font>
-                      <font face="Garamond, serif">
-                        <font size={3} style={{ fontSize: "12pt" }}>
-                          <b> IT IS DECLARED THAT </b>
+                          <b>AND I HEREBY DECLARE THAT </b>
                         </font>
                       </font>
                       <font face="Garamond, serif">
@@ -553,7 +567,27 @@ function Template20POACCTI(props) {
                       </font>
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                          <b> IRREVOCABLE.</b>
+                          <b> IRREVOCABLE </b>
+                        </font>
+                      </font>
+                      <font face="Garamond, serif">
+                        <font size={3} style={{ fontSize: "12pt" }}>
+                          for a period of{" "}
+                        </font>
+                      </font>
+                      <font face="Garamond, serif">
+                        <font
+                          size={3}
+                          style={{ fontSize: "12pt" }}
+                          ref={periodOfPowerRef}
+                        >
+                          {insertInput(periodOfPower)}
+                        </font>
+                      </font>
+                      <font face="Garamond, serif">
+                        <font size={3} style={{ fontSize: "12pt" }}>
+                          {" "}
+                          years
                         </font>
                       </font>
                     </p>
@@ -579,22 +613,139 @@ function Template20POACCTI(props) {
                     >
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                          <b>THE COMMON SEAL OF </b>
+                          <b>SIGNED, SEALED, &amp; DELIVERED </b>
                         </font>
                       </font>
-                      <font color="">
-                        <font face="Garamond, serif">
+                    </p>
+                    <p
+                      align="justify"
+                      style={{ lineHeight: "108%", marginBottom: "0.11in" }}
+                    >
+                      <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                            {insertInput(nameOfDonor)}
-                          </font>
+                          By the within named{" "}
                         </font>
                       </font>
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                          <b>
-                            WAS AFFIXED TO THIS DEED AND THE DEED WAS DULY
-                            DELIVERED IN THE PRESENCE OF:
-                          </b>
+                          <b>DONOR</b>
+                        </font>
+                      </font>
+                    </p>
+                    <p
+                      align="justify"
+                      style={{ lineHeight: "108%", marginBottom: "0.11in" }}
+                    >
+                      <font face="Garamond, serif">
+                        <font size={3} style={{ fontSize: "12pt" }}>
+                          ------------------------------------------
+                        </font>
+                      </font>
+                    </p>
+                    <p
+                      align="justify"
+                      style={{ lineHeight: "108%", marginBottom: "0.11in" }}
+                    >
+                      <font face="Garamond, serif">
+                        <font size={3} style={{ fontSize: "12pt" }}>
+                          {insertInput(nameOfDonor, "bold")}
+                        </font>
+                      </font>
+                    </p>
+
+                    <p
+                      align="justify"
+                      style={{ lineHeight: "108%", marginBottom: "0.11in" }}
+                    >
+                      <br />
+                      <br />
+                    </p>
+                    <p
+                      align="justify"
+                      style={{ lineHeight: "108%", marginBottom: "0.11in" }}
+                    >
+                      <font face="Garamond, serif">
+                        <font size={3} style={{ fontSize: "12pt" }}>
+                          <b>In the presence of:</b>
+                        </font>
+                      </font>
+                    </p>
+                    <p
+                      align="justify"
+                      style={{ lineHeight: "108%", marginBottom: "0.11in" }}
+                    >
+                      <font face="Garamond, serif">
+                        <font size={3} style={{ fontSize: "12pt" }}>
+                          Name:{" "}
+                          <font
+                            size={3}
+                            style={{ fontSize: "12pt" }}
+                            ref={nameOfDonorWitnessRef}
+                          >
+                            {insertInput(nameOfDonorWitness)}
+                          </font>
+                        </font>
+                      </font>
+                    </p>
+                    <p
+                      align="justify"
+                      style={{ lineHeight: "108%", marginBottom: "0.11in" }}
+                    >
+                      <font face="Garamond, serif">
+                        <font size={3} style={{ fontSize: "12pt" }}>
+                          Address:{" "}
+                          <font
+                            size={3}
+                            style={{ fontSize: "12pt" }}
+                            ref={addressOfDonorWitnessRef}
+                          >
+                            {insertInput(addressOfDonorWitness)}
+                          </font>
+                        </font>
+                      </font>
+                    </p>
+                    <p
+                      align="justify"
+                      style={{ lineHeight: "108%", marginBottom: "0.11in" }}
+                    >
+                      <font face="Garamond, serif">
+                        <font size={3} style={{ fontSize: "12pt" }}>
+                          Occupation:{" "}
+                          <font
+                            size={3}
+                            style={{ fontSize: "12pt" }}
+                            ref={occupationOfDonorWitnessRef}
+                          >
+                            {insertInput(occupationOfDonorWitness)}
+                          </font>
+                        </font>
+                      </font>
+                    </p>
+                    <p
+                      align="justify"
+                      style={{ lineHeight: "108%", marginBottom: "0.11in" }}
+                    >
+                      <font face="Garamond, serif">
+                        <font size={3} style={{ fontSize: "12pt" }}>
+                          Signature:
+                          ............................................................
+                        </font>
+                      </font>
+                    </p>
+                    <p
+                      align="justify"
+                      style={{ lineHeight: "108%", marginBottom: "0.11in" }}
+                    >
+                      <font face="Garamond, serif">
+                        <font size={3} style={{ fontSize: "12pt" }}>
+                          Date:{" "}
+                          <font
+                            size={3}
+                            style={{ fontSize: "12pt" }}
+                            ref={dateOfDonorWitnessRef}
+                          >
+                            {insertInput(dateOfDonorWitness)}
+                          </font>
                         </font>
                       </font>
                     </p>
@@ -605,50 +756,6 @@ function Template20POACCTI(props) {
                       <br />
                       <br />
                     </p>
-                    <div className="flex justify-between">
-                      <p
-                        align="justify"
-                        style={{ lineHeight: "108%", marginBottom: "0.11in" }}
-                      >
-                        <font face="Garamond, serif">
-                          <font size={3} style={{ fontSize: "12pt" }}>
-                            ------------------------
-                          </font>
-                        </font>
-                      </p>
-                      <p
-                        align="justify"
-                        style={{ lineHeight: "108%", marginBottom: "0.11in" }}
-                      >
-                        <font face="Garamond, serif">
-                          <font size={3} style={{ fontSize: "12pt" }}>
-                            -------------------------------
-                          </font>
-                        </font>
-                      </p>
-                    </div>
-                    <div className="flex justify-between">
-                      <p
-                        align="justify"
-                        style={{ lineHeight: "108%", marginBottom: "0.11in" }}
-                      >
-                        <font face="Garamond, serif">
-                          <font size={3} style={{ fontSize: "12pt" }}>
-                            DIRECTOR
-                          </font>
-                        </font>
-                      </p>
-                      <p
-                        align="justify"
-                        style={{ lineHeight: "108%", marginBottom: "0.11in" }}
-                      >
-                        <font face="Garamond, serif">
-                          <font size={3} style={{ fontSize: "12pt" }}>
-                            DIRECTOR/SECRETARY
-                          </font>
-                        </font>
-                      </p>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -660,4 +767,4 @@ function Template20POACCTI(props) {
   );
 }
 
-export default Template20POACCTI;
+export default Template28POASPITI;

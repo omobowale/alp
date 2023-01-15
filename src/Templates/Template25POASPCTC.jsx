@@ -18,7 +18,7 @@ import {
 import Layout from "../Layout";
 import Start from "../pages/Start";
 
-function Template20POACCTI(props) {
+function Template25POASPCTC(props) {
   console.log(props);
   //question index
   const [index, setIndex] = useState(0);
@@ -39,12 +39,12 @@ function Template20POACCTI(props) {
   const item3Ref = useRef();
   const item4Ref = useRef();
   const item5Ref = useRef();
-  const amountOfConsiderationRef = useRef();
+  const periodOfPowerRef = useRef();
 
   const getCurrentValue = (key) => {
     let result = placeholderMarker;
     if (currentDetails) {
-      result = currentDetails.find((detail) => detail.key == key)?.response;
+      result = currentDetails.find((detail) => detail.key === key)?.response;
       if (result) {
         return result;
       }
@@ -68,8 +68,8 @@ function Template20POACCTI(props) {
   const [addressOfDonee, setAddressOfDonee] = useState(
     getCurrentValue("addressOfDonee")
   );
-  const [amountOfConsideration, setAmountOfConsideration] = useState(
-    getCurrentValue("amountOfConsideration")
+  const [periodOfPower, setperiodOfPower] = useState(
+    getCurrentValue("periodOfPower")
   );
   const [item1, setItem1] = useState(getCurrentValue("item1"));
   const [item2, setItem2] = useState(getCurrentValue("item2"));
@@ -143,7 +143,7 @@ function Template20POACCTI(props) {
     },
     {
       type: "input",
-      question: "Enter the full name of the individual (donee)",
+      question: "Enter the full name of the other company (donee)",
       action: setNameOfDonee,
       key: "nameOfDonee",
       response: nameOfDonee,
@@ -151,7 +151,7 @@ function Template20POACCTI(props) {
     },
     {
       type: "input",
-      question: "Enter the full address of the individual (donee)",
+      question: "Enter the full address of the other company (donee)",
       action: setAddressOfDonee,
       key: "addressOfDonee",
       response: addressOfDonee,
@@ -205,13 +205,14 @@ function Template20POACCTI(props) {
     },
     {
       type: "number",
-      question: "Enter amount of consideration.",
-      action: setAmountOfConsideration,
-      key: "amountOfConsideration",
-      response: amountOfConsideration,
-      ref: amountOfConsiderationRef,
+      question: "Enter the period of power.",
+      action: setperiodOfPower,
+      key: "periodOfPower",
+      response: periodOfPower,
+      ref: periodOfPowerRef,
     },
   ];
+
   return (
     <Layout>
       {templateDetails && (
@@ -301,9 +302,8 @@ function Template20POACCTI(props) {
                           , I,
                         </font>
                       </font>
-
-                      <font face="Garamond, serif">
-                        <font size={3} style={{ fontSize: "12pt" }}>
+                      <font color="">
+                        <font face="Garamond, serif">
                           {" "}
                           <font
                             size={3}
@@ -314,17 +314,13 @@ function Template20POACCTI(props) {
                           </font>{" "}
                         </font>
                       </font>
-                      <font color="">
-                        <font face="Garamond, serif">
-                          <font size={3} style={{ fontSize: "12pt" }}>
-                            a company duly incorporated under the Companies{" "}
-                            {"&"} Allied Matters Act 2020 , having its
-                            registered office at
-                          </font>
-                        </font>
-                      </font>
                       <font face="Garamond, serif">
-                        <font size={3} style={{ fontSize: "12pt" }}></font>
+                        <font size={3} style={{ fontSize: "12pt" }}>
+                          {" "}
+                          a company duly incorporated under the Companies &
+                          Allied Matters Act 2020 , having its registered office
+                          at{" "}
+                        </font>
                       </font>
                       <font color="">
                         <font face="Garamond, serif">
@@ -337,10 +333,9 @@ function Template20POACCTI(props) {
                           </font>
                         </font>
                       </font>
-
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                          (
+                          {" "}(
                         </font>
                       </font>
                       <font face="Garamond, serif">
@@ -355,25 +350,24 @@ function Template20POACCTI(props) {
                       </font>
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                          <b>APPOINT</b>
-                        </font>
-                      </font>
-
-                      <font color="">
-                        <font face="Garamond, serif">
-                          <font
-                            size={3}
-                            style={{ fontSize: "12pt" }}
-                            ref={nameOfDoneeRef}
-                          >
-                            {insertInput(nameOfDonee)}
-                          </font>
+                          <b>APPOINT </b>
                         </font>
                       </font>
                       <font face="Garamond, serif">
+                        <font
+                          size={3}
+                          style={{ fontSize: "12pt" }}
+                          ref={nameOfDoneeRef}
+                        >
+                          {insertInput(nameOfDonee)}
+                        </font>
+                      </font>
+
+                      <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                          {" "}
-                          of
+                          , a company duly incorporated under the Companies &
+                          Allied Matters Act 2020 , having its registered office
+                          at{" "}
                         </font>
                       </font>
                       <font color="">
@@ -389,7 +383,7 @@ function Template20POACCTI(props) {
                       </font>
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                          (
+                          {" "}(
                         </font>
                       </font>
                       <font face="Garamond, serif">
@@ -517,33 +511,7 @@ function Template20POACCTI(props) {
                     >
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                          <b>IN CONSIDERATION </b>
-                        </font>
-                      </font>
-                      <font face="Garamond, serif">
-                        <font size={3} style={{ fontSize: "12pt" }}>
-                          of the sum of
-                        </font>
-                      </font>
-                      <font face="Garamond, serif">
-                      <font
-                          size={3}
-                          style={{ fontSize: "12pt" }}
-                          ref={amountOfConsiderationRef}
-                        >
-                          {insertInput(amountOfConsideration)}
-                        </font>
-                      </font>
-
-                      <font face="Garamond, serif">
-                        <font size={3} style={{ fontSize: "12pt" }}>
-                          paid by the Donee to the Donor (the receipt of which
-                          the Donor acknowledges),
-                        </font>
-                      </font>
-                      <font face="Garamond, serif">
-                        <font size={3} style={{ fontSize: "12pt" }}>
-                          <b> IT IS DECLARED THAT </b>
+                          <b>AND I HEREBY DECLARE THAT </b>
                         </font>
                       </font>
                       <font face="Garamond, serif">
@@ -553,7 +521,26 @@ function Template20POACCTI(props) {
                       </font>
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                          <b> IRREVOCABLE.</b>
+                          <b> IRREVOCABLE </b>
+                        </font>
+                      </font>
+                      <font face="Garamond, serif">
+                        <font size={3} style={{ fontSize: "12pt" }}>
+                          for a period of{" "}
+                        </font>
+                      </font>
+                      <font face="Garamond, serif">
+                        <font
+                          size={3}
+                          style={{ fontSize: "12pt" }}
+                          ref={periodOfPowerRef}
+                        >
+                          {insertInput(periodOfPower)}
+                        </font>
+                      </font>
+                      <font face="Garamond, serif">
+                        <font size={3} style={{ fontSize: "12pt" }}>
+                          {" "}years
                         </font>
                       </font>
                     </p>
@@ -584,7 +571,7 @@ function Template20POACCTI(props) {
                       </font>
                       <font color="">
                         <font face="Garamond, serif">
-                        <font size={3} style={{ fontSize: "12pt" }}>
+                          <font size={3} style={{ fontSize: "12pt" }}>
                             {insertInput(nameOfDonor)}
                           </font>
                         </font>
@@ -592,7 +579,7 @@ function Template20POACCTI(props) {
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
                           <b>
-                            WAS AFFIXED TO THIS DEED AND THE DEED WAS DULY
+                            {" "}WAS AFFIXED TO THIS DEED AND THE DEED WAS DULY
                             DELIVERED IN THE PRESENCE OF:
                           </b>
                         </font>
@@ -660,4 +647,4 @@ function Template20POACCTI(props) {
   );
 }
 
-export default Template20POACCTI;
+export default Template25POASPCTC;

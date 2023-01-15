@@ -4,8 +4,8 @@ import { getActualDate, getDayOfMonth, getMonthAndYear } from "./date";
 
 export const extractResponses = (questions) => {
     let responses = {};
-    responses["dayOfAgreement"] = getDayOfMonth(getActualDate(questions.find(question => question.key == "date").response));
-    responses["monthOfAgreement"] = getMonthAndYear(getActualDate(questions.find(question => question.key == "date").response));
+    responses["dayOfAgreement"] = getDayOfMonth(getActualDate(questions.find(question => question.key == "date")?.response));
+    responses["monthOfAgreement"] = getMonthAndYear(getActualDate(questions.find(question => question.key == "date")?.response));
     questions.forEach((question, index) => {
 
         responses[question.key] = question.response;

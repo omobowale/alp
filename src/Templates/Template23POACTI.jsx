@@ -19,7 +19,7 @@ import Layout from "../Layout";
 import Start from "../pages/Start";
 
 function Template23POACTI(props) {
-  console.log(props);
+  
   //question index
   const [index, setIndex] = useState(0);
 
@@ -201,24 +201,6 @@ function Template23POACTI(props) {
       ref: item5Ref,
     },
     
-
-    // {
-    //     type: "radio",
-    //     question: "Select your gender",
-    //     options: ["male", "female"]
-    // },
-
-    // {
-    //     type: "checkbox",
-    //     question: "Select all that applies",
-    //     options: ["good", "better", "best"]
-    // },
-    // {
-    //     type: "date-range",
-    //     question: "Select dates",
-    //     labelOne: "Start Date",
-    //     labelTwo: "End Date",
-    // }
   ];
 
   return (
@@ -541,13 +523,8 @@ function Template23POACTI(props) {
                       </font>
                       <font color="">
                         <font face="Garamond, serif">
-                          <font size={3} style={{ fontSize: "12pt" }}>
-                            {nameOfDonor !== "" &&
-                            nameOfDonor !== placeholderMarker ? (
-                              <u>{"    " + nameOfDonor + "    "}</u>
-                            ) : (
-                              <>{"    " + nameOfDonor + "    "}</>
-                            )}
+                          <font size={3} style={{ fontSize: "12pt" }} >
+                          {insertInput(nameOfDonor)}
                           </font>
                         </font>
                       </font>
