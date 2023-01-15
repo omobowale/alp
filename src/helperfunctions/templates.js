@@ -16,7 +16,18 @@ export const extractResponses = (questions) => {
 };
 
 export const saveCurrentDetails = (questions) => {
-    localStorage.setItem("currentDetails", JSON.stringify(questions));
+    let actualQuestions = []
+    for(let question of questions) {
+        let actualQuestion = {}
+        for(const q in question) {
+            if(q !== "ref") {
+                actualQuestion[q] = question[q]
+            }
+        }
+        actualQuestions.push(actualQuestion)
+    }
+    console.log("questions", actualQuestions)
+    localStorage.setItem("currentDetails", JSON.stringify(actualQuestions));
 };
 
 export const getCurrentDetails = () => {

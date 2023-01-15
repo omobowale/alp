@@ -47,7 +47,7 @@ function NavBar() {
         </div>
       </div>
       {user && (
-        <div className="flex gap-3 items-center">
+        <div className="flex gap-3 items-center ml-3">
           <span style={{ fontSize: "10px" }}>
             {"Logged in as: " + user?.email}
           </span>
