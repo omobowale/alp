@@ -1,6 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import CustomButton from "../commons/Custom/CustomButton";
-import CustomQuestionResponse from "../commons/Custom/CustomQuestionResponse";
 import Dialog from "../commons/Custom/Dialog";
 import TemplateIcon from "../assets/frame_1.png";
 
@@ -18,7 +16,6 @@ import {
   saveCurrentDetails,
 } from "../helperfunctions/templates";
 import Layout from "../Layout";
-import CheckoutPage from "../pages/CheckoutPage";
 import Start from "../pages/Start";
 import { insertInput } from "../helperfunctions/jsx";
 
@@ -46,6 +43,7 @@ function Template1AACTC(props) {
   const allowableDiscountRef = useRef();
   const expirationInYearsRef = useRef();
   const terminationTimelineRef = useRef();
+  const daysOfAbsentismRef = useRef();
   const nameOfPersonDesignatedAsPrincipalRef = useRef();
   const nameOfPersonDesignatedAsAgentRef = useRef();
 
@@ -103,13 +101,16 @@ function Template1AACTC(props) {
   const [terminationTimeline, setTerminationTimeline] = useState(
     getCurrentValue("terminationTimeline")
   );
+  const [daysOfAbsentism, setDaysOfAbsentism] = useState(
+    getCurrentValue("daysOfAbsentism")
+  );
   const [
     nameOfPersonDesignatedAsPrincipal,
     setNameOfPersonDesignatedAsPrincipal,
   ] = useState(getCurrentValue("nameOfPersonDesignatedAsPrincipal"));
   const [nameOfPersonDesignatedAsAgent, setNameOfPersonDesignatedAsAgent] =
     useState(getCurrentValue("nameOfPersonDesignatedAsAgent"));
-  
+
   const [nameOfPrincipalWitness, setNameOfPrincipalWitness] = useState(
     getCurrentValue("nameOfPrincipalWitness")
   );
@@ -271,6 +272,14 @@ function Template1AACTC(props) {
       key: "terminationTimeline",
       response: terminationTimeline,
       ref: terminationTimelineRef,
+    },
+    {
+      type: "number",
+      question: "How many days can an agent be absent for?",
+      action: setDaysOfAbsentism,
+      key: "daysOfAbsentism",
+      response: daysOfAbsentism,
+      ref: daysOfAbsentismRef,
     },
     {
       type: "input",
@@ -1148,9 +1157,11 @@ function Template1AACTC(props) {
                     >
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                          this agreement
-                          for...................................... days without
-                          the principal’s prior{" "}
+                          this agreement for{" "}
+                          <span ref={daysOfAbsentismRef}>
+                            {insertInput(daysOfAbsentism)}
+                          </span>{" "}
+                          days without the principal’s prior{" "}
                         </font>
                       </font>
                     </p>

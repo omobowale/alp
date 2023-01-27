@@ -7,9 +7,7 @@ export const extractResponses = (questions) => {
     responses["dayOfAgreement"] = getDayOfMonth(getActualDate(questions.find(question => question.key == "date")?.response));
     responses["monthOfAgreement"] = getMonthAndYear(getActualDate(questions.find(question => question.key == "date")?.response));
     questions.forEach((question, index) => {
-
         responses[question.key] = question.response;
-
     });
 
     return responses;
@@ -44,7 +42,6 @@ export const insertValue = (value) => {
 export const removeCurrentDetailsFromLocalStorage = () => {
     localStorage.removeItem("currentDetails");
 }
-
 
 export const loadTemplate = async (templateId, setTemplateLoading, setTemplateDetails) => {
     setTemplateLoading(true);

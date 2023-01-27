@@ -18,9 +18,9 @@ function Templates() {
   return (
     <Layout>
       <div className="">
-        <div className="flex justify-around" style={{ textAlign: "" }}>
-          <div className="w-1/3"></div>
-          <div className="w-1/3">
+        <div className="flex justify-around md:flex-row flex-col" style={{ textAlign: "" }}>
+          <div className="w-1/3 lg:block hidden"></div>
+          <div className="md:w-1/3 w-full md:text-left text-center">
             <div
               className="mb-2"
               style={{ color: blueColor, fontWeight: fontWeight500 }}
@@ -31,7 +31,7 @@ function Templates() {
               Choose a document below to fill out
             </div>
           </div>
-          <div className="w-1/3" style={{ fontSize: "12px" }}>
+          <div className="md:w-1/3 w-full md:mb-1 mb-4" style={{ fontSize: "12px" }}>
             <input
               value={filter}
               placeholder="Search for template"
@@ -40,7 +40,7 @@ function Templates() {
             />
           </div>
         </div>
-        <div className="grid grid-cols-4 gap-5">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
           {filterTemplate(templates).map((template) => (
             <TemplateItem
               onClick={() => removeCurrentDetailsFromLocalStorage()}

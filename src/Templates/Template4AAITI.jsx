@@ -46,6 +46,8 @@ function Template4AAITI(props) {
   const allowableDiscountRef = useRef();
   const expirationInYearsRef = useRef();
   const terminationTimelineRef = useRef();
+  const daysOfAbsentismRef = useRef();
+
   const nameOfPersonDesignatedAsPrincipalRef = useRef();
 
   const nameOfPrincipalWitnessRef = useRef();
@@ -105,6 +107,10 @@ function Template4AAITI(props) {
   );
   const [terminationTimeline, setTerminationTimeline] = useState(
     getCurrentValue("terminationTimeline")
+  );
+
+  const [daysOfAbsentism, setDaysOfAbsentism] = useState(
+    getCurrentValue("daysOfAbsentism")
   );
 
   const [nameOfAgent, setNameOfAgent] = useState(
@@ -271,6 +277,14 @@ function Template4AAITI(props) {
       key: "terminationTimeline",
       response: terminationTimeline,
       ref: terminationTimelineRef,
+    },
+    {
+      type: "number",
+      question: "How many days can an agent be absent for?",
+      action: setDaysOfAbsentism,
+      key: "daysOfAbsentism",
+      response: daysOfAbsentism,
+      ref: daysOfAbsentismRef,
     },
     {
       type: "input",
@@ -1135,9 +1149,11 @@ function Template4AAITI(props) {
                     >
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                          this agreement
-                          for...................................... days without
-                          the principal’s prior{" "}
+                          this agreement for{" "}
+                          <span ref={daysOfAbsentismRef}>
+                            {insertInput(daysOfAbsentism)}
+                          </span>{" "}
+                          days without the principal’s prior{" "}
                         </font>
                       </font>
                     </p>

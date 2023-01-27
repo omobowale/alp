@@ -41,6 +41,8 @@ function Template13FA(props) {
   const openingTimeRef = useRef();
   const closingTimeRef = useRef();
   const monthlyServiceFeeRef = useRef();
+  const percentageOfTurnoverRef = useRef();
+  const amountPerAnnumRef = useRef();
 
   const nameOfFranchisorWitnessRef = useRef();
   const addressOfFranchisorWitnessRef = useRef();
@@ -96,6 +98,12 @@ function Template13FA(props) {
   );
   const [monthlyServiceFee, setMonthlyServiceFee] = useState(
     getCurrentValue("monthlyServiceFee")
+  );
+  const [percentageOfTurnover, setPercentageOfTurnover] = useState(
+    getCurrentValue("percentageOfTurnover")
+  );
+  const [amountPerAnnum, setAmountPerAnnum] = useState(
+    getCurrentValue("amountPerAnnum")
   );
   const [nameOfFranchisorWitness, setNameOfFranchisorWitness] = useState(
     getCurrentValue("nameOfFranchisorWitness")
@@ -203,10 +211,10 @@ function Template13FA(props) {
     {
       type: "input",
       question: "Enter the area of expertise of Franchisor",
-      action: setAddressOfFranchisee,
-      key: "addressOfFranchisee",
-      response: addressOfFranchisee,
-      ref: addressOfFranchiseeRef,
+      action: setAreaOfExpertise,
+      key: "areaOfExpertise",
+      response: areaOfExpertise,
+      ref: areaOfExpertiseRef,
     },
     {
       type: "number",
@@ -256,6 +264,24 @@ function Template13FA(props) {
       key: "monthlyServiceFee",
       response: monthlyServiceFee,
       ref: monthlyServiceFeeRef,
+    },
+    {
+      type: "number",
+      question:
+        "Enter % of previous month's gross turnover the Franchisee must pay on monthly basis",
+      action: setPercentageOfTurnover,
+      key: "percentageOfTurnover",
+      response: percentageOfTurnover,
+      ref: percentageOfTurnoverRef,
+    },
+    {
+      type: "number",
+      question:
+        "Enter the amount per annum the Franchisee must pay upon receiving a written notice",
+      action: setAmountPerAnnum,
+      key: "amountPerAnnum",
+      response: amountPerAnnum,
+      ref: amountPerAnnumRef,
     },
     {
       type: "input",
@@ -1726,8 +1752,11 @@ function Template13FA(props) {
                       >
                         9.1 The Franchisee shall upon receiving written notice
                         from the Franchisor pay on a monthly basis, a sum
-                        equivalent to …. % of the previous month’s gross
-                        turnover or
+                        equivalent to
+                        <font ref={percentageOfTurnoverRef}>
+                          {insertInput(percentageOfTurnover)}
+                        </font>
+                        % of the previous month’s gross turnover or
                       </font>
                     </font>
                     <font face="Times New Roman, serif">
@@ -1737,10 +1766,14 @@ function Template13FA(props) {
                           fontSize: "12pt",
                         }}
                       >
-                        ₦………..
+                        ₦
+                        <font ref={amountPerAnnumRef}>
+                          {insertInput(amountPerAnnum)}
+                        </font>
                       </font>
                     </font>
                     <font face="Garamond, serif">
+                      {" "}
                       <font
                         size="3"
                         style={{
@@ -3680,10 +3713,10 @@ function Template13FA(props) {
                           fontSize: "12pt",
                         }}
                       >
-                        Name: {" "}
-                          <font ref={nameOfFranchisorWitnessRef}>
-                            {insertInput(nameOfFranchisorWitness)}
-                          </font>
+                        Name:{" "}
+                        <font ref={nameOfFranchisorWitnessRef}>
+                          {insertInput(nameOfFranchisorWitness)}
+                        </font>
                       </font>
                     </font>
                   </p>
@@ -3701,10 +3734,10 @@ function Template13FA(props) {
                           fontSize: "12pt",
                         }}
                       >
-                        Address: {" "}
-                          <font ref={addressOfFranchisorRef}>
-                            {insertInput(addressOfFranchisor)}
-                          </font>
+                        Address:{" "}
+                        <font ref={addressOfFranchisorRef}>
+                          {insertInput(addressOfFranchisor)}
+                        </font>
                       </font>
                     </font>
                   </p>
@@ -3722,10 +3755,10 @@ function Template13FA(props) {
                           fontSize: "12pt",
                         }}
                       >
-                        Occupation: {" "}
-                          <font ref={occupationOfFranchisorWitnessRef}>
-                            {insertInput(occupationOfFranchisorWitness)}
-                          </font>
+                        Occupation:{" "}
+                        <font ref={occupationOfFranchisorWitnessRef}>
+                          {insertInput(occupationOfFranchisorWitness)}
+                        </font>
                       </font>
                     </font>
                   </p>
@@ -3761,10 +3794,10 @@ function Template13FA(props) {
                           fontSize: "12pt",
                         }}
                       >
-                        Date: {" "}
-                          <font ref={dateOfFranchisorWitnessRef}>
-                            {insertInput(dateOfFranchisorWitness)}
-                          </font>
+                        Date:{" "}
+                        <font ref={dateOfFranchisorWitnessRef}>
+                          {insertInput(dateOfFranchisorWitness)}
+                        </font>
                       </font>
                     </font>
                   </p>
@@ -3886,10 +3919,10 @@ function Template13FA(props) {
                           fontSize: "12pt",
                         }}
                       >
-                        Name: {" "}
-                          <font ref={nameOfFranchiseeWitnessRef}>
-                            {insertInput(nameOfFranchiseeWitness)}
-                          </font>
+                        Name:{" "}
+                        <font ref={nameOfFranchiseeWitnessRef}>
+                          {insertInput(nameOfFranchiseeWitness)}
+                        </font>
                       </font>
                     </font>
                   </p>
@@ -3907,10 +3940,10 @@ function Template13FA(props) {
                           fontSize: "12pt",
                         }}
                       >
-                        Address: {" "}
-                          <font ref={addressOfFranchiseeWitnessRef}>
-                            {insertInput(addressOfFranchiseeWitness)}
-                          </font>
+                        Address:{" "}
+                        <font ref={addressOfFranchiseeWitnessRef}>
+                          {insertInput(addressOfFranchiseeWitness)}
+                        </font>
                       </font>
                     </font>
                   </p>
@@ -3928,10 +3961,10 @@ function Template13FA(props) {
                           fontSize: "12pt",
                         }}
                       >
-                        Occupation: {" "}
-                          <font ref={occupationOfFranchiseeWitnessRef}>
-                            {insertInput(occupationOfFranchiseeWitness)}
-                          </font>
+                        Occupation:{" "}
+                        <font ref={occupationOfFranchiseeWitnessRef}>
+                          {insertInput(occupationOfFranchiseeWitness)}
+                        </font>
                       </font>
                     </font>
                   </p>
@@ -3967,10 +4000,10 @@ function Template13FA(props) {
                           fontSize: "12pt",
                         }}
                       >
-                        Date: {" "}
-                          <font ref={dateOfFranchiseeWitnessRef}>
-                            {insertInput(dateOfFranchiseeWitness)}
-                          </font>
+                        Date:{" "}
+                        <font ref={dateOfFranchiseeWitnessRef}>
+                          {insertInput(dateOfFranchiseeWitness)}
+                        </font>
                       </font>
                     </font>
                   </p>

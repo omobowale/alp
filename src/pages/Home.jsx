@@ -19,10 +19,10 @@ function Home() {
             Fill a template
           </div>
           <div className="mb-5" style={{ fontSize: font11 }}>
-            Choose a document below to fill out
+            Choose a document below to fill out o
           </div>
         </div>
-        <div className="grid grid-cols-4 gap-5">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5">
           {templates.map((template) => (
             <TemplateItem
               imagePath={template.imagePath}

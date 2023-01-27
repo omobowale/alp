@@ -43,6 +43,7 @@ function Template3AAITC(props) {
   const allowableDiscountRef = useRef();
   const expirationInYearsRef = useRef();
   const terminationTimelineRef = useRef();
+  const daysOfAbsentismRef = useRef();
   const nameOfPersonDesignatedAsPrincipalRef = useRef();
 
   const nameOfPrincipalWitnessRef = useRef();
@@ -85,19 +86,6 @@ function Template3AAITC(props) {
     getCurrentValue("lengthOfAgency")
   );
 
-  const [inThePresenceOfName, setInThePresenceOfName] = useState(
-    getCurrentValue("inThePresenceOfName")
-  );
-  const [inThePresenceOfAddress, setInThePresenceOfAddress] = useState(
-    getCurrentValue("inThePresenceOfAddress")
-  );
-  const [inThePresenceOfOccupation, setInThePresenceOfOccupation] = useState(
-    getCurrentValue("inThePresenceOfOccupation")
-  );
-  const [periodOfPower, setPeriodOfPower] = useState(
-    getCurrentValue("periodOfPower")
-  );
-
   const [percentageCommission, setPercentageCommission] = useState(
     getCurrentValue("percentageCommission")
   );
@@ -116,27 +104,10 @@ function Template3AAITC(props) {
   const [terminationTimeline, setTerminationTimeline] = useState(
     getCurrentValue("terminationTimeline")
   );
-  const [
-    nameOfPersonDesignatedAsPrincipal,
-    setNameOfPersonDesignatedAsPrincipal,
-  ] = useState(getCurrentValue("nameOfPersonDesignatedAsPrincipal"));
-  const [
-    addressOfPersonDesignatedAsPrincipal,
-    setAddressOfPersonDesignatedAsPrincipal,
-  ] = useState(getCurrentValue("addressOfPersonDesignatedAsPrincipal"));
-  const [
-    occupationOfPersonDesignatedAsPrincipal,
-    setOccupationOfPersonDesignatedAsPrincipal,
-  ] = useState(getCurrentValue("occupationOfPersonDesignatedAsPrincipal"));
-  const [nameOfWitness, setNameOfWitness] = useState(
-    getCurrentValue("nameOfWitness")
+  const [daysOfAbsentism, setDaysOfAbsentism] = useState(
+    getCurrentValue("daysOfAbsentism")
   );
-  const [addressOfWitness, setAddressOfWitness] = useState(
-    getCurrentValue("addressOfWitness")
-  );
-  const [occupationOfWitness, setOccupationOfWitness] = useState(
-    getCurrentValue("occupationOfWitness")
-  );
+  
   const [nameOfAgent, setNameOfAgent] = useState(
     getCurrentValue("nameOfAgent")
   );
@@ -301,6 +272,14 @@ function Template3AAITC(props) {
       key: "terminationTimeline",
       response: terminationTimeline,
       ref: terminationTimelineRef,
+    },
+    {
+      type: "number",
+      question: "How many days can an agent be absent for?",
+      action: setDaysOfAbsentism,
+      key: "daysOfAbsentism",
+      response: daysOfAbsentism,
+      ref: daysOfAbsentismRef,
     },
     {
       type: "input",
@@ -1169,7 +1148,7 @@ function Template3AAITC(props) {
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
                           this agreement
-                          for...................................... days without
+                          for <span ref={daysOfAbsentismRef}>{insertInput(daysOfAbsentism)}</span> days without
                           the principal’s prior{" "}
                         </font>
                       </font>

@@ -27,6 +27,8 @@ function Checkout(props) {
       docName: props.name,
     };
 
+    console.log("template data before downloading", templateData);
+
     const data = axiosTemplate(
       `/api/Template/Download`,
       "POST",

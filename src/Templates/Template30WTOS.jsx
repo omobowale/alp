@@ -94,7 +94,6 @@ function Template30WTOS(props) {
       response: nameOfApp,
       ref: nameOfAppRef,
     },
-
     {
       type: "input",
       question: "Enter the collective name of the app",

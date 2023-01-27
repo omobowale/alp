@@ -12,7 +12,7 @@ function TemplateItem(props) {
         >
           <div className="flex bg-red-100 justify-center h-1/2">
             <img
-              className="h-full"
+              className="w-full"
               src={props.imagePath}
               alt={props.label}
               style={{ height: "20em" }}

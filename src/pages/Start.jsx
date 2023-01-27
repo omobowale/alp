@@ -8,8 +8,8 @@ import TemplatePreviewImage from "../assets/homedoc.png";
 function Start(props) {
   console.log(props)
   return (
-    <div className="flex justify-around gap-20">
-      <div className="w-3/4">
+    <div className="flex md:flex-row flex-col justify-around lg:gap-20 md:gap-10 gap-4">
+      <div className="w-3/4 md:mx-auto">
         <div className="flex justify-between items-center mb-3">
           <div className="flex gap-2 items-center">
             <span>
@@ -22,14 +22,14 @@ function Start(props) {
                 color: blueColor,
               }}
             >
-              {props.details.name}
+              {props.details.name?.toUpperCase()}
             </span>
           </div>
           <div style={{ fontWeight: "500", fontSize: "10px" }}>
             NGN {props.details.price}
           </div>
         </div>
-        <div>
+        <div className="">
           <span
             className=""
             style={{
@@ -85,7 +85,7 @@ function Start(props) {
           </button>
         </div>
       </div>
-      <div className="w-1/2">
+      <div className="md:w-1/2 w-3/4 mx-auto">
         <img className="w-full" src={props.imagePath} alt={props.details.name} />
       </div>
     </div>

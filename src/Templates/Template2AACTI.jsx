@@ -39,17 +39,15 @@ function Template2AACTI(props) {
   const nameOfCompanyRef = useRef();
   const addressOfCompanyRef = useRef();
   const lengthOfAgencyRef = useRef();
-  const inThePresenceOfNameRef = useRef();
-  const inThePresenceOfAddressRef = useRef();
   const percentageCommissionRef = useRef();
   const remitPercentageRef = useRef();
   const principalAgentAmountRef = useRef();
   const allowableDiscountRef = useRef();
   const expirationInYearsRef = useRef();
   const terminationTimelineRef = useRef();
+  const daysOfAbsentismRef = useRef();
+
   const nameOfPersonDesignatedAsPrincipalRef = useRef();
-  const addressOfPersonDesignatedAsPrincipalRef = useRef();
-  const occupationOfPersonDesignatedAsPrincipalRef = useRef();
   const nameOfPrincipalWitnessRef = useRef();
   const addressOfPrincipalWitnessRef = useRef();
   const occupationOfPrincipalWitnessRef = useRef();
@@ -118,30 +116,15 @@ function Template2AACTI(props) {
   const [terminationTimeline, setTerminationTimeline] = useState(
     getCurrentValue("terminationTimeline")
   );
+  const [daysOfAbsentism, setDaysOfAbsentism] = useState(
+    getCurrentValue("daysOfAbsentism")
+  );
+
   const [
     nameOfPersonDesignatedAsPrincipal,
     setNameOfPersonDesignatedAsPrincipal,
   ] = useState(getCurrentValue("nameOfPersonDesignatedAsPrincipal"));
-  const [
-    addressOfPersonDesignatedAsPrincipal,
-    setAddressOfPersonDesignatedAsPrincipal,
-  ] = useState(getCurrentValue("addressOfPersonDesignatedAsPrincipal"));
-  const [
-    occupationOfPersonDesignatedAsPrincipal,
-    setOccupationOfPersonDesignatedAsPrincipal,
-  ] = useState(getCurrentValue("occupationOfPersonDesignatedAsPrincipal"));
-  const [nameOfWitness, setNameOfWitness] = useState(
-    getCurrentValue("nameOfWitness")
-  );
-  const [addressOfWitness, setAddressOfWitness] = useState(
-    getCurrentValue("addressOfWitness")
-  );
-  const [occupationOfWitness, setOccupationOfWitness] = useState(
-    getCurrentValue("occupationOfWitness")
-  );
-  const [nameOfAgent, setNameOfAgent] = useState(
-    getCurrentValue("nameOfAgent")
-  );
+
   const [nameOfPrincipalWitness, setNameOfPrincipalWitness] = useState(
     getCurrentValue("nameOfPrincipalWitness")
   );
@@ -303,6 +286,14 @@ function Template2AACTI(props) {
       key: "terminationTimeline",
       response: terminationTimeline,
       ref: terminationTimelineRef,
+    },
+    {
+      type: "number",
+      question: "How many days can an agent be absent for?",
+      action: setDaysOfAbsentism,
+      key: "daysOfAbsentism",
+      response: daysOfAbsentism,
+      ref: daysOfAbsentismRef,
     },
     {
       type: "input",
@@ -1169,9 +1160,11 @@ function Template2AACTI(props) {
                     >
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                          this agreement
-                          for...................................... days without
-                          the principal’s prior{" "}
+                          this agreement for{" "}
+                          <span ref={daysOfAbsentismRef}>
+                            {insertInput(daysOfAbsentism)}
+                          </span>{" "}
+                          days without the principal’s prior{" "}
                         </font>
                       </font>
                     </p>
@@ -1378,7 +1371,7 @@ function Template2AACTI(props) {
                         </font>
                       </font>
                     </p>
-                    
+
                     <p
                       align="justify"
                       style={{ lineHeight: "108%", marginBottom: "0.11in" }}
