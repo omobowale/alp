@@ -350,7 +350,7 @@ function Template13FA(props) {
   ];
 
   return (
-    <Layout>
+    <Layout showLoader={templateLoading}>
       {templateDetails && (
         <>
           {showStart && (
@@ -366,6 +366,7 @@ function Template13FA(props) {
           {!showStart && (
             <div className="flex justify-between gap-20">
               <Dialog
+              docId={props?.id}
                 questions={questions}
                 index={index}
                 incrementIndex={incrementIndex}

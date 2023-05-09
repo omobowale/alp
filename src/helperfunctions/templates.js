@@ -15,10 +15,10 @@ export const extractResponses = (questions) => {
 
 export const saveCurrentDetails = (questions) => {
     let actualQuestions = []
-    for(let question of questions) {
+    for (let question of questions) {
         let actualQuestion = {}
-        for(const q in question) {
-            if(q !== "ref") {
+        for (const q in question) {
+            if (q !== "ref") {
                 actualQuestion[q] = question[q]
             }
         }
@@ -67,3 +67,57 @@ export const loadTemplate = async (templateId, setTemplateLoading, setTemplateDe
     return response;
 };
 
+
+export const saveTemplate = async (requestData) => {
+    const data = axiosTemplate(
+        `/api/UserTemplate/Add`,
+        "POST",
+        requestData,
+        localStorage.getItem("token")
+    );
+    const response = await data
+        .then((res) => {
+            console.log("response saving", res);
+        })
+        .catch((err) => {
+            console.log(err, "error saving");
+        });
+
+    return response;
+};
+
+export const updateTemplate = async (id, requestData) => {
+    const data = axiosTemplate(
+        `/api/UserTemplate/Update/${id}`,
+        "PUT",
+        requestData,
+        localStorage.getItem("token")
+    );
+    const response = await data
+        .then((res) => {
+            console.log("response updating", res);
+        })
+        .catch((err) => {
+            console.log(err, "error updating");
+        });
+
+    return response;
+};
+
+export const loadUserTemplateResponse = (userResponse) => {
+
+    let currentDetails = JSON.parse(localStorage.getItem("currentDetails"));
+    if (currentDetails) {
+        for (let detail of currentDetails) {
+            if (userResponse[detail.key]) {
+                detail["response"] = userResponse[detail.key]
+            }
+        }
+    }
+    localStorage.setItem("currentDetails", JSON.stringify(currentDetails))
+}
+
+export const storeUserTemplateResponse = (userResponse) => {
+    localStorage.setItem("userResponse", JSON.stringify(userResponse))
+    localStorage.setItem("edit", 1)
+}

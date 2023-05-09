@@ -1,14 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { blueColor } from "../../constants/colors";
 import { fontWeight500 } from "../../constants/fonts";
 import CheckoutPage from "../../pages/CheckoutPage";
+import axiosTemplate from "../../utils/axiosTemplate";
 import SaveAndContinueLater from "../fragments/SaveAndContinueLater";
 import CustomButton from "./CustomButton";
+import {
+  extractResponses,
+  saveTemplate,
+} from "../../helperfunctions/templates";
 import CustomQuestionResponse from "./CustomQuestionResponse";
+import { getLoggedInUser } from "../../helperfunctions/user";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import {
+  DATATOBESAVED,
+  TEMPLATE_SAVED,
+  TOBESAVED,
+} from "../../helperfunctions/strings";
 
 function Dialog(props) {
   const {
+    docId,
     index,
     questions,
     decrementIndex,
@@ -16,18 +30,28 @@ function Dialog(props) {
     responseList,
     saveCurrentDetails,
     saveToDb,
-    setRef
+    setRef,
   } = props;
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
 
   const saveAndContinue = () => {
+    saveCurrentDetails();
+    let data = {
+      docId,
+      email: getLoggedInUser()?.email,
+      userResponse: extractResponses(questions),
+    };
     if (user) {
-      saveCurrentDetails();
-      alert("saved");
+      saveTemplate(data).then((res) => {
+        toast.success(TEMPLATE_SAVED);
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 2000);
+      });
     } else {
-      saveCurrentDetails();
       navigate("/login");
+      localStorage.setItem(DATATOBESAVED, JSON.stringify(data));
     }
   };
 
@@ -37,7 +61,11 @@ function Dialog(props) {
         {index < questions.length &&
           questions.map((question, ind) => (
             <div style={{ display: `${ind == index ? "block" : "none"}` }}>
-              <CustomQuestionResponse setRef={setRef} key={ind} questionResponse={question} />{" "}
+              <CustomQuestionResponse
+                setRef={setRef}
+                key={ind}
+                questionResponse={question}
+              />{" "}
             </div>
           ))}
 
@@ -82,6 +110,7 @@ function Dialog(props) {
           />
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }

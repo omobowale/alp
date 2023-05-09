@@ -260,7 +260,7 @@ function Template10CACTI(props) {
       response: dateOfTerminationOfAgreement,
       ref: dateOfTerminationOfAgreementRef,
     },
-    
+
     {
       type: "input",
       question:
@@ -354,7 +354,7 @@ function Template10CACTI(props) {
   ];
 
   return (
-    <Layout>
+    <Layout showLoader={templateLoading}>
       {templateDetails && (
         <>
           {showStart && (
@@ -370,6 +370,7 @@ function Template10CACTI(props) {
           {!showStart && (
             <div className="flex justify-between gap-20">
               <Dialog
+                docId={props?.id}
                 questions={questions}
                 index={index}
                 incrementIndex={incrementIndex}

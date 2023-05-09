@@ -1,24 +1,36 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useMemo, useState } from "react";
 import { blueColor } from "../constants/colors";
-import { font10, font11, fontWeight500 } from "../constants/fonts";
-import { replaceSpaceWithSlash } from "../helperfunctions/strings";
+import { font11, fontWeight500 } from "../constants/fonts";
+import { PAGE_SIZE, replaceSpaceWithSlash } from "../helperfunctions/strings";
 import { removeCurrentDetailsFromLocalStorage } from "../helperfunctions/templates";
 import Layout from "../Layout";
 import TemplateItem from "../others/TemplateItem";
 import { templates } from "../template_registration";
+import CustomPagination from "../commons/Custom/CustomPagination";
 
 function Templates() {
   const [filter, setFilter] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const filterTemplate = (templates) => {
-    return templates.filter((template) => template.title.toLowerCase().includes(filter.toLowerCase()));
+    return templates.filter((template) =>
+      template.title.toLowerCase().includes(filter.toLowerCase())
+    );
   };
+
+  const currentTableData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * PAGE_SIZE;
+    const lastPageIndex = firstPageIndex + PAGE_SIZE;
+    return filterTemplate(templates).slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, filter]);
 
   return (
     <Layout>
       <div className="">
-        <div className="flex justify-around md:flex-row flex-col" style={{ textAlign: "" }}>
+        <div
+          className="flex justify-around md:flex-row flex-col"
+          style={{ textAlign: "" }}
+        >
           <div className="w-1/3 lg:block hidden"></div>
           <div className="md:w-1/3 w-full md:text-left text-center">
             <div
@@ -31,7 +43,10 @@ function Templates() {
               Choose a document below to fill out
             </div>
           </div>
-          <div className="md:w-1/3 w-full md:mb-1 mb-4" style={{ fontSize: "12px" }}>
+          <div
+            className="md:w-1/3 w-full md:mb-1 mb-4"
+            style={{ fontSize: "12px" }}
+          >
             <input
               value={filter}
               placeholder="Search for template"
@@ -41,7 +56,7 @@ function Templates() {
           </div>
         </div>
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
-          {filterTemplate(templates).map((template) => (
+          {currentTableData.map((template) => (
             <TemplateItem
               onClick={() => removeCurrentDetailsFromLocalStorage()}
               imagePath={template.imagePath}
@@ -50,6 +65,14 @@ function Templates() {
               link={"/templates/" + replaceSpaceWithSlash(template.title)}
             />
           ))}
+        </div>
+        <div className="mt-5 flex justify-center">
+          <CustomPagination
+            currentPage={currentPage}
+            totalCount={filterTemplate(templates).length}
+            pageSize={PAGE_SIZE}
+            onPageChange={(page) => setCurrentPage(page)}
+          />
         </div>
       </div>
     </Layout>

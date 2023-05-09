@@ -382,7 +382,7 @@ function Template1AACTC(props) {
   ];
 
   return (
-    <Layout>
+    <Layout showLoader={templateLoading}>
       {templateDetails && (
         <>
           {showStart && (
@@ -393,11 +393,13 @@ function Template1AACTC(props) {
               }}
               setShowStart={setShowStart}
               imagePath={props.imagePath}
+              saveCurrentDetails={() => saveCurrentDetails(questions)}
             />
           )}
           {!showStart && (
             <div className="flex justify-between gap-20">
               <Dialog
+                docId={props?.id}
                 questions={questions}
                 index={index}
                 incrementIndex={incrementIndex}

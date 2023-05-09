@@ -18,7 +18,6 @@ function Template30WTOS(props) {
   //question index
   const [index, setIndex] = useState(0);
 
-  
   //refs
   const [templateLoading, setTemplateLoading] = useState(false);
   const [templateDetails, setTemplateDetails] = useState(null);
@@ -105,7 +104,7 @@ function Template30WTOS(props) {
   ];
 
   return (
-    <Layout>
+    <Layout showLoader={templateLoading}>
       {templateDetails && (
         <>
           {showStart && (
@@ -121,6 +120,7 @@ function Template30WTOS(props) {
           {!showStart && (
             <div className="flex justify-between gap-20">
               <Dialog
+                docId={props?.id}
                 questions={questions}
                 index={index}
                 incrementIndex={incrementIndex}

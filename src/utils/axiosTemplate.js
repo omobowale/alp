@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const backendURL = 'https://dtemplate-api.azurewebsites.net';
+const backendURL = 'https://lawtemplateapi.azurewebsites.net';
 
 
 export default function axiosTemplate(url, method, data, token, responseType) {
