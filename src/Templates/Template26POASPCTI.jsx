@@ -19,7 +19,6 @@ import Layout from "../Layout";
 import Start from "../pages/Start";
 
 function Template26POASPCTI(props) {
-  console.log(props);
   //question index
   const [index, setIndex] = useState(0);
 
@@ -74,7 +73,9 @@ function Template26POASPCTI(props) {
   const [item4, setItem4] = useState(getCurrentValue("item4"));
   const [item5, setItem5] = useState(getCurrentValue("item5"));
 
-  const [periodOfPower, setPeriodOfPower] = useState(getCurrentValue("periodOfPower"));
+  const [periodOfPower, setPeriodOfPower] = useState(
+    getCurrentValue("periodOfPower")
+  );
 
   //other functions
   useEffect(() => {
@@ -204,8 +205,7 @@ function Template26POASPCTI(props) {
     },
     {
       type: "number",
-      question:
-        "Enter the period of power",
+      question: "Enter the period of power",
       action: setItem5,
       key: "item5",
       response: item5,
@@ -222,6 +222,8 @@ function Template26POASPCTI(props) {
               details={{
                 price: templateDetails?.cost,
                 name: templateDetails?.name,
+                description: templateDetails?.description,
+                label: templateDetails?.label,
               }}
               setShowStart={setShowStart}
               imagePath={props.imagePath}
@@ -230,7 +232,7 @@ function Template26POASPCTI(props) {
           {!showStart && (
             <div className="flex justify-between gap-20">
               <Dialog
-              docId={props?.id}
+                docId={props?.id}
                 questions={questions}
                 index={index}
                 incrementIndex={incrementIndex}
@@ -306,14 +308,14 @@ function Template26POASPCTI(props) {
                       </font>
 
                       <font face="Garamond, serif">
-                      {" "}
-                          <font
-                            size={3}
-                            style={{ fontSize: "12pt" }}
-                            ref={nameOfDonorRef}
-                          >
-                            {insertInput(nameOfDonor)}
-                          </font>{" "}
+                        {" "}
+                        <font
+                          size={3}
+                          style={{ fontSize: "12pt" }}
+                          ref={nameOfDonorRef}
+                        >
+                          {insertInput(nameOfDonor)}
+                        </font>{" "}
                       </font>
                       <font color="">
                         <font face="Garamond, serif">
@@ -329,7 +331,7 @@ function Template26POASPCTI(props) {
                       </font>
                       <font color="">
                         <font face="Garamond, serif">
-                        <font
+                          <font
                             size={3}
                             style={{ fontSize: "12pt" }}
                             ref={addressOfDonorRef}
@@ -362,13 +364,13 @@ function Template26POASPCTI(props) {
 
                       <font color="">
                         <font face="Garamond, serif">
-                        <font
-                          size={3}
-                          style={{ fontSize: "12pt" }}
-                          ref={nameOfDoneeRef}
-                        >
-                          {insertInput(nameOfDonee)}
-                        </font>
+                          <font
+                            size={3}
+                            style={{ fontSize: "12pt" }}
+                            ref={nameOfDoneeRef}
+                          >
+                            {insertInput(nameOfDonee)}
+                          </font>
                         </font>
                       </font>
                       <font face="Garamond, serif">
@@ -379,7 +381,7 @@ function Template26POASPCTI(props) {
                       </font>
                       <font color="">
                         <font face="Garamond, serif">
-                        <font
+                          <font
                             size={3}
                             style={{ fontSize: "12pt" }}
                             ref={addressOfDoneeRef}
@@ -412,7 +414,7 @@ function Template26POASPCTI(props) {
                     >
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                        1.{" "}
+                          1.{" "}
                           <font
                             size={3}
                             style={{ fontSize: "12pt" }}
@@ -430,7 +432,7 @@ function Template26POASPCTI(props) {
                     >
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                        2.{" "}
+                          2.{" "}
                           <font
                             size={3}
                             style={{ fontSize: "12pt" }}
@@ -448,7 +450,7 @@ function Template26POASPCTI(props) {
                     >
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                        3.{" "}
+                          3.{" "}
                           <font
                             size={3}
                             style={{ fontSize: "12pt" }}
@@ -466,7 +468,7 @@ function Template26POASPCTI(props) {
                     >
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                        4.{" "}
+                          4.{" "}
                           <font
                             size={3}
                             style={{ fontSize: "12pt" }}
@@ -484,7 +486,7 @@ function Template26POASPCTI(props) {
                     >
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                        5.{" "}
+                          5.{" "}
                           <font
                             size={3}
                             style={{ fontSize: "12pt" }}
@@ -539,7 +541,7 @@ function Template26POASPCTI(props) {
                       </font>
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                        <font
+                          <font
                             size={3}
                             style={{ fontSize: "12pt" }}
                             ref={periodOfPowerRef}
@@ -550,7 +552,8 @@ function Template26POASPCTI(props) {
                       </font>
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                          {" "}years
+                          {" "}
+                          years
                         </font>
                       </font>
                     </p>
@@ -581,8 +584,8 @@ function Template26POASPCTI(props) {
                       </font>
                       <font color="">
                         <font face="Garamond, serif">
-                        <font size={3} style={{ fontSize: "12pt" }} >
-                          {insertInput(nameOfDonor)}
+                          <font size={3} style={{ fontSize: "12pt" }}>
+                            {insertInput(nameOfDonor)}
                           </font>
                         </font>
                       </font>

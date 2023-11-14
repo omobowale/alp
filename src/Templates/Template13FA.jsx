@@ -17,9 +17,9 @@ import {
 import Layout from "../Layout";
 import Start from "../pages/Start";
 import Dialog from "../commons/Custom/Dialog";
+import BlurItem from "../others/BlurItem";
 
 function Template13FA(props) {
-  console.log(props);
   //question index
   const [index, setIndex] = useState(0);
 
@@ -358,6 +358,8 @@ function Template13FA(props) {
               details={{
                 price: templateDetails?.cost,
                 name: templateDetails?.name,
+                description: templateDetails?.description,
+                label: templateDetails?.label,
               }}
               setShowStart={setShowStart}
               imagePath={props.imagePath}
@@ -366,7 +368,7 @@ function Template13FA(props) {
           {!showStart && (
             <div className="flex justify-between gap-20">
               <Dialog
-              docId={props?.id}
+                docId={props?.id}
                 questions={questions}
                 index={index}
                 incrementIndex={incrementIndex}
@@ -639,10 +641,13 @@ function Template13FA(props) {
                         style={{
                           fontSize: "12pt",
                         }}
+                        className="blur-item-container"
                       >
-                        B. The Franchisor wishes to expand the provision of the
+                        B. 
+                        <BlurItem />
+                        {/* The Franchisor wishes to expand the provision of the
                         Services and is willing to grant to the Franchisee the
-                        rights set out herein.
+                        rights set out herein. */}
                       </font>
                     </font>
                   </p>
@@ -753,18 +758,21 @@ function Template13FA(props) {
                       marginBottom: "0.11in",
                     }}
                   >
-                    <font face="Garamond, serif">
+                    <font face="Garamond, serif" >
                       <font
                         size="3"
                         style={{
                           fontSize: "12pt",
                         }}
+                        className="blur-item-container"
                       >
-                        E. The equipment from time to time required by the
-                        Franchisee for use in the Business is hereafter called “
+                        E. 
+                        <BlurItem />
+                        {/* The equipment from time to time required by the
+                        Franchisee for use in the Business is hereafter called “ */}
                       </font>
                     </font>
-                    <font face="Garamond, serif">
+                    {/* <font face="Garamond, serif">
                       <font
                         size="3"
                         style={{
@@ -783,7 +791,7 @@ function Template13FA(props) {
                       >
                         ”.
                       </font>
-                    </font>
+                    </font> */}
                   </p>
                   <p
                     align="justify"
@@ -834,12 +842,15 @@ function Template13FA(props) {
                         style={{
                           fontSize: "12pt",
                         }}
+                        className="blur-item-container"
                       >
-                        1.1 The Franchisor grants to the Franchisee during the
+                        1.1 
+                        <BlurItem />
+                        {/* The Franchisor grants to the Franchisee during the
                         period of this Agreement and subject to the terms and
                         conditions hereof the rights to carry on the Business in
                         accordance with this Agreement from the Premises, to
-                        utilise the Know-How and to use the Marks.
+                        utilise the Know-How and to use the Marks. */}
                       </font>
                     </font>
                   </p>

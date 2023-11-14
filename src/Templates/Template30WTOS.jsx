@@ -112,6 +112,8 @@ function Template30WTOS(props) {
               details={{
                 price: templateDetails?.cost,
                 name: templateDetails?.name,
+                description: templateDetails?.description,
+                label: templateDetails?.label,
               }}
               setShowStart={setShowStart}
               imagePath={props.imagePath}

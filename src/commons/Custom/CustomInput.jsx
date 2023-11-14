@@ -10,7 +10,6 @@ import { insertValue } from "../../helperfunctions/templates";
 function CustomInput(props) {
   const onChange = (event) => {
     props.setRef(props.targetRef);
-    // console.log(props.targetRef);
     props.onChange(insertPlaceHolderMarker(event.target.value));
   };
 

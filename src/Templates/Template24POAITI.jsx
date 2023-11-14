@@ -19,7 +19,6 @@ import Layout from "../Layout";
 import Start from "../pages/Start";
 
 function Template25POAITI(props) {
-  console.log(props);
   //question index
   const [index, setIndex] = useState(0);
 
@@ -277,6 +276,8 @@ function Template25POAITI(props) {
               details={{
                 price: templateDetails?.cost,
                 name: templateDetails?.name,
+                description: templateDetails?.description,
+                label: templateDetails?.label,
               }}
               setShowStart={setShowStart}
               imagePath={props.imagePath}
@@ -285,7 +286,7 @@ function Template25POAITI(props) {
           {!showStart && (
             <div className="flex justify-between gap-20">
               <Dialog
-              docId={props?.id}
+                docId={props?.id}
                 questions={questions}
                 index={index}
                 incrementIndex={incrementIndex}

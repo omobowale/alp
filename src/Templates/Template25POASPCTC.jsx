@@ -19,7 +19,6 @@ import Layout from "../Layout";
 import Start from "../pages/Start";
 
 function Template25POASPCTC(props) {
-  console.log(props);
   //question index
   const [index, setIndex] = useState(0);
 
@@ -222,6 +221,8 @@ function Template25POASPCTC(props) {
               details={{
                 price: templateDetails?.cost,
                 name: templateDetails?.name,
+                description: templateDetails?.description,
+                label: templateDetails?.label,
               }}
               setShowStart={setShowStart}
               imagePath={props.imagePath}
@@ -230,7 +231,7 @@ function Template25POASPCTC(props) {
           {!showStart && (
             <div className="flex justify-between gap-20">
               <Dialog
-              docId={props?.id}
+                docId={props?.id}
                 questions={questions}
                 index={index}
                 incrementIndex={incrementIndex}
@@ -336,7 +337,8 @@ function Template25POASPCTC(props) {
                       </font>
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                          {" "}(
+                          {" "}
+                          (
                         </font>
                       </font>
                       <font face="Garamond, serif">
@@ -384,7 +386,8 @@ function Template25POASPCTC(props) {
                       </font>
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                          {" "}(
+                          {" "}
+                          (
                         </font>
                       </font>
                       <font face="Garamond, serif">
@@ -541,7 +544,8 @@ function Template25POASPCTC(props) {
                       </font>
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                          {" "}years
+                          {" "}
+                          years
                         </font>
                       </font>
                     </p>
@@ -580,7 +584,8 @@ function Template25POASPCTC(props) {
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
                           <b>
-                            {" "}WAS AFFIXED TO THIS DEED AND THE DEED WAS DULY
+                            {" "}
+                            WAS AFFIXED TO THIS DEED AND THE DEED WAS DULY
                             DELIVERED IN THE PRESENCE OF:
                           </b>
                         </font>

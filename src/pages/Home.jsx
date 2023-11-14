@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { blueColor } from "../constants/colors";
 import { font10, font11, fontWeight500 } from "../constants/fonts";
 import { replaceSpaceWithSlash } from "../helperfunctions/strings";
+import { getAllTemplates } from "../helperfunctions/templates";
 import Layout from "../Layout";
 import TemplateItem from "../others/TemplateItem";
 import { templates } from "../template_registration";
 
 function Home() {
+ 
   return (
     <Layout>
       <div className="">

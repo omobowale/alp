@@ -20,9 +20,9 @@ import Layout from "../Layout";
 import CheckoutPage from "../pages/CheckoutPage";
 import Start from "../pages/Start";
 import TemplateIcon from "../assets/frame_1.png";
+import BlurItem from "../others/BlurItem";
 
 function Template10CACTI(props) {
-  console.log(props);
   //question index
   const [index, setIndex] = useState(0);
 
@@ -362,6 +362,8 @@ function Template10CACTI(props) {
               details={{
                 price: templateDetails?.cost,
                 name: templateDetails?.name,
+                description: templateDetails?.description,
+                label: templateDetails?.label,
               }}
               setShowStart={setShowStart}
               imagePath={props.imagePath}
@@ -887,15 +889,19 @@ function Template10CACTI(props) {
                           fontSize: "12pt",
                         }}
                       >
-                        per hour for time spent on Consulting Services.
-                        Consultant shall submit written, signed reports of the
-                        time spent performing Consulting Services, itemizing in
-                        reasonable detail the dates on which services were
+                        <font>
+                          per hour for time spent on Consulting Services.
+                          Consultant shall submit written, signed reports of the
+                          time spent performing Consulting Services, itemizing
+                          in
+                        </font>
+                        {/* reasonable detail the dates on which services were
                         performed, the number of hours spent on such dates and a
                         brief description of the services rendered. The Client
                         shall pay the Consultant the amounts due pursuant to
                         submitted reports within 14 days after such reports are
-                        received by the Client.
+                        received by the Client. */}
+                        <BlurItem />
                       </font>
                     </font>
                   </p>
@@ -1026,10 +1032,11 @@ function Template10CACTI(props) {
                         }}
                       >
                         The Consultant shall submit written documentation and
-                        receipts where available itemizing the dates on which
+                        {/* receipts where available itemizing the dates on which
                         expenses were incurred. The Client shall pay the
                         Consultant the amounts due pursuant to submitted reports
-                        within 14 days after a report is received by the Client.
+                        within 14 days after a report is received by the Client. */}
+                        <BlurItem />
                       </font>
                     </font>
                   </p>

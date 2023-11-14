@@ -15,7 +15,6 @@ import Checkout from "../pages/Checkout";
 import CheckoutPage from "../pages/CheckoutPage";
 
 function Template4(props) {
-  console.log(props);
   //question index
   const [index, setIndex] = useState(0);
 
@@ -62,7 +61,6 @@ function Template4(props) {
   };
 
   const decrementIndex = () => {
-    console.log("decrement")
     if (index > 0) {
       setIndex(index - 1);
     }

@@ -1,0 +1,4 @@
+.blur-item-container {
+    display: flex;
+    column-gap: 0.3em;
+}

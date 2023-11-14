@@ -31,7 +31,7 @@ function Register() {
       confirmPassword,
     };
     const data = axiosTemplate(
-      `/api/authentication/register`,
+      `/Users/signup`,
       "POST",
       userData,
       null
@@ -39,11 +39,10 @@ function Register() {
     const response = await data
       .then((res) => {
         if (res.status === 200) {
-          console.log("res really", res);
           if (res.data.data) {
             localStorage.setItem(
               "user",
-              JSON.stringify({ email: res.data.data.email })
+              JSON.stringify({ email: res.data.data.email, id: res.data.data.id })
             );
             localStorage.setItem("token", res.data.data.accessToken);
           }
@@ -71,18 +70,16 @@ function Register() {
       setIsRegistering(true);
       registerUser(email, password, confirmPassword)
         .then((response) => {
-          console.log(response);
           setIsRegistering(false);
           if (response?.data) {
             navigate("/dashboard");
             setRegistrationErrorMessage("");
             window.location.reload();
           } else {
-            setRegistrationErrorMessage(response?.message);
+            setRegistrationErrorMessage(response?.error);
           }
         })
         .catch((err) => {
-          console.log(err, "This is the error");
           setRegistrationErrorMessage(
             "Error! Could not sign up now. Please try again later."
           );

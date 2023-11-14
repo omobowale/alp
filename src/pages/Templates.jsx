@@ -1,8 +1,13 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { blueColor } from "../constants/colors";
 import { font11, fontWeight500 } from "../constants/fonts";
 import { PAGE_SIZE, replaceSpaceWithSlash } from "../helperfunctions/strings";
-import { removeCurrentDetailsFromLocalStorage } from "../helperfunctions/templates";
+import {
+  getAllTemplates,
+  getUserTemplates,
+  removeCurrentDetailsFromLocalStorage,
+  testLoadTemplate,
+} from "../helperfunctions/templates";
 import Layout from "../Layout";
 import TemplateItem from "../others/TemplateItem";
 import { templates } from "../template_registration";
@@ -23,6 +28,7 @@ function Templates() {
     const lastPageIndex = firstPageIndex + PAGE_SIZE;
     return filterTemplate(templates).slice(firstPageIndex, lastPageIndex);
   }, [currentPage, filter]);
+
 
   return (
     <Layout>

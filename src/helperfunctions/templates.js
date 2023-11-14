@@ -1,6 +1,8 @@
 import { placeholderMarker } from "../constants/strings";
 import axiosTemplate from "../utils/axiosTemplate";
 import { getActualDate, getDayOfMonth, getMonthAndYear } from "./date";
+import jsPDF from 'jspdf';
+
 
 export const extractResponses = (questions) => {
     let responses = {};
@@ -24,7 +26,6 @@ export const saveCurrentDetails = (questions) => {
         }
         actualQuestions.push(actualQuestion)
     }
-    console.log("questions", actualQuestions)
     localStorage.setItem("currentDetails", JSON.stringify(actualQuestions));
 };
 
@@ -43,44 +44,163 @@ export const removeCurrentDetailsFromLocalStorage = () => {
     localStorage.removeItem("currentDetails");
 }
 
-export const loadTemplate = async (templateId, setTemplateLoading, setTemplateDetails) => {
-    setTemplateLoading(true);
+export const getUserTemplates = async (user_id) => {
     const data = axiosTemplate(
-        `/api/Template/getByDocId/` + templateId + "/",
+        `/Template/${user_id}`,
         "GET",
         null,
         null
     );
     const response = await data
         .then((res) => {
-            setTemplateLoading(false);
+
             if (res.status === 200) {
-                setTemplateDetails(res.data.data);
+                return res.data;
+            }
+        })
+        .catch((err) => {
+        });
+
+
+    return response;
+}
+
+export const getAllTemplates = async () => {
+
+    const data = axiosTemplate(
+        `/Templates`,
+        "GET",
+        null,
+        null
+    );
+    const response = await data
+        .then((res) => {
+
+            if (res.status === 200) {
+
+                return res.data;
+            }
+        })
+        .catch((err) => {
+        });
+
+    return response;
+};
+
+export const testLoadTemplate = async () => {
+    const data = axiosTemplate(
+        `/Templates`,
+        "GET",
+        null,
+        null
+    );
+
+    const response = await data
+        .then((res) => {
+            if (res.status === 200) {
                 // return res.data;
             }
         })
         .catch((err) => {
+        });
+
+    return response;
+
+}
+
+export const loadTemplate = async (templateId, setTemplateLoading, setTemplateDetails) => {
+
+
+    setTemplateLoading(true);
+    const data = axiosTemplate(
+        `/Templates/` + templateId + "",
+        "GET",
+        null,
+        null
+    );
+
+    const response = await data
+        .then((res) => {
+            setTemplateLoading(false);
+            if (res.status === 200) {
+
+                let newData = {
+                    id: res.data.data.id,
+                    cost: res.data.data.price,
+                    name: res.data.data.name,
+                    description: res.data.data.description,
+                    label: res.data.data.label
+                }
+
+                setTemplateDetails(newData);
+                return newData;
+            }
+
+            return null;
+        })
+        .catch((err) => {
             setTemplateLoading(false);
             setTemplateDetails(null);
+            return null;
         });
 
     return response;
 };
 
 
-export const saveTemplate = async (requestData) => {
+export const handleTemplateDownload = async (templateId, userId, email, templateName) => {
+
+
     const data = axiosTemplate(
-        `/api/UserTemplate/Add`,
+        `/Downloads/${templateId}/${userId}`,
+        "GET",
+        null,
+        null,
+        "blob"
+    );
+    const response = await data
+        .then((res) => {
+            if (res.status === 200) {
+                const blob = new Blob([res.data], { type: 'application/pdf' })
+                const href = URL.createObjectURL(blob);
+
+                // create "a" HTML element with href to file & click
+                const link = document.createElement("a");
+                // link.href = href;
+                link.href = `https://backend.alphalex.com.ng/Downloads/${templateId}/${userId}`;
+                link.setAttribute("download", templateName + ".pdf"); //or any other extension
+                link.setAttribute("target", "_parent"); //or any other extension
+                document.body.appendChild(link);
+                link.click();
+
+                // clean up "a" element & remove ObjectURL
+                document.body.removeChild(link);
+                URL.revokeObjectURL(href);
+            }
+
+            return res.data;
+        })
+        .catch((err) => {
+            return -1;
+        });
+
+    return response;
+
+};
+
+
+export const saveTemplate = async (requestData, templateName) => {
+    const data = axiosTemplate(
+        `/Template/${templateName}`,
         "POST",
         requestData,
         localStorage.getItem("token")
     );
     const response = await data
         .then((res) => {
-            console.log("response saving", res);
+            return res
         })
         .catch((err) => {
-            console.log(err, "error saving");
         });
 
     return response;
@@ -95,10 +215,8 @@ export const updateTemplate = async (id, requestData) => {
     );
     const response = await data
         .then((res) => {
-            console.log("response updating", res);
         })
         .catch((err) => {
-            console.log(err, "error updating");
         });
 
     return response;
@@ -121,3 +239,32 @@ export const storeUserTemplateResponse = (userResponse) => {
     localStorage.setItem("userResponse", JSON.stringify(userResponse))
     localStorage.setItem("edit", 1)
 }
+
+
+export const handleGeneratePdf = (reportTemplateRef, docName) => {
+    const doc = new jsPDF({
+        format: 'a4',
+        unit: 'px',
+    });
+
+    // Adding the fonts.
+    doc.setFont('Inter-Regular', 'normal');
+
+    doc.html(reportTemplateRef.current, {
+        async callback(doc) {
+            await doc.save(docName);
+        },
+    });
+};
+
+export const getAPIKeys = async () => {
+    const data = axiosTemplate(
+        `/Settings/getAPIKeys`,
+        "GET",
+        null,
+        localStorage.getItem("token")
+    );
+    const response = await data
+
+    return response;
+};

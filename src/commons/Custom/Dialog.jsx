@@ -38,12 +38,13 @@ function Dialog(props) {
   const saveAndContinue = () => {
     saveCurrentDetails();
     let data = {
-      docId,
+      temp_id: docId,
+      user_id: getLoggedInUser()?.id,
       email: getLoggedInUser()?.email,
-      userResponse: extractResponses(questions),
+      Template_data: extractResponses(questions),
     };
     if (user) {
-      saveTemplate(data).then((res) => {
+      saveTemplate(data, docId).then((res) => {
         toast.success(TEMPLATE_SAVED);
         setTimeout(() => {
           navigate("/dashboard");
@@ -100,8 +101,9 @@ function Dialog(props) {
           }}
         >
           <CheckoutPage
+            id={props.templateDetails.id}
             name={props.templateDetails.name}
-            id={props.templateDetails.docId}
+            label={props.templateDetails.label}
             cost={props.templateDetails.cost}
             vat={props.templateDetails.vat}
             onBackButtonClicked={decrementIndex}

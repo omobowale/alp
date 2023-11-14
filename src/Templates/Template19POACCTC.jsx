@@ -17,9 +17,9 @@ import {
 } from "../helperfunctions/templates";
 import Layout from "../Layout";
 import Start from "../pages/Start";
+import BlurItem from "../others/BlurItem";
 
 function Template19POACCTC(props) {
-  console.log(props);
   //question index
   const [index, setIndex] = useState(0);
 
@@ -222,6 +222,8 @@ function Template19POACCTC(props) {
               details={{
                 price: templateDetails?.cost,
                 name: templateDetails?.name,
+                description: templateDetails?.description,
+                label: templateDetails?.label,
               }}
               setShowStart={setShowStart}
               imagePath={props.imagePath}
@@ -230,7 +232,7 @@ function Template19POACCTC(props) {
           {!showStart && (
             <div className="flex justify-between gap-20">
               <Dialog
-              docId={props?.id}
+                docId={props?.id}
                 questions={questions}
                 index={index}
                 incrementIndex={incrementIndex}
@@ -326,20 +328,19 @@ function Template19POACCTC(props) {
                       </font>
                       <font color="">
                         <font face="Garamond, serif">
-                          
-                            <font
-                              size={3}
-                              style={{ fontSize: "12pt" }}
-                              ref={addressOfDonorRef}
-                            >
-                              {insertInput(addressOfDonor)}
-                            </font>
-                          
+                          <font
+                            size={3}
+                            style={{ fontSize: "12pt" }}
+                            ref={addressOfDonorRef}
+                          >
+                            {insertInput(addressOfDonor)}
+                          </font>
                         </font>
                       </font>
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                          {" "}(
+                          {" "}
+                          (
                         </font>
                       </font>
                       <font face="Garamond, serif">
@@ -496,18 +497,19 @@ function Template19POACCTC(props) {
                       align="justify"
                       style={{ lineHeight: "108%", marginBottom: "0.11in" }}
                     >
-                      <font face="Garamond, serif">
+                      <font face="Garamond, serif" className="blur-item-container">
                         <font size={3} style={{ fontSize: "12pt" }}>
                           <b>AND </b>
-                        </font>
+                        </font> 
+                        <BlurItem />
                       </font>
-                      <font face="Garamond, serif">
+                      {/* <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
                           to do all and any other things necessary and
                           incidental for the carrying out of the powers created
                           above
                         </font>
-                      </font>
+                      </font> */}
                     </p>
                     <p
                       align="justify"

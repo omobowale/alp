@@ -18,6 +18,7 @@ import Layout from "../Layout";
 import axiosTemplate from "../utils/axiosTemplate";
 import TemplateIcon from "../assets/frame_1.png";
 import Start from "../pages/Start";
+import BlurItem from "../others/BlurItem";
 
 function Template9CACTC(props) {
   const [templateLoading, setTemplateLoading] = useState(false);
@@ -392,6 +393,8 @@ function Template9CACTC(props) {
               details={{
                 price: templateDetails?.cost,
                 name: templateDetails?.name,
+                description: templateDetails?.description,
+                label: templateDetails?.label,
               }}
               setShowStart={setShowStart}
               imagePath={props.imagePath}
@@ -400,7 +403,7 @@ function Template9CACTC(props) {
           {!showStart && (
             <div className="flex justify-between gap-20">
               <Dialog
-              docId={props?.id}
+                docId={props?.id}
                 questions={questions}
                 index={index}
                 incrementIndex={incrementIndex}
@@ -954,15 +957,23 @@ function Template9CACTC(props) {
                           fontSize: "12pt",
                         }}
                       >
-                        {""} per hour for time spent on Consulting Services.
-                        Consultant shall submit written, signed reports of the
-                        time spent performing Consulting Services, itemizing in
-                        reasonable detail the dates on which services were
-                        performed, the number of hours spent on such dates and a
-                        brief description of the services rendered. The Client
-                        shall pay the Consultant the amounts due pursuant to
-                        submitted reports within 14 days after such reports are
-                        received by the Client.
+                        <font className="">
+                          <font>
+                            {""} per hour for time spent on Consulting Services.
+                            Consultant shall submit written, signed reports of
+                            the time spent performing Consulting Services,
+                            itemizing in 
+                          </font>
+                          {/* <font>
+                            reasonable detail the dates on which services were
+                            performed, the number of hours spent on such dates
+                            and a brief description of the services rendered.
+                            The Client shall pay the Consultant the amounts due
+                            pursuant to submitted reports within 14 days after
+                            such reports are received by the Client.
+                          </font> */}
+                          <BlurItem />
+                        </font>
                       </font>
                     </font>
                   </p>
@@ -1093,10 +1104,11 @@ function Template9CACTC(props) {
                         }}
                       >
                         The Consultant shall submit written documentation and
-                        receipts where available itemizing the dates on which
+                        {/* receipts where available itemizing the dates on which
                         expenses were incurred. The Client shall pay the
                         Consultant the amounts due pursuant to submitted reports
-                        within 14 days after a report is received by the Client.
+                        within 14 days after a report is received by the Client. */}
+                        <BlurItem />
                       </font>
                     </font>
                   </p>

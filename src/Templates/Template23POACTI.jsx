@@ -19,7 +19,6 @@ import Layout from "../Layout";
 import Start from "../pages/Start";
 
 function Template23POACTI(props) {
-  
   //question index
   const [index, setIndex] = useState(0);
 
@@ -39,7 +38,6 @@ function Template23POACTI(props) {
   const item3Ref = useRef();
   const item4Ref = useRef();
   const item5Ref = useRef();
-
 
   const getCurrentValue = (key) => {
     let result = placeholderMarker;
@@ -200,7 +198,6 @@ function Template23POACTI(props) {
       response: item5,
       ref: item5Ref,
     },
-    
   ];
 
   return (
@@ -212,6 +209,8 @@ function Template23POACTI(props) {
               details={{
                 price: templateDetails?.cost,
                 name: templateDetails?.name,
+                description: templateDetails?.description,
+                label: templateDetails?.label,
               }}
               setShowStart={setShowStart}
               imagePath={props.imagePath}
@@ -220,7 +219,7 @@ function Template23POACTI(props) {
           {!showStart && (
             <div className="flex justify-between gap-20">
               <Dialog
-              docId={props?.id}
+                docId={props?.id}
                 questions={questions}
                 index={index}
                 incrementIndex={incrementIndex}
@@ -524,8 +523,8 @@ function Template23POACTI(props) {
                       </font>
                       <font color="">
                         <font face="Garamond, serif">
-                          <font size={3} style={{ fontSize: "12pt" }} >
-                          {insertInput(nameOfDonor)}
+                          <font size={3} style={{ fontSize: "12pt" }}>
+                            {insertInput(nameOfDonor)}
                           </font>
                         </font>
                       </font>

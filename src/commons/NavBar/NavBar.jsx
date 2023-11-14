@@ -10,8 +10,7 @@ function NavBar() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   const logUserOut = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
+    localStorage.clear()
     window.location.reload();
   };
 
@@ -33,20 +32,20 @@ function NavBar() {
             className={`lg:flex lg:flex-row flex-col lg:gap-5 md:gap-2 gap-1 hidden`}
           >
             {" "}
-            <a href="https://nuvomedia.online/alphalex/index.php">
+            <a href=" https://www.alphalex.com.ng/">
               Alphalex Home
             </a>
-            <a href="https://nuvomedia.online/alphalex/index.php/">
+            <a href=" https://www.alphalex.com.ng/start-a-business/">
               Start a business
             </a>
             <Link to="/templates">Templates</Link>
-            <a href="https://nuvomedia.online/alphalex/index.php/elementor-141/">
+            <a href="https://www.alphalex.com.ng/elementor-141/">
               The Hub
             </a>
-            <a href="https://nuvomedia.online/alphalex/index.php/about-us/">
+            <a href="https://www.alphalex.com.ng/about-us/">
               About Us
             </a>
-            <a href="https://nuvomedia.online/alphalex/index.php/contact-us/">
+            <a href="https://www.alphalex.com.ng/contact-us/">
               Contact Us
             </a>
           </div>
@@ -69,7 +68,7 @@ function NavBar() {
                     <div className="p-2 hover:bg-white border-b-2">
                       <a
                         onClick={() => setShowMobileMenu(false)}
-                        href="https://nuvomedia.online/alphalex/index.php"
+                        href="https://www.alphalex.com.ng/"
                       >
                         Alphalex Home
                       </a>
@@ -77,7 +76,7 @@ function NavBar() {
                     <div className="p-2 hover:bg-white border-b-2">
                       <a
                         onClick={() => setShowMobileMenu(false)}
-                        href="https://nuvomedia.online/alphalex/index.php/"
+                        href="https://www.alphalex.com.ng/start-a-business/"
                       >
                         Start a business
                       </a>
@@ -93,7 +92,7 @@ function NavBar() {
                     <div className="p-2 hover:bg-white border-b-2">
                       <a
                         onClick={() => setShowMobileMenu(false)}
-                        href="https://nuvomedia.online/alphalex/index.php/elementor-141/"
+                        href="https://www.alphalex.com.ng/elementor-141/"
                       >
                         The Hub
                       </a>
@@ -101,7 +100,7 @@ function NavBar() {
                     <div className="p-2 hover:bg-white border-b-2">
                       <a
                         onClick={() => setShowMobileMenu(false)}
-                        href="https://nuvomedia.online/alphalex/index.php/about-us/"
+                        href="https://www.alphalex.com.ng/about-us/"
                       >
                         About Us
                       </a>
@@ -109,9 +108,17 @@ function NavBar() {
                     <div className="p-2 hover:bg-white border-b-2">
                       <a
                         onClick={() => setShowMobileMenu(false)}
-                        href="https://nuvomedia.online/alphalex/index.php/contact-us/"
+                        href="https://www.alphalex.com.ng/contact-us/"
                       >
                         Contact Us
+                      </a>
+                    </div>
+                    <div className="p-2 hover:bg-white border-b-2">
+                      <a
+                        onClick={() => setShowMobileMenu(false)}
+                        href="https://www.alphalex.com.ng/about-us-2/"
+                      >
+                        FAQ
                       </a>
                     </div>
                   </>

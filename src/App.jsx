@@ -25,10 +25,11 @@ function App() {
           <Route path="/home" element={<Templates />} />
           <Route
             path="/dashboard"
-            element={user ? <Dashboard /> : <Navigate to="/home" />}
+            element={<Dashboard />}
+            // element={user ? <Dashboard /> : <Navigate to="/home" />}
           />
           <Route path="/templates" element={<Templates />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={user ? <Dashboard /> : <Login />} />
           <Route path="/register" element={<Register />} />
           {templates.map((template) => {
             return (

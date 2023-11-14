@@ -270,6 +270,8 @@ function Template27POASPITC(props) {
               details={{
                 price: templateDetails?.cost,
                 name: templateDetails?.name,
+                description: templateDetails?.description,
+                label: templateDetails?.label,
               }}
               setShowStart={setShowStart}
               imagePath={props.imagePath}
@@ -278,7 +280,7 @@ function Template27POASPITC(props) {
           {!showStart && (
             <div className="flex justify-between gap-20">
               <Dialog
-              docId={props?.id}
+                docId={props?.id}
                 questions={questions}
                 index={index}
                 incrementIndex={incrementIndex}
@@ -383,7 +385,8 @@ function Template27POASPITC(props) {
                       </font>
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                        {" "}(
+                          {" "}
+                          (
                         </font>
                       </font>
                       <font face="Garamond, serif">
@@ -413,7 +416,8 @@ function Template27POASPITC(props) {
                       <font color="">
                         <font face="Garamond, serif">
                           <font size={3} style={{ fontSize: "12pt" }}>
-                          {" "}a company duly incorporated under the Companies{" "}
+                            {" "}
+                            a company duly incorporated under the Companies{" "}
                             {"&"} Allied Matters Act 2020 , having its
                             registered office at{" "}
                           </font>
@@ -435,7 +439,8 @@ function Template27POASPITC(props) {
                       </font>
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                        {" "}(
+                          {" "}
+                          (
                         </font>
                       </font>
                       <font face="Garamond, serif">
@@ -582,17 +587,18 @@ function Template27POASPITC(props) {
                         </font>
                       </font>
                       <font face="Garamond, serif">
-                      <font
-                            size={3}
-                            style={{ fontSize: "12pt" }}
-                            ref={periodOfPowerRef}
-                          >
-                            {insertInput(periodOfPower)}
-                          </font>
+                        <font
+                          size={3}
+                          style={{ fontSize: "12pt" }}
+                          ref={periodOfPowerRef}
+                        >
+                          {insertInput(periodOfPower)}
+                        </font>
                       </font>
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                        {" "}years
+                          {" "}
+                          years
                         </font>
                       </font>
                     </p>
@@ -648,15 +654,12 @@ function Template27POASPITC(props) {
                       style={{ lineHeight: "108%", marginBottom: "0.11in" }}
                     >
                       <font face="Garamond, serif">
-                      <font
-                            size={3}
-                            style={{ fontSize: "12pt" }}
-                          >
-                            {insertInput(nameOfDonor)}
-                          </font>
+                        <font size={3} style={{ fontSize: "12pt" }}>
+                          {insertInput(nameOfDonor)}
+                        </font>
                       </font>
                     </p>
-                    
+
                     <p
                       align="justify"
                       style={{ lineHeight: "108%", marginBottom: "0.11in" }}

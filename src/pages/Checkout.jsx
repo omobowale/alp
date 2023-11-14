@@ -1,75 +1,90 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { blueColor } from "../constants/colors";
 import { font10, font11, font12, fontWeight500 } from "../constants/fonts";
 import { PaystackButton } from "react-paystack";
 import "./checkout.css";
 import SaveAndContinueLater from "../commons/fragments/SaveAndContinueLater";
 import axiosTemplate from "../utils/axiosTemplate";
-import { removeCurrentDetailsFromLocalStorage } from "../helperfunctions/templates";
+import {
+  getAPIKeys,
+  handleTemplateDownload,
+  removeCurrentDetailsFromLocalStorage,
+  saveTemplate,
+} from "../helperfunctions/templates";
 import { useNavigate } from "react-router-dom";
+import { getLoggedInUser } from "../helperfunctions/user";
+import { TEST_PUBLIC_KEY, VAT } from "../constants/strings";
 
 function Checkout(props) {
   const user = JSON.parse(localStorage.getItem("user"));
+  const vat = props.vat ? props.vat : VAT;
   const navigate = useNavigate();
   const [email, setEmail] = useState(user ? user.email : "");
+  const [apiKeys, setApiKeys] = useState({});
   const [showPayStackButton, setShowPayStackButton] = useState(true);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  useEffect(() => {
+    getAPIKeys()
+      .then((response) => {
+        setApiKeys({
+          // livePublicKey: response?.data?.data?.test_public_key,
+          livePublicKey: TEST_PUBLIC_KEY,
+        });
+      })
+      .catch((err) => {});
+
+    return () => {};
+  }, [email]);
+
   const calculateAmount = (cost, vat) => {
-    return cost + vat;
+    return Number(cost) + Number(vat);
   };
 
   const downloadTemplate = async () => {
+    let docId = props.id;
+    let docName = props.name;
+    let userId = getLoggedInUser()?.id || 1;
+    let email = getLoggedInUser()?.email || "stigawithfun@gmail.com";
     const templateData = {
       responses: props.responseList,
-      docId: props.id,
-      docName: props.name,
+      docId,
+      docName,
     };
 
-    console.log("template data before downloading", templateData);
+    let requestData = {
+      temp_id: docId,
+      user_id: userId,
+      email,
+      Template_data: props.responseList,
+    };
 
-    const data = axiosTemplate(
-      `/api/Template/Download`,
-      "POST",
-      templateData,
-      null,
-      "blob"
-    );
-    const response = await data
-      .then((res) => {
-        if (res.status === 200) {
-          const href = URL.createObjectURL(res.data);
+    let saveResult = await saveTemplate(requestData, docName);
 
-          // create "a" HTML element with href to file & click
-          const link = document.createElement("a");
-          link.href = href;
-          link.setAttribute("download", props.name + ".docx"); //or any other extension
-          document.body.appendChild(link);
-          link.click();
+    const savedTempId = saveResult?.data?.data?.id;
 
-          // clean up "a" element & remove ObjectURL
-          document.body.removeChild(link);
-          URL.revokeObjectURL(href);
+    if (saveResult?.data?.error == "") {
+      return handleTemplateDownload(docName, savedTempId, email).then((res) => {
+        if (res === -1) {
+          return null;
+        } else {
+          return res;
         }
-
-        return res.data;
-      })
-      .catch((err) => {
-        console.log("download error", err);
       });
-
-    return response;
+    } else {
+      return undefined;
+    }
   };
 
   const componentProps = {
     email: email,
-    amount: calculateAmount(props.cost, props.vat) * 100,
+    amount: calculateAmount(props.cost, vat) * 100,
     metadata: {
       name: "",
       phone: "",
     },
-    publicKey: "pk_test_c7e41457f29c358f48dc4fcc9bc1cbd6c9fee09b",
+    publicKey: apiKeys.livePublicKey,
     text: "Pay and download now",
     onSuccess: () => {
       handlePaymentSuccessful();
@@ -86,6 +101,7 @@ function Checkout(props) {
       .then((response) => {
         if (response) {
           handleDownloadSuccess("Download completed! Redirecting...");
+          // return;
           redirect();
         } else {
           handleDownloadError(
@@ -161,7 +177,7 @@ function Checkout(props) {
               className="flex justify-between mb-1"
               style={{ fontSize: font11 }}
             >
-              <div>{props.name}</div>
+              <div>{props.label}</div>
               <div>NGN{props.cost}</div>
             </div>
             <div
@@ -169,14 +185,14 @@ function Checkout(props) {
               style={{ fontSize: font11 }}
             >
               <div>VAT</div>
-              <div>NGN{props.vat}</div>
+              <div>NGN{vat}</div>
             </div>
             <div
               className="flex justify-between mb-1"
               style={{ fontSize: font11, fontWeight: fontWeight500 }}
             >
               <div>TOTAL</div>
-              <div>NGN{calculateAmount(props.cost, props.vat)}</div>
+              <div>NGN{calculateAmount(props.cost, vat)}</div>
             </div>
           </div>
         </div>

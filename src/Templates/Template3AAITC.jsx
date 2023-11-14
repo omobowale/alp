@@ -18,9 +18,9 @@ import {
 import Layout from "../Layout";
 import Start from "../pages/Start";
 import { insertInput } from "../helperfunctions/jsx";
+import BlurItem from "../others/BlurItem";
 
 function Template3AAITC(props) {
-  console.log(props);
   //question index
   const [index, setIndex] = useState(0);
 
@@ -107,7 +107,7 @@ function Template3AAITC(props) {
   const [daysOfAbsentism, setDaysOfAbsentism] = useState(
     getCurrentValue("daysOfAbsentism")
   );
-  
+
   const [nameOfAgent, setNameOfAgent] = useState(
     getCurrentValue("nameOfAgent")
   );
@@ -382,6 +382,8 @@ function Template3AAITC(props) {
               details={{
                 price: templateDetails?.cost,
                 name: templateDetails?.name,
+                description: templateDetails?.description,
+                label: templateDetails?.label,
               }}
               setShowStart={setShowStart}
               imagePath={props.imagePath}
@@ -390,7 +392,7 @@ function Template3AAITC(props) {
           {!showStart && (
             <div className="flex justify-between gap-20">
               <Dialog
-              docId={props?.id}
+                docId={props?.id}
                 questions={questions}
                 index={index}
                 incrementIndex={incrementIndex}
@@ -702,12 +704,16 @@ function Template3AAITC(props) {
                       align="justify"
                       style={{ lineHeight: "100%", marginBottom: "0in" }}
                     >
-                      <font face="Garamond, serif">
+                      <font
+                        face="Garamond, serif"
+                        className="blur-item-container"
+                      >
                         <font size={3} style={{ fontSize: "12pt" }}>
                           <b>2.</b>
                         </font>
+                        <BlurItem />
                       </font>
-                      <font face="Garamond, serif">
+                      {/* <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
                           That the agent shall not, while selling the
                           products/goods of the principal make any
@@ -715,7 +721,7 @@ function Template3AAITC(props) {
                           than those contained in the principal’s printed price
                           list.
                         </font>
-                      </font>
+                      </font> */}
                     </p>
                     <p
                       align="justify"
@@ -768,18 +774,22 @@ function Template3AAITC(props) {
                       align="justify"
                       style={{ lineHeight: "100%", marginBottom: "0in" }}
                     >
-                      <font face="Garamond, serif">
+                      <font
+                        face="Garamond, serif"
+                        className="blur-item-container"
+                      >
                         <font size={3} style={{ fontSize: "12pt" }}>
                           <b>4.</b>
                         </font>
+                        <BlurItem />
                       </font>
-                      <font face="Garamond, serif">
+                      {/* <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
                           That the agent shall not make purchases on behalf of
                           or in any manner pledge the credit of the principal
                           without the consent in writing of the principal.
                         </font>
-                      </font>
+                      </font> */}
                     </p>
                     <p
                       align="justify"
@@ -823,19 +833,23 @@ function Template3AAITC(props) {
                       align="justify"
                       style={{ lineHeight: "100%", marginBottom: "0in" }}
                     >
-                      <font face="Garamond, serif">
+                      <font
+                        face="Garamond, serif"
+                        className="blur-item-container"
+                      >
                         <font size={3} style={{ fontSize: "12pt" }}>
                           <b>6.</b>
                         </font>
+                        <BlurItem />
                       </font>
-                      <font face="Garamond, serif">
+                      {/* <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
                           That the agent shall, in all his commercial dealings
                           and on documents and on the name-plate or letter-head
                           indicating his place of business, describe himself as
                           selling agent for the principal.
                         </font>
-                      </font>
+                      </font> */}
                     </p>
                     <p
                       align="justify"
@@ -1148,9 +1162,11 @@ function Template3AAITC(props) {
                     >
                       <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
-                          this agreement
-                          for <span ref={daysOfAbsentismRef}>{insertInput(daysOfAbsentism)}</span> days without
-                          the principal’s prior{" "}
+                          this agreement for{" "}
+                          <span ref={daysOfAbsentismRef}>
+                            {insertInput(daysOfAbsentism)}
+                          </span>{" "}
+                          days without the principal’s prior{" "}
                         </font>
                       </font>
                     </p>

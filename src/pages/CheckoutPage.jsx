@@ -5,6 +5,8 @@ function CheckoutPage(props) {
   return (
     <Checkout
       name={props.name}
+      label={props.label}
+
       id={props.id}
       cost={props.cost}
       vat={props.vat}

@@ -6,7 +6,7 @@ import {
   replaceSpaceWithSlash,
   TEMPLATE_SAVED,
 } from "../helperfunctions/strings";
-import { saveTemplate } from "../helperfunctions/templates";
+import { getUserTemplates, saveTemplate } from "../helperfunctions/templates";
 import { getLoggedInUser } from "../helperfunctions/user";
 import Layout from "../Layout";
 import { templates } from "../template_registration";
@@ -20,18 +20,30 @@ function Dashboard(props) {
   const [templatesLoading, setTemplatesLoading] = useState(false);
   const [count, setCount] = useState(0);
 
+  const getActualUserTemplates = (data) => {
+    let templates = [];
+    for (let d in data) {
+      if (data[d].length > 0) {
+        templates.push(data[d]);
+      }
+    }
+
+    return templates;
+  };
+
   useEffect(() => {
     const dataToBeSaved = localStorage.getItem(DATATOBESAVED);
-    console.log(dataToBeSaved);
     if (dataToBeSaved && count === 0) {
       let data = {
         ...JSON.parse(dataToBeSaved),
         email: getLoggedInUser()?.email,
+        user_id: getLoggedInUser()?.id,
+        temp_id: "",
+        Template_data: JSON.parse(dataToBeSaved),
       };
       saveTemplate(data).then((res) => {
         toast.success(TEMPLATE_SAVED);
         localStorage.removeItem(DATATOBESAVED);
-        console.log("local storage item has been remove");
         setCount(1);
       });
     }
@@ -40,21 +52,16 @@ function Dashboard(props) {
   useEffect(() => {
     setTemplatesLoading(true);
     localStorage.removeItem("edit");
-    axiosTemplate(
-      "/api/UserTemplate/GetAll",
-      "GET",
-      null,
-      localStorage.getItem("token"),
-      null
-    )
+    getUserTemplates(getLoggedInUser()?.id)
       .then((response) => {
-        console.log(response);
-        setUserTemplates(response?.data?.data);
+        
+        setUserTemplates(getActualUserTemplates(response.data));
       })
       .catch((err) => console.log(err, "err"))
       .finally(() => {
         setTemplatesLoading(false);
       });
+    
   }, []);
 
   return (
@@ -78,23 +85,27 @@ function Dashboard(props) {
         )}
         {userTemplates?.length > 0 && (
           <div className="grid md:grid-cols-3 grid-cols-1 w-11/12 gap-3">
-            {userTemplates.map((template) => {
-              return (
-                <div className="border mb-3 shadow-sm p-2">
-                  <UserSavedTemplateItem
-                    title={"Test"}
-                    userResponse={template?.userResponse}
-                    price={"1500"}
-                    link={
-                      "/templates/" +
-                      replaceSpaceWithSlash(
-                        templates?.find((t) => t.docId === template.docId)
-                          ?.title
-                      )
-                    }
-                  />
-                </div>
-              );
+            {userTemplates.map((t) => {
+              return t.map((x) => {
+                return (
+                  <div className="border mb-3 shadow-sm p-2">
+                    <UserSavedTemplateItem
+                      templateId={x?.id}
+                      title={x?.label.toUpperCase()}
+                      name={x?.name?.toUpperCase()}
+                      userResponse={x?.userResponse}
+                      price={x?.price}
+                      // link={
+                      //   "/templates/" +
+                      //   replaceSpaceWithSlash(
+                      //     templates?.find((t) => t.docId === x.name)
+                      //       ?.title
+                      //   )
+                      // }
+                    />
+                  </div>
+                );
+              });
             })}
           </div>
         )}

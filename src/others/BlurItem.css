@@ -1,0 +1,7 @@
+.blur-item {
+  width: 100% !important;
+  height: 20px;
+  background-image: url("/src/assets/blurry.jpg");
+  opacity: 0.2;
+  cursor: help;
+}

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const backendURL = 'https://lawtemplateapi.azurewebsites.net';
+const backendURL = 'https://backend.alphalex.com.ng';
 
 
 export default function axiosTemplate(url, method, data, token, responseType) {
@@ -12,6 +12,6 @@ export default function axiosTemplate(url, method, data, token, responseType) {
             "Content-Type": "application/json",
             Authorization: "Bearer " + token,
         },
-        responseType: responseType
+        
     });
 }

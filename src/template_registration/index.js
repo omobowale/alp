@@ -33,6 +33,7 @@ import Template10CACTI from "../Templates/Template10CACTI";
 import Template11CAITC from "../Templates/Template11CAITC";
 import Template12CAITI from "../Templates/Template12CAITI";
 import Template13FA from "../Templates/Template13FA";
+import Template14LTITC from "../Templates/Template14LTITC";
 import Template2AACTI from "../Templates/Template2AACTI";
 import Template3AAITC from "../Templates/Template3AAITC";
 import Template4AAITI from "../Templates/Template4AAITI";
@@ -112,6 +113,13 @@ export const templates = [
         price: "1500",
         component: <Template12CAITI id="CAITI" name="CONSULTANCY AGREEMENT INDIVIDUAL TO INDIVIDUAL" imagePath={CAITI} />
     },
+    // {
+    //     title: "FRANCHISE AGREEMENT",
+    //     imagePath: FA,
+    //     docId: "FA",
+    //     price: "1500",
+    //     component: <Template14LTITC id="FA" name="FRANCHISE AGREEMENT" imagePath={FA} />
+    // },
     {
         title: "FRANCHISE AGREEMENT",
         imagePath: FA,
@@ -119,6 +127,13 @@ export const templates = [
         price: "1500",
         component: <Template13FA id="FA" name="FRANCHISE AGREEMENT" imagePath={FA} />
     },
+    // {
+    //     title: "FRANCHISE AGREEMENT",
+    //     imagePath: FA,
+    //     docId: "LTITC",
+    //     price: "2500",
+    //     component: <Template14LTITC id="LTITC" name="FRANCHISE AGREEMENT" imagePath={FA} />
+    // },
     {
         title: "POWER OF ATTORNEY CONSIDERATION CORPORATE TO CORPORATE",
         imagePath: POACCTC,

@@ -26,30 +26,26 @@ function Login() {
       email,
       password,
     };
-    const data = axiosTemplate(
-      `/api/authentication/login`,
-      "POST",
-      userData,
-      null
-    );
+    const data = axiosTemplate(`/Users/login`, "POST", userData, null);
     const response = await data
       .then((res) => {
         if (res.status === 200) {
           if (res.data.data) {
-            console.log(res, "res");
-            localStorage.setItem("token", res.data.data.accessToken);
             localStorage.setItem(
               "user",
-              JSON.stringify({ email: res.data.data.email })
+              JSON.stringify({
+                email: res.data.data.email,
+                id: res.data.data.id,
+              })
             );
+            localStorage.setItem("token", res.data.data.accessToken);
           }
           return res.data;
         }
+
         return null;
       })
-      .catch((err) => {
-        console.log("err", err);
-      });
+      .catch((err) => {});
 
     return response;
   };
@@ -62,19 +58,16 @@ function Login() {
       setIsLoggingIn(true);
       loginUser(email, password)
         .then((response) => {
-          console.log(response, "login response");
           setIsLoggingIn(false);
           if (response?.data) {
             setLoginErrorMessage("");
             navigate("/dashboard");
             window.location.reload();
           } else {
-            console.log("here", response?.data);
-            setLoginErrorMessage(response?.message);
+            setLoginErrorMessage(response?.error);
           }
         })
         .catch((err) => {
-          console.log(err, "This is the LOGIN error");
           setLoginErrorMessage(
             "Error! Could not log in. Please try again later"
           );

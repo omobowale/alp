@@ -1,7 +1,6 @@
 import { placeholderMarker } from "../constants/strings"
 
 export const insertInput = (input, marker1) => {
-  console.log("input", input)
   let actualMarker = <b>{"" + input + ""}</b>;
     if(marker1?.toLowerCase() == "underline bold"){
       actualMarker = <u><b>{"" + input + ""}</b></u>

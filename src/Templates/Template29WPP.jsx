@@ -121,9 +121,11 @@ function Template29WPP(props) {
           {showStart && (
             <Start
               details={{
-                price: templateDetails?.cost,
-                name: templateDetails?.name,
-              }}
+  price: templateDetails?.cost,
+  name: templateDetails?.name,
+  description: templateDetails?.description,
+  label: templateDetails?.label
+}}
               setShowStart={setShowStart}
               imagePath={props.imagePath}
             />

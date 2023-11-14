@@ -12,15 +12,16 @@ import {
 import {
   extractResponses,
   getCurrentDetails,
+  handleGeneratePdf,
   loadTemplate,
   saveCurrentDetails,
 } from "../helperfunctions/templates";
 import Layout from "../Layout";
 import Start from "../pages/Start";
 import { insertInput } from "../helperfunctions/jsx";
+import BlurItem from "../others/BlurItem";
 
 function Template1AACTC(props) {
-  console.log(props);
   //question index
   const [index, setIndex] = useState(0);
 
@@ -55,6 +56,9 @@ function Template1AACTC(props) {
   const addressOfAgentWitnessRef = useRef();
   const occupationOfAgentWitnessRef = useRef();
   const dateOfAgentWitnessRef = useRef();
+
+  //Ref for template
+  const templateRef = useRef(null);
 
   const getCurrentValue = (key) => {
     let result = placeholderMarker;
@@ -138,7 +142,10 @@ function Template1AACTC(props) {
 
   //other functions
   useEffect(() => {
-    loadTemplate(props?.id, setTemplateLoading, setTemplateDetails);
+    loadTemplate(props?.id, setTemplateLoading, setTemplateDetails)
+      .then((response) => {
+      })
+      .catch((err) => {});
   }, [props?.id]);
 
   const setTargetRef = (ref) => {
@@ -386,15 +393,20 @@ function Template1AACTC(props) {
       {templateDetails && (
         <>
           {showStart && (
-            <Start
-              details={{
-                price: templateDetails?.cost,
-                name: templateDetails?.name,
-              }}
-              setShowStart={setShowStart}
-              imagePath={props.imagePath}
-              saveCurrentDetails={() => saveCurrentDetails(questions)}
-            />
+            <>
+              <Start
+                details={{
+                  id: templateDetails?.id,
+                  price: templateDetails?.cost,
+                  name: templateDetails?.name,
+                  description: templateDetails?.description,
+                  label: templateDetails?.label,
+                }}
+                setShowStart={setShowStart}
+                imagePath={props.imagePath}
+                saveCurrentDetails={() => saveCurrentDetails(questions)}
+              />
+            </>
           )}
           {!showStart && (
             <div className="flex justify-between gap-20">
@@ -408,6 +420,9 @@ function Template1AACTC(props) {
                 responseList={extractResponses(questions)}
                 saveCurrentDetails={() => saveCurrentDetails(questions)}
                 setRef={setTargetRef}
+                downloadButtonClicked={() =>
+                  handleGeneratePdf(templateRef, props?.id)
+                }
               />
 
               <div className="w-3/5 py-3 shadow-md border">
@@ -430,6 +445,7 @@ function Template1AACTC(props) {
                 <div
                   className="template-container py-2 px-4"
                   style={{ height: "70vh", overflow: "scroll" }}
+                  ref={templateRef}
                 >
                   <div>
                     <meta
@@ -713,12 +729,14 @@ function Template1AACTC(props) {
                       align="justify"
                       style={{ lineHeight: "100%", marginBottom: "0in" }}
                     >
-                      <font face="Garamond, serif">
+                      <font face="Garamond, serif" className="blur-item-container">
                         <font size={3} style={{ fontSize: "12pt" }}>
                           <b>2.</b>
                         </font>
+                        <BlurItem />
                       </font>
-                      <font face="Garamond, serif">
+                      
+                      {/* <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
                           That the agent shall not, while selling the
                           products/goods of the principal make any
@@ -726,7 +744,7 @@ function Template1AACTC(props) {
                           than those contained in the principal’s printed price
                           list.
                         </font>
-                      </font>
+                      </font> */}
                     </p>
                     <p
                       align="justify"
@@ -779,18 +797,19 @@ function Template1AACTC(props) {
                       align="justify"
                       style={{ lineHeight: "100%", marginBottom: "0in" }}
                     >
-                      <font face="Garamond, serif">
+                      <font face="Garamond, serif" className="blur-item-container">
                         <font size={3} style={{ fontSize: "12pt" }}>
                           <b>4.</b>
                         </font>
+                        <BlurItem />
                       </font>
-                      <font face="Garamond, serif">
+                      {/* <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
                           That the agent shall not make purchases on behalf of
                           or in any manner pledge the credit of the principal
                           without the consent in writing of the principal.
                         </font>
-                      </font>
+                      </font> */}
                     </p>
                     <p
                       align="justify"
@@ -834,19 +853,20 @@ function Template1AACTC(props) {
                       align="justify"
                       style={{ lineHeight: "100%", marginBottom: "0in" }}
                     >
-                      <font face="Garamond, serif">
+                      <font face="Garamond, serif" className="blur-item-container">
                         <font size={3} style={{ fontSize: "12pt" }}>
                           <b>6.</b>
                         </font>
+                        <BlurItem />
                       </font>
-                      <font face="Garamond, serif">
+                      {/* <font face="Garamond, serif">
                         <font size={3} style={{ fontSize: "12pt" }}>
                           That the agent shall, in all his commercial dealings
                           and on documents and on the name-plate or letter-head
                           indicating his place of business, describe himself as
                           selling agent for the principal.
                         </font>
-                      </font>
+                      </font> */}
                     </p>
                     <p
                       align="justify"

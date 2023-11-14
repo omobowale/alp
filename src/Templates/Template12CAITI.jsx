@@ -20,6 +20,7 @@ import {
   saveCurrentDetails,
 } from "../helperfunctions/templates";
 import Dialog from "../commons/Custom/Dialog";
+import BlurItem from "../others/BlurItem";
 
 function Template12CAITI(props) {
   //question index
@@ -341,6 +342,8 @@ function Template12CAITI(props) {
               details={{
                 price: templateDetails?.cost,
                 name: templateDetails?.name,
+                description: templateDetails?.description,
+                label: templateDetails?.label,
               }}
               setShowStart={setShowStart}
               imagePath={props.imagePath}
@@ -349,7 +352,7 @@ function Template12CAITI(props) {
           {!showStart && (
             <div className="flex justify-between gap-20">
               <Dialog
-              docId={props?.id}
+                docId={props?.id}
                 questions={questions}
                 index={index}
                 incrementIndex={incrementIndex}
@@ -859,12 +862,13 @@ function Template12CAITI(props) {
                         per hour for time spent on Consulting Services.
                         Consultant shall submit written, signed reports of the
                         time spent performing Consulting Services, itemizing in
-                        reasonable detail the dates on which services were
+                        {/* reasonable detail the dates on which services were
                         performed, the number of hours spent on such dates and a
                         brief description of the services rendered. The Client
                         shall pay the Consultant the amounts due pursuant to
                         submitted reports within 14 days after such reports are
-                        received by the Client.
+                        received by the Client. */}
+                        <BlurItem />
                       </font>
                     </font>
                   </p>
@@ -995,10 +999,11 @@ function Template12CAITI(props) {
                         }}
                       >
                         The Consultant shall submit written documentation and
-                        receipts where available itemizing the dates on which
+                        {/* receipts where available itemizing the dates on which
                         expenses were incurred. The Client shall pay the
                         Consultant the amounts due pursuant to submitted reports
-                        within 14 days after a report is received by the Client.
+                        within 14 days after a report is received by the Client. */}
+                        <BlurItem />
                       </font>
                     </font>
                   </p>
