@@ -52,7 +52,7 @@ function Footer() {
           >
             <a
               style={{ color: "white" }}
-              href="https://www.alphalex.com.ng/contact-us/"
+              href="https://www.alphalex.com.ng/about-us-2/"
             >
               FAQ
             </a>

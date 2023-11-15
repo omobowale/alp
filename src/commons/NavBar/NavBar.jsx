@@ -22,7 +22,7 @@ function NavBar() {
       >
         <div>
           <img
-            style={{ width: "3.5em", height: "2em" }}
+            style={{ width: "61px", height: "39px" }}
             src={CompanyLogo}
             alt="Alphalex logo"
           />
@@ -47,6 +47,9 @@ function NavBar() {
             </a>
             <a href="https://www.alphalex.com.ng/contact-us/">
               Contact Us
+            </a>
+            <a href="https://www.alphalex.com.ng/about-us-2/">
+              FAQ
             </a>
           </div>
           <AiOutlineMenu
